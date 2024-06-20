@@ -1,16 +1,16 @@
-import IdFindFailPage from "@/pages/login/IdFindFailPage";
-import IdFindPage from "@/pages/login/IdFindPage";
-import IdFindSuccessPage from "@/pages/login/IdFindSuccessPage";
-import JoinPage from "@/pages/login/JoinPage";
-import PwFindPage from "@/pages/login/PwFindPage";
-import PwResetPage from "@/pages/login/PwResetPage";
-import VerificationPage from "@/pages/login/VerificationPage";
-import Login from "@/pages/login/loginPage";
+import IdFindFailPage from "@/pages/choi/login/IdFindFailPage";
+import IdFindPage from "@/pages/choi/login/IdFindPage";
+import IdFindSuccessPage from "@/pages/choi/login/IdFindSuccessPage";
+import PwFindPage from "@/pages/choi/login/PwFindPage";
+import PwResetPage from "@/pages/choi/login/PwResetPage";
+import VerificationPage from "@/pages/choi/login/VerificationPage";
+import Login from "@/pages/choi/login/loginPage";
 import Footer from "@/pages/commons/Footer";
-import ProfileCreate from "@/pages/profile/ProfileCreate";
+import ProfileCreate from "@/pages/choi/profile/ProfileCreate";
+import JoinPage from "@/pages/choi/login/JoinPage";
 
 import Image from "next/image";
-import ProfileSelect from "@/pages/profile/ProfileSelect";
+import ProfileSelect from "@/pages/choi/profile/ProfileSelect";
 
 export default function Home() {
   return (
@@ -21,9 +21,9 @@ export default function Home() {
     //<PwFindPage/>
     //<VerificationPage/>
     //<PwResetPage/>
-    //<JoinPage/>
+    <JoinPage/>
     //<Footer/>
     //<ProfileCreate/>
-    <ProfileSelect/>
+    //<ProfileSelect/>
   );
 }

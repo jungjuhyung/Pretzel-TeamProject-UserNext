@@ -4,13 +4,13 @@
 import React from 'react';
 import { observer } from 'mobx-react-lite';
 import { Global } from '@emotion/react';
-import passwordStore from '../../stores/passwordStore';
+import passwordStore from '../../../stores/passwordStore';
 
 import {
   globalStyles, Background, PwResetBox, Title, SubTitle,
   NewPassWord, SubText, Re_NewPassWord, Error as StyledError,
   Ok as StyledOk, OkButton
-} from '../../styles/login/PwRestPageCSS';
+} from '../../../styles/choi/login/PwRestPageCSS';
 
 const PwResetPage = observer(() => {
   const { newPassword, reNewPassword, passwordsMatch, setNewPassword, setReNewPassword } = passwordStore;

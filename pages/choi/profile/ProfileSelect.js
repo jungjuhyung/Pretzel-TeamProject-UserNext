@@ -5,7 +5,7 @@ import { Global } from '@emotion/react';
 
 import {
   globalStyles , Background , Title ,Wrapper_box
-} from '../../styles/profile/ProfileSelectCSS';
+} from '../../../styles/choi/profile/ProfileSelectCSS';
 
 const ProfileSelect = () =>{
 

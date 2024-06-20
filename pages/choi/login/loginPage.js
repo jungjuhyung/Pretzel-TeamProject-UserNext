@@ -9,7 +9,7 @@ import {
     BoxBottom, Id, PasswordInput, LoginButton, AccountOptions,
     SelectOption, Bar, BoxFooter, Move, SubText,
     Link, NaverLogin, KaKaoLogin, loginClick
-} from '../../styles/login/loginPageCSS';
+} from '../../../styles/choi/login/loginPageCSS';
 
 const LoginPage = () => {
     const [id, setId] = useState('');

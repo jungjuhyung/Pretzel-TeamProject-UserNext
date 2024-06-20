@@ -6,7 +6,7 @@ import { Global } from '@emotion/react';
 import {
   globalStyles, Background, VerificationBox ,Title ,SubTitle,
   Verification ,ButtonBox, OkButton ,Re_send
-} from '../../styles/login/VerificationPageCSS';
+} from '../../../styles/choi/login/VerificationPageCSS';
 
 
 const VerificationPage = () =>{

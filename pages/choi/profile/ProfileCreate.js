@@ -7,7 +7,7 @@ import {
   globalStyles , Background , Title , Profile_Box , Profile_Box_left,
   Profile_Image , Profile_Box_Right , NickName , NickName_Input , Profile_image_title,
   Profile_image_Upload, CustomUploadButton , OkButton , CancelButton , Button_box
-} from '../../styles/profile/ProfileCreateCSS';
+} from '../../../styles/choi/profile/ProfileCreateCSS';
 
 const ProfileCreate = () =>{
 

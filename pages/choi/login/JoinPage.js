@@ -11,7 +11,7 @@ import {
   BirthDay , NoticeAllBox, CheckBoxAll , NoticeBox_first ,NoticeBox , 
   Notice_Title_Main,CheckBox_Basic , Notice_Title_Basic , Notice_Icon,
   CheckBox_Choice, Notice_Title_Choice , JoinButton
-} from '../../styles/login/JoinPageCSS';
+} from '../../../styles/choi/login/JoinPageCSS';
 
 const JoinPage = () => {
   const [startDate, setStartDate] = useState(null);

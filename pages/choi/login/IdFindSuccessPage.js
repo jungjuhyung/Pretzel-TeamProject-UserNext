@@ -8,7 +8,7 @@ import { Global } from '@emotion/react';
 import {
   globalStyles , Background , FindSuccessBox , IconBox , Title,
   Icon , Result , SubTitle , MoveLogin
-} from '../../styles/login/IdFindSuccessPageCSS';
+} from '../../../styles/choi/login/IdFindSuccessPageCSS';
 
 const IdFindSuccessPage = () =>{
   return(
