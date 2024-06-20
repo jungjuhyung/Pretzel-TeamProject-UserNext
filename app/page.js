@@ -6,7 +6,11 @@ import PwFindPage from "@/pages/login/PwFindPage";
 import PwResetPage from "@/pages/login/PwResetPage";
 import VerificationPage from "@/pages/login/VerificationPage";
 import Login from "@/pages/login/loginPage";
+import Footer from "@/pages/commons/Footer";
+import ProfileCreate from "@/pages/profile/ProfileCreate";
+
 import Image from "next/image";
+import ProfileSelect from "@/pages/profile/ProfileSelect";
 
 export default function Home() {
   return (
@@ -17,6 +21,9 @@ export default function Home() {
     //<PwFindPage/>
     //<VerificationPage/>
     //<PwResetPage/>
-    <JoinPage/>
+    //<JoinPage/>
+    //<Footer/>
+    //<ProfileCreate/>
+    <ProfileSelect/>
   );
 }
