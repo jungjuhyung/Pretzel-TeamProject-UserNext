@@ -11,6 +11,9 @@ import JoinPage from "@/pages/choi/login/JoinPage";
 
 import Image from "next/image";
 import ProfileSelect from "@/pages/choi/profile/ProfileSelect";
+import MyProfile from "@/pages/park/myPage/myProfile";
+
+import '@/styles/commons/reset.css'
 
 export default function Home() {
   return (
@@ -21,9 +24,10 @@ export default function Home() {
     //<PwFindPage/>
     //<VerificationPage/>
     //<PwResetPage/>
-    <JoinPage/>
+    //<JoinPage/>
     //<Footer/>
     //<ProfileCreate/>
     //<ProfileSelect/>
+    <MyProfile/>
   );
 }

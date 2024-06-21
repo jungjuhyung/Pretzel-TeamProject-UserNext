@@ -2,7 +2,7 @@
 
 import { ProfileContainer, ProfileImage } from "@/styles/park/myPage/myProfile";
 
-const myProfile = () => {
+const MyProfile = () => {
     return (
         <ProfileContainer>
             <ProfileImage />
@@ -10,4 +10,4 @@ const myProfile = () => {
     );
 };
 
-export default myProfile;
+export default MyProfile;
