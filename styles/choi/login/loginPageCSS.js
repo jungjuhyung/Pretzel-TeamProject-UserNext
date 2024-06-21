@@ -16,7 +16,6 @@ export const globalStyles = css`
 `;
 
 export const Background = styled.div`
-  background-color: black;
   width: 100%;
   height: 1080px;
   display: flex;
@@ -73,6 +72,7 @@ export const Id = styled.input`
   padding: 15px 0px 15px 15px;
   font-size: 17px;
   font-family: 'Pretendard-Regular';
+  border: none;
 `;
 
 const PasswordContainer = styled.div`
@@ -125,6 +125,7 @@ export const LoginButton = styled.input`
   font-weight: 400;
   color: #ffffff;
   text-align: center;
+  border: none;
 `;
 
 export const AccountOptions = styled.div`

@@ -1,4 +1,4 @@
-// IdFindFailPage.js
+// 아이디 찾기 실패 페이지
 
 "use client";
 

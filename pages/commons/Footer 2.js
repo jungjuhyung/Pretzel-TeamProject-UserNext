@@ -60,16 +60,16 @@ const Footer = () =>{
 
             <Social>
               <Social_Background>
-                <Youtube src='/images/icons/Youtube.png' />
+                <Youtube src='/images/Youtube.png' />
               </Social_Background>
               <Social_Background>
-                <Instagram src='/images/icons/Instagram.png' />
+                <Instagram src='/images/Instagram.png' />
               </Social_Background>
               <Social_Background>
-                <Twitter src='/images/icons/Twitter.png' />
+                <Twitter src='/images/Twitter.png' />
               </Social_Background>
               <Social_Background>
-                <FaceBook src='/images/icons/FaceBook.png' />
+                <FaceBook src='/images/FaceBook.png' />
               </Social_Background>
             </Social>
 

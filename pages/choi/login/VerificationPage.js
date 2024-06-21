@@ -1,3 +1,5 @@
+// 인증번호 입력 페이지
+
 "use client";
 
 import React from 'react';

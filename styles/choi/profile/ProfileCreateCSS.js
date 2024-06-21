@@ -15,12 +15,10 @@ export const globalStyles = css`
 `;
 
 export const Background = styled.div`
-  background-color: black;
   width: 100%;
   height: 1080px;
   display: flex;
   flex-direction: column;
-  
   align-items: center;
   box-sizing: border-box;
 `;
@@ -79,6 +77,7 @@ export const NickName_Input = styled.input`
   font-size: 20px;
   background-color: #252525;
   color: #FFFFFF;
+  border: none;
 `
 
 export const Profile_image_title = styled.div`
@@ -127,6 +126,7 @@ export const OkButton = styled.input`
   color: #FFFFFF;
   font-size: 20px;
   margin-right:30px;
+  border: none;
 `
 
 export const CancelButton = styled.input`
@@ -137,6 +137,10 @@ export const CancelButton = styled.input`
   background-color: #3d3d3d;
   color: #FFFFFF;
   font-size: 20px;
+  border: none;
+
+  
+  
 `
 
 

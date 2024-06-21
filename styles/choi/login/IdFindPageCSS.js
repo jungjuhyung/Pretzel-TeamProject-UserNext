@@ -16,7 +16,6 @@ export const globalStyles = css`
 `;
 
 export const Background = styled.div`
-  background-color: black;
   width: 100%;
   height: 1080px;
   display: flex;
@@ -65,6 +64,7 @@ export const NameBox = styled.input`
   
   margin-top : 11px;
   padding : 15px 0px 15px 15px;
+  border: none;
 `
 
 export const EmailBox = styled.input`
@@ -76,6 +76,7 @@ font-size : 17px;
 
 margin-top : 11px;
 padding : 15px 0px 15px 15px;
+border: none;
 `
 
 export const OkButton = styled.input`
@@ -89,4 +90,5 @@ export const OkButton = styled.input`
   text-align: center;
   color: #FFFFFF;
   margin-top : 20px;
+  border: none;
 `

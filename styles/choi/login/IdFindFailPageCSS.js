@@ -15,7 +15,6 @@ export const globalStyles = css`
 `;
 
 export const Background = styled.div`
-  background-color: black;
   width: 100%;
   height: 1080px;
   display: flex;
@@ -59,4 +58,5 @@ export const CheckButton = styled.input`
   border-radius : 50px;
   text-align : center;
   font-size:20px;
+  border: none;
 `
