@@ -13,6 +13,7 @@ import Image from "next/image";
 import ProfileSelect from "@/pages/choi/profile/ProfileSelect";
 import MyProfile from "@/pages/park/myPage/myProfile";
 
+// reset.css 적용
 import '@/styles/commons/reset.css'
 
 export default function Home() {
