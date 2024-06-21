@@ -16,27 +16,27 @@ import SubNav from "@/pages/park/myPage/subNav";
 import Footer from "@/pages/commons/Footer";
 
 // 공통 css 적용
-import '@/styles/commons/reset.css'
-import '@/styles/commons/font.css'
-import '../styles/commons/commons.css'
+import "@/styles/commons/reset.css";
+import "@/styles/commons/font.css";
+import "../styles/commons/commons.css";
 
 export default function Home() {
-  return (
-    //<Login/>
-    //<IdFindPage/>
-    //<IdFindSuccessPage/>
-    //<IdFindFailPage/>
-    //<PwFindPage/>
-    //<VerificationPage/>
-    //<PwResetPage/>
-    //<JoinPage/>
-    //<ProfileCreate/>
-    //<ProfileSelect/>
-    <>
-      <Header/>
-      <MyProfile/>
-      <SubNav/>
-      <Footer/>
-    </>
-  );
+    return (
+        //<IdFindPage/>
+        //<IdFindSuccessPage/>
+        //<IdFindFailPage/>
+        //<PwFindPage/>
+        //<VerificationPage/>
+        //<PwResetPage/>
+        //<JoinPage/>
+        //<ProfileCreate/>
+        //<ProfileSelect/>
+        //<MyProfile/>
+        //<SubNav/>
+        <>
+            <Header />
+            <Login />
+            <Footer />
+        </>
+    );
 }

@@ -10,12 +10,13 @@ import {
     SelectOption, Bar, BoxFooter, Move, SubText,
     Link, NaverLogin, KaKaoLogin, loginClick
 } from '../../../styles/choi/login/loginPageCSS';
+import axios from 'axios';
 
 const LoginPage = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
-
+    const API_URL = "/user/login"
     const handleIdChange = (e) => {
         setId(e.target.value);
     };
@@ -24,10 +25,34 @@ const LoginPage = () => {
         setPassword(e.target.value);
     };
 
-    const handleLoginClick = () => {
-        loginClick(id, password);
-    };
+    // const handleLoginClick = () => {
+    //     // oginClick(id, password);
+    //     // axios 서버로 정보 보내기
+    //     const response = axios.post("/user/login", {
+    //         user_id : id, 
+    //         pwd : password
+    //     });
+    //     console.log(response.data)
+    // };
 
+    async function login(){
+        try {
+            // axios 서버로 정보 보내기
+            console.log(API_URL)
+            const response = await axios.post(API_URL, {
+                user_id : id, 
+                pwd : password
+                });
+            console.log(response)
+            console.log(response.data)
+            
+            // token 토큰을 로컬 스토리지에 저장
+        } catch (error) {
+            console.error('로그인 실패 : ', error)
+            setId("error");
+            setPassword("")
+        }
+    }
     const togglePasswordVisibility = () => {
         setShowPassword(prevShowPassword => !prevShowPassword);
     };
@@ -47,7 +72,7 @@ const LoginPage = () => {
                             showPassword={showPassword}
                             togglePasswordVisibility={togglePasswordVisibility}
                         />
-                        <LoginButton value='로그인' type='button' onClick={handleLoginClick} />
+                        <LoginButton value='로그인' type='button' onClick={login} />
                     </BoxBottom>
                     <AccountOptions>
                         <SelectOption><Move href=''>아이디 찾기</Move></SelectOption><Bar>ㅣ</Bar>
