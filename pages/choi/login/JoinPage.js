@@ -1,3 +1,5 @@
+// 회원가입 페이지
+
 "use client";
 
 import React, { useState } from 'react';
@@ -57,31 +59,31 @@ const JoinPage = () => {
             <NoticeBox>
               <CheckBox_Basic type='checkbox'/>
               <Notice_Title_Basic>[필수] 만 14세 이상입니다.</Notice_Title_Basic>
-              <Notice_Icon src='/images/Arrow.png' />
+              <Notice_Icon src='/images/icons/Arrow.png' />
             </NoticeBox>
 
             <NoticeBox>
               <CheckBox_Basic type='checkbox'/>
               <Notice_Title_Basic>[필수] 서비스 이용약관 동의</Notice_Title_Basic>
-              <Notice_Icon src='/images/Arrow.png' />
+              <Notice_Icon src='/images/icons/Arrow.png' />
             </NoticeBox>
 
             <NoticeBox>
               <CheckBox_Basic type='checkbox'/>
               <Notice_Title_Basic>[필수] 개인정보 수집 및 이용 동의</Notice_Title_Basic>
-              <Notice_Icon src='/images/Arrow.png' />
+              <Notice_Icon src='/images/icons/Arrow.png' />
             </NoticeBox>
 
             <NoticeBox>
               <CheckBox_Choice type='checkbox'/>
               <Notice_Title_Choice>[선택] 개인정보 수집 및 이용 동의</Notice_Title_Choice>
-              <Notice_Icon src='/images/Arrow.png' />
+              <Notice_Icon src='/images/icons/Arrow.png' />
             </NoticeBox>
 
             <NoticeBox>
               <CheckBox_Choice type='checkbox'/>
               <Notice_Title_Choice>[선택] 마케팅 정보 수신 동의 </Notice_Title_Choice>
-              <Notice_Icon src='/images/Arrow.png' />
+              <Notice_Icon src='/images/icons/Arrow.png' />
             </NoticeBox>
 
           </NoticeAllBox>

@@ -1,4 +1,4 @@
-// loginPage.js
+// 로그인 페이지
 
 "use client";
 
@@ -82,8 +82,8 @@ const LoginPage = () => {
                     <BoxFooter>
                         <SubText>다른 방법으로 로그인하기</SubText>
                         <Link>
-                            <Move href=''><NaverLogin src='/images/NaverLogin.png'/></Move>
-                            <Move href=''><KaKaoLogin src='/images/KakaoLogin.png'/></Move>
+                            <Move href=''><NaverLogin src='/images/icons/NaverLogin.png'/></Move>
+                            <Move href=''><KaKaoLogin src='/images/icons/KakaoLogin.png'/></Move>
                         </Link>
                     </BoxFooter>
                 </LoginBox>

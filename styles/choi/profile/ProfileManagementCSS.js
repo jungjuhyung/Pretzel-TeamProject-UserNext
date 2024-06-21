@@ -35,7 +35,7 @@ export const Wrapper_box = styled.div`
 `
 
 export const Title = styled.div`
-  width: 477px;
+  width: 138px;
   height: 36px;
   font-size: 30px;
   font-weight: 600;
@@ -89,7 +89,7 @@ export const New_Profile_Info = styled.div`
   height: 36px;
 `
 
-export const Management_Button = styled.input`
+export const Ok_Button = styled.input`
   width: 180px;
   height: 50px;
   color:#FFFFFF;

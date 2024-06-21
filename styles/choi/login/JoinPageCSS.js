@@ -15,7 +15,6 @@ export const globalStyles = css`
 `;
 
 export const Background = styled.div`
-  background-color: black;
   width: 100%;
   height: 1821px;
   display: flex;
@@ -50,6 +49,7 @@ export const Name = styled.input`
   border-radius: 5px;
   padding: 15px 0px 15px 15px;
   margin-top: 58px;
+  border: none;
 `;
 
 export const Id = styled.input`
@@ -58,6 +58,7 @@ export const Id = styled.input`
   border-radius: 5px;
   padding: 15px 0px 15px 15px;
   margin-top: 45px;
+  border: none;
 `;
 
 export const IdCondition = styled.span`
@@ -75,6 +76,7 @@ export const PassWord = styled.input`
   border-radius: 5px;
   padding: 15px 0px 15px 15px;
   margin-top: 35px;
+  border: none;
 `;
 
 export const PwCondition = styled.div`
@@ -92,6 +94,7 @@ export const Re_PassWord = styled.input`
   border-radius: 5px;
   padding: 15px 0px 15px 15px;
   margin-top: 15px;
+  border: none;
 `;
 
 export const Error = styled.div`
@@ -126,6 +129,7 @@ export const Email = styled.input`
   padding: 15px 0px 15px 15px;
   font-size: 17px;
   border-radius : 5px;
+  border: none;
 `;
 
 export const Icon = styled.div`
@@ -215,6 +219,7 @@ export const CheckBoxAll = styled.input`
   width : 15px;
   height : 15px;
   margin: 0;
+  border: none;
 `
 export const Notice_Title_Main = styled.span`
   width : 275px;
@@ -230,6 +235,7 @@ export const CheckBox_Basic = styled.input`
   height : 15px;
   margin: 0;
   border: 1px solid #929292;
+  border: none;
 `
 
 export const Notice_Title_Basic = styled.span`
@@ -250,6 +256,7 @@ export const CheckBox_Choice = styled.input`
   height : 15px;
   margin: 0;
   border: 1px solid #929292;
+  border: none;
 `
 
 export const Notice_Title_Choice = styled.span`
@@ -270,6 +277,7 @@ export const JoinButton = styled.input`
   font-weight: 600;
   margin-top: 45px;
   color: #FFFFFF;
+  border: none;
 `
 
 

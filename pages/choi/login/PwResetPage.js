@@ -1,3 +1,5 @@
+// 새로운 비밀번호 설정 페이지
+
 // @jsxImportSource @emotion/react
 "use client";
 

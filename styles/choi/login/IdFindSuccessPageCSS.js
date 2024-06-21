@@ -16,7 +16,6 @@ export const globalStyles = css`
 `;
 
 export const Background = styled.div`
-  background-color: black;
   width: 100%;
   height: 1080px;
   display: flex;
@@ -87,4 +86,5 @@ export const MoveLogin = styled.input`
   font-weight:500;
   margin-top: 26px;
   border-radius: 50px;
+  border: none;
 `

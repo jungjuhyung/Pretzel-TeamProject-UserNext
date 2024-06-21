@@ -1,3 +1,5 @@
+// 프로필 설정 페이지
+
 "use client";
 
 import React from 'react';
@@ -19,7 +21,7 @@ const ProfileCreate = () =>{
           <Profile_Box>
 
             <Profile_Box_left>
-              <Profile_Image src='/images/profile.jpg'/>
+              <Profile_Image src='/images/icons/profile.jpg'/>
             </Profile_Box_left>
 
             <Profile_Box_Right>
@@ -28,7 +30,7 @@ const ProfileCreate = () =>{
               <Profile_image_title>프로필 사진</Profile_image_title>
               <Profile_image_Upload id="file-upload" type='file'/>
               <CustomUploadButton htmlFor="file-upload">
-                <img src='/images/file.png' alt="Upload file"/>
+                <img src='/images/icons/file.png' alt="Upload file"/>
               </CustomUploadButton>
             </Profile_Box_Right>
           </Profile_Box>

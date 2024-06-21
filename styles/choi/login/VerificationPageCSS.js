@@ -15,7 +15,6 @@ export const globalStyles = css`
 `;
 
 export const Background = styled.div`
-  background-color: black;
   width: 100%;
   height: 1080px;
   display: flex;
@@ -59,6 +58,7 @@ export const Verification = styled.input`
   margin-top : 11px;
   padding : 15px 0px 15px 15px;
   color : #C8C8C8;
+  border: none;
 `
 export const ButtonBox = styled.div`
   width : 300px;
@@ -77,6 +77,7 @@ export const OkButton = styled.input`
   text-align : center;
   font-weight : 400;
   border-radius : 50px;
+  border: none;
 `
 
 export const Re_send = styled.input`
@@ -86,5 +87,6 @@ export const Re_send = styled.input`
   border-radius : 50px;
   color : #FFFFFF;
   font-weight : 400;
+  border: none;
 
 `

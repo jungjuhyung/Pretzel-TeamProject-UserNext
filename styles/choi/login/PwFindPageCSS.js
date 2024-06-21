@@ -15,7 +15,6 @@ export const globalStyles = css`
 `;
 
 export const Background = styled.div`
-  background-color: black;
   width: 100%;
   height: 1080px;
   display: flex;
@@ -62,6 +61,7 @@ export const Id = styled.input`
   padding : 15px 0px 15px 15px;
   margin-top : 15px;
   font-size : 17px;
+  border: none;
 
 `
 
@@ -74,4 +74,5 @@ export const OkButton = styled.input`
   color : #FFFFFF;
   text-align : center;
   margin-top : 30px;
+  border: none;
 `

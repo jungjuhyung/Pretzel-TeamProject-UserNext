@@ -16,7 +16,6 @@ export const globalStyles = css`
 `;
 
 export const Background = styled.div`
-  background-color: black;
   width: 100%;
   height: 1080px;
   display: flex;
@@ -61,6 +60,7 @@ export const NewPassWord = styled.input`
   font-size : 17px;
   border-radius : 5px;
   margin-top : 11px;
+  border: none;
 `
 
 export const SubText = styled.div`
@@ -78,6 +78,7 @@ export const Re_NewPassWord = styled.input`
   border-radius : 5px;
   font-size : 17px;
   margin-top : 14px;
+  border: none;
 `
 
 export const Error = styled.div`
@@ -105,6 +106,7 @@ export const OkButton = styled.input`
   font-size : 20px;
   text-align : center;
   color: #FFFFFF;
+  border: none;
 
 `
 
