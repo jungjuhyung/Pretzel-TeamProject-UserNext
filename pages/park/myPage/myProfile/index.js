@@ -1,11 +1,15 @@
 "use client";
 
-import { ProfileContainer, ProfileImage } from "@/styles/park/myPage/myProfile";
+import { ProfileContainer, ProfileImg, ProfileManageButton, UserInfoContainer, UserName } from "@/styles/park/myPage/myProfile";
 
 const MyProfile = () => {
     return (
         <ProfileContainer>
-            <ProfileImage />
+            <ProfileImg src='/images/profile/oing.png' />
+            <UserInfoContainer>
+                <UserName>오잉</UserName>
+                <ProfileManageButton>프로필 관리</ProfileManageButton>
+            </UserInfoContainer>
         </ProfileContainer>
     );
 };

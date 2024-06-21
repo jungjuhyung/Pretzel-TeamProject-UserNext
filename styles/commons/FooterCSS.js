@@ -43,7 +43,7 @@ export const Logo = styled.span`
   width : 80px;
   height : 25px;
   font-size: 20px;
-  font-family: 'Rubik One', sans-serif;
+  font-family: 'rubik one', sans-serif;
   color : #868686;
 `
 

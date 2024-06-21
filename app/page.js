@@ -13,8 +13,9 @@ import Image from "next/image";
 import ProfileSelect from "@/pages/choi/profile/ProfileSelect";
 import MyProfile from "@/pages/park/myPage/myProfile";
 
-// reset.css 적용
+// 공통 css 적용
 import '@/styles/commons/reset.css'
+import '@/styles/commons/font.css'
 
 export default function Home() {
   return (
