@@ -6,30 +6,30 @@ export const HeadeContainer = styled.div`
     margin: 30px 40px 0 40px;
 `;
 
-export const HeaderLeft = styled.div`
+export const HeaderLeft = styled.ul`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-width: 574px;
+    min-width: 550px;
 `;
 
 export const HeaderRight = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    min-width: 210px;
+    min-width: 200px;
 `;
 
-export const Title = styled.p`
+export const Title = styled.li`
     color: #f29a2e;
     font-family: rubik one;
-    font-size: 40px;
+    font-size: 35px;
     &:hover {
         color: #ad6e21;
     }
 `;
 
-export const Menus = styled.p`
+export const Menus = styled.li`
     color: #ffffff;
 
     &:hover {
@@ -45,7 +45,7 @@ export const LoginBtn = styled.button`
     border-radius: 5px;
     width: 65px;
     height: 35px;
-    font-size: 17px;
+    font-size: 16px;
 `;
 
 export const SignUpBtn = styled.button`
@@ -56,5 +56,5 @@ export const SignUpBtn = styled.button`
     border-radius: 5px;
     width: 80px;
     height: 35px;
-    font-size: 17px;
+    font-size: 16px;
 `;

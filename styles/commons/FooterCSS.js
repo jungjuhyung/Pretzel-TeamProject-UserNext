@@ -27,7 +27,7 @@ export const Top_Line = styled.div`
   width: 1800px;
   height: 325px;
   border-top: 2px solid #3d3d3d;
-  margin: 100px 60px 100px 60px;
+  margin: 80px 60px 50px 60px;
   padding-top : 50px;
   display: flex;
   flex-direction: column;
@@ -42,43 +42,43 @@ export const Footer_Top = styled.div`
 export const Logo = styled.span`
   width : 80px;
   height : 25px;
-  font-size: 20px;
+  font-size: 17px;
   font-family: 'rubik one', sans-serif;
   color : #868686;
 `
 
 export const TermsOne = styled.span`
-  width: 133px;
+  width: 112px;
   height: 24px;
-  font-size: 20px;
+  font-size: 17px;
   color: #868686;
   margin-left : 8px;
 `
 
 export const TermsTwo = styled.span`
-  width: 153px;
+  width: 127px;
   height: 24px;
-  font-size: 20px;
+  font-size: 17px;
   color: #868686;
 `
 
 export const TermsThree = styled.span`
-  width: 132px;
+  width: 112px;
   height: 24px;
-  font-size: 20px;
+  font-size: 17px;
   color: #868686;
 `
 
 export const TermsFour = styled.span`
   width: 74px;
   height: 24px;
-  font-size: 20px;
+  font-size: 17px;
   color: #868686;
 `
 export const Bar = styled.span`
   height: 24px;
   color: #413939;
-  font-size: 20px;
+  font-size: 17px;
   margin: 0px 8.5px;
 `
 

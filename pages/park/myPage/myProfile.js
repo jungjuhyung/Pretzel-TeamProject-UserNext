@@ -8,7 +8,7 @@ const MyProfile = () => {
     return (
         <ProfileContainer> {/* 프로필 감싸는 container */}
 
-            <ProfileImg src='/images/profile/oing.png' /> {/* 프로필 사진 */}
+            <ProfileImg src='/images/samples/oing.png' /> {/* 프로필 사진 */}
 
             <UserInfoContainer> {/* 회원정보 container */}
 

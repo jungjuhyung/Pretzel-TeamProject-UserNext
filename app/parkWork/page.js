@@ -9,6 +9,8 @@ import Header from '../../pages/commons/header';
 import MyProfile from '../../pages/park/myPage/myProfile';
 import SubNav from '../../pages/park/myPage/subNav';
 import Footer from '../../pages/commons/Footer';
+import ViewingHistory from '@/pages/park/myPage/viewingHistory';
+import MovieWishList from '@/pages/park/myPage/movieWishList';
 
 export default function ChoiWork() {
     return (
@@ -16,7 +18,9 @@ export default function ChoiWork() {
             <Header />
             <MyProfile />
             <SubNav />
+            <MovieWishList />
             <Footer />
         </>
+            //<ViewingHistory />
     )
 }
