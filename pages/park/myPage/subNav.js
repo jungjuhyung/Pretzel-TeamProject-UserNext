@@ -1,3 +1,4 @@
+// 마이페이지 중간에 들어가는 메뉴바
 "use client";
 
 const { SubNavContainer, Menus } = require("@/styles/park/myPage/subNav");
