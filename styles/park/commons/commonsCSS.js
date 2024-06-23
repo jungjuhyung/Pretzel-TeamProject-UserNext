@@ -13,3 +13,12 @@ export const Icon24px = styled.img`
 export const ColorOrange = styled.span`
     color: #f29a2e;
 `;
+
+export const AdminPageTitle = styled.h1`
+    font-family: "Pretendard-Regular";
+    font-size: 25px;
+    font-weight: 800;
+    color: #ffffff;
+    text-align: center;
+    margin-top: 50px;
+`

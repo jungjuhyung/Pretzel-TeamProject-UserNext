@@ -11,16 +11,14 @@ import SubNav from '../../pages/park/myPage/subNav';
 import Footer from '../../pages/commons/Footer';
 import ViewingHistory from '@/pages/park/myPage/viewingHistory';
 import MovieWishList from '@/pages/park/myPage/movieWishList';
+import SideNav from '@/pages/park/adminPage/sideNav';
+import UserManage from '@/pages/park/adminPage/userManage';
 
-export default function ChoiWork() {
+export default function ParkWork() {
     return (
         <>
-            <Header />
-            <MyProfile />
-            <SubNav />
-            <MovieWishList />
-            <Footer />
+            <SideNav />
+            <UserManage />
         </>
-            //<ViewingHistory />
     )
 }

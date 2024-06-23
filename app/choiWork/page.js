@@ -9,7 +9,7 @@ import Header from '../../pages/commons/header';
 import SubNav from '../../pages/park/myPage/subNav';
 import Footer from '../../pages/commons/Footer';
 
-export default function ParkWork() {
+export default function ChoiWork() {
     return (
         <>
             <Header />
