@@ -16,7 +16,7 @@ const IdFindSuccessPage = () =>{
       <Global styles={globalStyles} />
         <Background>
           <FindSuccessBox>
-            <IconBox><Icon src='/images/check.png'/></IconBox>
+            <IconBox><Icon src='/images/icons/check.png'/></IconBox>
             <Title>입력한 정보와 일치하는 결과입니다.</Title>
             <Result>oing_****</Result>
             <SubTitle>※ SNS 회원은 해당 SNS의 이메일을 알려드립니다.</SubTitle>

@@ -52,7 +52,7 @@ export const Title = styled.div`
   width : 391px;
   height : 33px;
   font-weight : 600;
-  font-size : 28px;
+  font-size : 27px;
   color : #FFFFFF;
   margin-top : 30px;
   text-align: center;

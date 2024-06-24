@@ -37,7 +37,7 @@ export const PwResetBox = styled.div`
 export const Title = styled.div`
   width : 189px;
   height : 36px;
-  font-size : 30px;
+  font-size : 29px;
   color:#FFFFFF;
   font-weight : 600;
   margin-top : 83px;

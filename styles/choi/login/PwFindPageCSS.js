@@ -37,7 +37,7 @@ export const PwFindBox = styled.div`
 export const Title = styled.div`
   width: 163px;
   height : 36px;
-  font-size : 30px;
+  font-size : 29px;
   font-weight : 600;
   color : #FFFFFF;
   text-align : center;
