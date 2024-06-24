@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 
 export const SideNavContainer = styled.div`
+    box-sizing: border-box;
     max-width: 200px;
     width: 100%;
     height: 100vh;
