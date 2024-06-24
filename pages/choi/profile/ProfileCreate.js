@@ -25,10 +25,13 @@ const ProfileCreate = () =>{
             </Profile_Box_left>
 
             <Profile_Box_Right>
+
               <NickName>닉네임</NickName>
               <NickName_Input type='text' placeholder='닉네임'/>
               <Profile_image_title>프로필 사진</Profile_image_title>
+
               <Profile_image_Upload id="file-upload" type='file'/>
+              
               <CustomUploadButton htmlFor="file-upload">
                 <img src='/images/icons/file.png' alt="Upload file"/>
               </CustomUploadButton>

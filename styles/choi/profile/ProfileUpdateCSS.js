@@ -19,12 +19,12 @@ export const Background = styled.div`
   height: 1080px;
   display: flex;
   flex-direction: column;
+  
   align-items: center;
   box-sizing: border-box;
 `;
 
 export const Title = styled.div`
-  margin-top: 147px;
   width: 137px;
   height: 36px;
   font-size: 29px;
@@ -39,54 +39,40 @@ export const Profile_Box = styled.div`
   display: flex;
 `
 
-export const Profile_Box_left = styled.div`
-  width: 300px;
-  height: 300px;
-  margin-right: 92px;
-`
-
-export const Profile_Image = styled.img`
+export const Profile_img =  styled.img`
   width: 300px;
   height: 300px;
   border-radius: 50%;
-  
 `
 
-export const Profile_Box_Right = styled.div`
-  width:  300px;
+export const Profile_Info = styled.div`
+  margin-left: 92px;
+  width: 300px;
   height: 300px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
+  padding: 5px 0px 5px 0px;
 `
 
-export const NickName = styled.div`
+export const Profile_name = styled.div`
   width: 52px;
   height: 24px;
   font-size: 20px;
-  font-weight: 400;
   color: #FFFFFF;
-  margin-bottom: 16px;
 `
 
-export const NickName_Input = styled.input`
+export const Profile_name_input = styled.input`
   width: 300px;
-  height : 50px;
-  border-radius: 5px;
-  padding:  13px 0px 13px 17px;
-  font-size: 20px;
+  height: 50px;
   background-color: #252525;
-  color: #FFFFFF;
-  border: none;
 `
 
-export const Profile_image_title = styled.div`
-  margin-top: 24px;
+export const Profile_Image = styled.div`
   width: 92px;
   height: 24px;
   font-size: 20px;
   color: #FFFFFF;
-  font-weight: 400;
 `
 
 export const Profile_image_Upload = styled.input`
@@ -109,39 +95,3 @@ export const CustomUploadButton = styled.label`
     height: 24px;
   }
 `
-
-export const Button_box = styled.div`
-  width: 300px;
-  height: 50px;
-  display: flex;
-  margin-top: 128px;
-`
-
-export const OkButton = styled.input`
-  width: 101px;
-  height: 50px;
-  text-align: center;
-  background-color: #f29a2e;
-  border-radius: 50px;
-  color: #FFFFFF;
-  font-size: 20px;
-  margin-right:30px;
-  border: none;
-`
-
-export const CancelButton = styled.input`
-  width: 101px;
-  height: 50px;
-  border-radius: 50px;
-  text-align: center;
-  background-color: #3d3d3d;
-  color: #FFFFFF;
-  font-size: 20px;
-  border: none;
-
-  
-  
-`
-
-
-

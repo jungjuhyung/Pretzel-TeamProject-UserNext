@@ -43,7 +43,7 @@ export const Icon = styled.img`
 export const Title = styled.div`
   width : 277px;
   height : 32px;
-  font-size : 27px;
+  font-size : 26px;
   font-weight : 600;
   color: #FFFFFF;
   margin-top : 30px;

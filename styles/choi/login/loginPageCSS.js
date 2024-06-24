@@ -103,7 +103,7 @@ const Icon = styled.img`
 export const PasswordInput = ({ placeholder, onChange, showPassword, togglePasswordVisibility }) => (
   <PasswordContainer>
     <Icon
-      src={showPassword ? "/images/eyeOn.png" : "/images/eyeOff.png"}
+      src={showPassword ? "/images/icons/eyeOn.png" : "/images/icons/eyeOff.png"}
       onClick={togglePasswordVisibility}
     />
     <PasswordField

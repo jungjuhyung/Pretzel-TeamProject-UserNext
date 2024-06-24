@@ -38,7 +38,7 @@ export const Title = styled.div`
   width : 163px;
   height : 36px;
   color : #FFFFFF;
-  font-size : 30px;
+  font-size : 29px;
   font-weight : 600;
   margin-top : 70px;
 `

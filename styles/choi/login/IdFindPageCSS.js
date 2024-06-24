@@ -37,7 +37,7 @@ export const Title = styled.div`
   width : 137px;
   height : 36px;
 
-  font-size : 30px;
+  font-size : 29px;
   font-family: 'Pretendard-Regular', sans-serif;
   font-weight: 600;
   color : #FFFFFF;
@@ -51,7 +51,7 @@ export const SubTitle = styled.div`
   font-family: 'Pretendard-Regular', sans-serif;
   font-weight: lighter;
   color : #FFFFFF;
-  font-size : 15px;
+  font-size : 14px;
   margin-top : 30px;
 `
 
