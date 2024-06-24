@@ -1,7 +1,7 @@
 "use client";
 
-import { DetailBtn, PaginationNum, Pagings, SearchField, UserBirth, UserContainer, UserContainerContent, UserDetail, UserEmail, UserID, UserInfo, UserInfoTitle, UserNum, WithdrawalDate, WithdrawalStatus, PaginationPrev, PaginationNext } from "@/styles/park/adminPage/UserManageCSS";
-import { AdminPageTitle } from "@/styles/park/adminPage/adminCommon";
+import { DetailBtn, PaginationNum, Pagings, SearchField, UserBirth, UserContainer, UserContainerContent, UserDetail, UserEmail, UserID, UserInfo, UserInfoTitle, UserNum, WithdrawalDate, WithdrawalStatus, PaginationPrev, PaginationNext } from "@/styles/park/adminPage/userManageCSS";
+import { AdminPageTitle } from "@/styles/park/adminPage/adminCommonCSS";
 import { ColorOrange } from "@/styles/park/commons/commonsCSS";
 
 const UserManage = () => {

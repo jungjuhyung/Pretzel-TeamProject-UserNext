@@ -1,9 +1,14 @@
 import styled from "@emotion/styled";
 
-export const HeadeContainer = styled.div`
+export const HeaderContainer = styled.div`
+    position: fixed;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100px;
     display: flex;
     justify-content: space-between;
-    margin: 30px 40px 0 40px;
+    padding: 30px 40px 30px 40px;
+    background-color: #0D0D0D;
 `;
 
 export const HeaderLeft = styled.ul`
@@ -11,14 +16,14 @@ export const HeaderLeft = styled.ul`
     justify-content: space-between;
     align-items: center;
     min-width: 550px;
-`;
+    `;
 
 export const HeaderRight = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
     min-width: 200px;
-`;
+    `;
 
 export const Title = styled.li`
     color: #f29a2e;
@@ -26,16 +31,16 @@ export const Title = styled.li`
     font-size: 35px;
     &:hover {
         color: #ad6e21;
-    }
-`;
+        }
+        `;
 
 export const Menus = styled.li`
     color: #ffffff;
-
+    
     &:hover {
         color: #868686;
-    }
-`;
+        }
+        `;
 
 export const LoginBtn = styled.button`
     font-family: "Pretendard-Regular";
@@ -46,7 +51,7 @@ export const LoginBtn = styled.button`
     width: 65px;
     height: 35px;
     font-size: 16px;
-`;
+    `;
 
 export const SignUpBtn = styled.button`
     font-family: "Pretendard-Regular";
@@ -57,4 +62,9 @@ export const SignUpBtn = styled.button`
     width: 80px;
     height: 35px;
     font-size: 16px;
-`;
+    `;
+
+export const Whitespace = styled.div`
+    width: 100%;
+    height: 100px;
+`

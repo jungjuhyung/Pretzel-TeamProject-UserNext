@@ -1,6 +1,6 @@
 "use client";
 
-import { AdminContentContainer, AllAdminContainer, Whitespace } from "@/styles/park/adminPage/adminCommon";
+import { AdminContentContainer, AllAdminContainer, Whitespace } from "@/styles/park/adminPage/adminCommonCSS";
 import UserManage from "./userManage";
 import UserDetail from "./userDetail";
 

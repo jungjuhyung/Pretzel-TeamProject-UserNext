@@ -15,12 +15,18 @@ import SideNav from '@/pages/park/adminPage/sideNav';
 import UserManage from '@/pages/park/adminPage/userManage';
 import UserDetail from '@/pages/park/adminPage/userDetail';
 import AdminPage from '@/pages/park/adminPage/adminPage';
+import TopBtn from '@/pages/commons/topBtn';
+import MyQnA from '@/pages/park/myPage/myQnA';
 
 export default function ParkWork() {
     return (
         <>
-            <SideNav />
-            <AdminPage />
+            <Header />
+            <MyProfile />
+            <SubNav />
+            <MyQnA />
+            <TopBtn />
+            <Footer />
         </>
     )
 }

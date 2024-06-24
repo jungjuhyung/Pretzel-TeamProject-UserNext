@@ -38,7 +38,7 @@ export const UserContainerContent = styled.tbody`
 `
 
 export const UserInfoTitle = styled.tr`
-    background-color: #f29a2e;
+    background-color: #343434;
     width: 100%;
     text-align: center;
 `
