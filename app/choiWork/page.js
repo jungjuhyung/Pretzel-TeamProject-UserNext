@@ -27,14 +27,16 @@ import ProfileUpdate from '@/pages/choi/profile/ProfileUpdate';
 import ProfileDelete from '@/pages/choi/profile/ProfileDelete';
 
 // 장르
-
 import GenreSelect from '@/pages/choi/genre/GenreSelect';
+
+// 메인
+import MainHome from '@/pages/choi/main/MainHome';
 
 export default function ChoiWork() {
     return (
         <>
             <Header />
-            <SubNav />
+            {/* <SubNav /> */}
 
             {/* 임시 내용 보는 공간 */}
 
@@ -58,7 +60,10 @@ export default function ChoiWork() {
             {/* <ProfileDelete/> */}
 
             {/* 장르 선택 */}
-            <GenreSelect/>
+            {/* <GenreSelect/> */}
+
+            {/* 메인 */}
+            <MainHome/>
             <Footer />
         </>
     )

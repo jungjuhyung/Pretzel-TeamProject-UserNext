@@ -3,9 +3,9 @@
 import { HeadeContainer, HeaderLeft, HeaderRight, LoginBtn, Menus, SignUpBtn, Title } from "@/styles/commons/headerCSS";
 import { Icon24px } from "@/styles/park/commons/commonsCSS";
 
-const Header = () => {
+const Header = ({isOverlay}) => {
     return (
-        <HeadeContainer>
+        <HeadeContainer isOverlay={isOverlay} >
             <HeaderLeft>
                 <Title>pretzel</Title>
                 <Menus>홈</Menus>

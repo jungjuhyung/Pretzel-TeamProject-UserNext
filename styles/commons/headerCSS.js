@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
 
 export const HeadeContainer = styled.div`
+    position: fixed; /* 고정된 위치 */
+    background-color: transparent;
+    width: 96%;
     display: flex;
     justify-content: space-between;
     margin: 30px 40px 0 40px;
