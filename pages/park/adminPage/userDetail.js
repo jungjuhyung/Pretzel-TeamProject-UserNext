@@ -1,10 +1,12 @@
 "use client";
 
-import { AdminPageTitle } from "@/styles/park/commons/commonsCSS";
+import { AdminPageTitle } from "@/styles/park/adminPage/adminCommon";
 
 const UserDetail = () => {
     return (
-        <AdminPageTitle>회원 관리</AdminPageTitle>
+        <>
+            <AdminPageTitle>회원 상세</AdminPageTitle>
+        </>
     )
 }
 

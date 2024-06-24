@@ -14,12 +14,13 @@ import MovieWishList from '@/pages/park/myPage/movieWishList';
 import SideNav from '@/pages/park/adminPage/sideNav';
 import UserManage from '@/pages/park/adminPage/userManage';
 import UserDetail from '@/pages/park/adminPage/userDetail';
+import AdminPage from '@/pages/park/adminPage/adminPage';
 
 export default function ParkWork() {
     return (
         <>
             <SideNav />
-            <UserDetail />
+            <AdminPage />
         </>
     )
 }

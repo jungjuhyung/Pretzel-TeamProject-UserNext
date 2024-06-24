@@ -1,25 +1,5 @@
 import styled from "@emotion/styled";
 
-export const AllContainer = styled.div`
-    display: flex;
-    flex-direction: row;
-`
-
-export const Whitespace = styled.div`
-    box-sizing: border-box;
-    max-width: 200px;
-    width: 100%;
-    height: 100vh;
-    padding: 0 10px;
-`
-
-export const UserManageContainer = styled.div`
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-
 export const SearchField = styled.input`
     background-color: #1E1E1E;
     box-sizing: border-box;
@@ -28,7 +8,6 @@ export const SearchField = styled.input`
     height: 40px;
     border-radius: 5px;
     font-family: "Pretendard-Regular";
-    font-size: 16px;
     color: #ffffff;
     border: none;
     padding-left: 40px;
@@ -53,10 +32,9 @@ export const UserContainer = styled.table`
 `
 
 export const UserContainerContent = styled.tbody`
-    font-family: "Pretendard-Regular";
+    font: 16px/40px "Pretendard-Regular";
     color: #ffffff;
     height: 40px;
-    line-height: 40px;
 `
 
 export const UserInfoTitle = styled.tr`
