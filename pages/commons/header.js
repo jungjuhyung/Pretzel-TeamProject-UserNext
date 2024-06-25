@@ -1,11 +1,12 @@
 "use client";
 
+import React from 'react';
 import { HeadeContainer, HeaderLeft, HeaderRight, LoginBtn, Menus, SignUpBtn, Title } from "@/styles/commons/headerCSS";
 import { Icon24px } from "@/styles/park/commons/commonsCSS";
 
-const Header = ({isOverlay}) => {
+const Header = ({ isVideoHovered }) => {
     return (
-        <HeadeContainer isOverlay={isOverlay} >
+        <HeadeContainer isVideoHovered={isVideoHovered}>
             <HeaderLeft>
                 <Title>pretzel</Title>
                 <Menus>홈</Menus>
