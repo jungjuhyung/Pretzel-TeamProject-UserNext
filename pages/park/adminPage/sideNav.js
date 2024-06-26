@@ -8,7 +8,7 @@ const SideNav = () => {
         <SideNavContainer>
             <AdminNameContainer>
                 <AdminName><ColorOrange>전체관리자</ColorOrange>님</AdminName>
-                <Icon24px src='/images/icons/doubleArrow.png' />
+                <Icon24px src='/images/icons/doubleArrowLeft.png' />
             </AdminNameContainer>
             <Menus>대시보드</Menus>
             <Menus>회원 관리</Menus>

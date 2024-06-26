@@ -11,6 +11,11 @@ export const Icon24px = styled.img`
     height: 24px;
 `;
 
+export const Icon30px = styled.img`
+    width: 30px;
+    height: 30px;
+`;
+
 export const ColorOrange = styled.span`
     color: #f29a2e;
 `;

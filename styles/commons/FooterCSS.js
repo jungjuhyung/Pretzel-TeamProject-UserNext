@@ -14,9 +14,8 @@ export const globalStyles = css`
 `;
 
 export const Background = styled.div`
-  background-color: black;
   width: 100%;
-  height: 525px;
+  height: 500px;
   box-sizing: border-box;
   display: flex;
   align-items: center;
@@ -26,7 +25,7 @@ export const Background = styled.div`
 export const Top_Line = styled.div`
   width: 1800px;
   height: 325px;
-  border-top: 2px solid #3d3d3d;
+  border-top: 1px solid #3d3d3d;
   margin: 80px 60px 50px 60px;
   padding-top : 50px;
   display: flex;

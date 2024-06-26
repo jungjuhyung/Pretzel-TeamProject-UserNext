@@ -17,16 +17,19 @@ import UserDetail from '@/pages/park/adminPage/userDetail';
 import AdminPage from '@/pages/park/adminPage/adminPage';
 import TopBtn from '@/pages/commons/topBtn';
 import MyQnA from '@/pages/park/myPage/myQnA';
+import MyReview from '@/pages/park/myPage/myReview';
+import SubscriptionPage from '@/pages/park/myPage/subscriptionPage';
+import { Align_Center } from '@/styles/park/adminPage/adminCommonCSS';
 
 export default function ParkWork() {
     return (
         <>
-            <Header />
-            <MyProfile />
-            <SubNav />
-            <MyQnA />
-            <TopBtn />
-            <Footer />
+            <SideNav />
+            <AdminPage />
+            {/* SideNav가 없어졌을 때
+            <Align_Center>
+                <UserDetail />
+            </Align_Center> */}
         </>
     )
 }

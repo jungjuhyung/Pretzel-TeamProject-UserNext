@@ -9,7 +9,6 @@ const AdminPage = () => {
         <AllAdminContainer>
             <Whitespace />
             <AdminContentContainer>
-                {/* <UserManage /> */}
                 <UserDetail />
             </AdminContentContainer>
         </AllAdminContainer >

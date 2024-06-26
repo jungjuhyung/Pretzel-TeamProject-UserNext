@@ -1,3 +1,4 @@
+// 마이페이지 - 문의 내역
 "use client";
 
 import { DisplayFlex, MyQnAContainer, MyQnAContainerContent, MyQnAContent, MyQnATitle, QnAContent, QnAState, QnATitle } from "@/styles/park/myPage/myQnACSS";

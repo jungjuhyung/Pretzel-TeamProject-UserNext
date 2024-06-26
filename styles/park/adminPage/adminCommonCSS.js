@@ -28,3 +28,9 @@ export const AdminPageTitle = styled.h1`
     text-align: center;
     margin-top: 50px;
 `
+
+export const Align_Center = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`

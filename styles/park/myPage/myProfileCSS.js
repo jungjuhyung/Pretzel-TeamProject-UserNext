@@ -62,13 +62,6 @@ export const SubscriptionInfo = styled.p`
     margin-left: 10px;
 `;
 
-export const EditUserInfoBtn = styled.p`
-    font-family: "Pretendard-Regular";
-    font-size: 15px;
-    color: #ffffff;
-    margin-left: 10px;
-`;
-
 export const Container = styled.div`
     display: flex;
     flex-direction: row;
