@@ -1,17 +1,10 @@
 import styled from "@emotion/styled";
 
-<<<<<<< HEAD
 export const HeaderContainer = styled.div`
     position: fixed;
     box-sizing: border-box;
     width: 100%;
     height: 100px;
-=======
-export const HeadeContainer = styled.div`
-    position: fixed; /* 고정된 위치 */
-    background-color: transparent;
-    width: 96%;
->>>>>>> origin/choi
     display: flex;
     justify-content: space-between;
     padding: 30px 40px 30px 40px;
