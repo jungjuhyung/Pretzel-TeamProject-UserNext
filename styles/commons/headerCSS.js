@@ -7,6 +7,7 @@ export const HeadeContainer = styled.div`
     display: flex;
     justify-content: space-between;
     margin: 30px 40px 0 40px;
+    z-index: 1;
 `;
 
 export const HeaderLeft = styled.ul`
