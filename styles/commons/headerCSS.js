@@ -8,8 +8,8 @@ export const HeaderContainer = styled.div`
     display: flex;
     justify-content: space-between;
     padding: 30px 40px 30px 40px;
-    background-color: none;
-    z-index: 1;
+    background-color: #0D0D0D;
+    z-index: 99;
 `;
 
 export const HeaderLeft = styled.ul`
@@ -30,6 +30,7 @@ export const Title = styled.li`
     color: #f29a2e;
     font-family: rubik one;
     font-size: 35px;
+
     &:hover {
         color: #ad6e21;
     }

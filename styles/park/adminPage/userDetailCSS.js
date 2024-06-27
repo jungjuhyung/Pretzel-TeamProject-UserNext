@@ -32,3 +32,34 @@ export const HorizontalLine = styled.hr`
     width: 80%;
     border: 1px solid #3D3D3D;
 `
+
+export const ProfileContainer = styled.div`
+    background-color: #252525;
+    display: flex;
+    align-items: center;
+    width: 400px;
+    height: 180px;
+    border-radius: 5px;
+`
+
+export const Profile_Img = styled.img`
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-left: 20px;
+`
+
+export const Profile_Info = styled.div`
+    color: #ffffff;
+    font: 16px "Pretendard-Regular";
+    margin-left: 20px;
+`
+
+export const Profile_Nickname = styled.p`
+`
+
+export const Profile_Birth = styled.p`
+`
+
+export const Profile_Gender = styled.p`
+`
