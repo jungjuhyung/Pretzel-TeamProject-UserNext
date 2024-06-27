@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 
 export const MyReviewContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 30px 10px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 30px 20px;
     margin: 0 5%;
 `
 
@@ -13,7 +13,7 @@ export const Cards = styled.div`
     transition: transform .5s;
 
     &:hover {
-        transform: scale(1.2);
+        transform: scale(1.3);
         transition: transform .5s ease;
         z-index: 2;
     }
@@ -27,7 +27,7 @@ export const Background = styled.img`
     border-radius: 5px;
 
     &:hover {
-        filter: brightness(50%);
+        filter: brightness(30%);
         transition: filter .5s;
     }
 `

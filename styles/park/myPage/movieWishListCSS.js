@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 
 export const MovieWishListContainer = styled.div`
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 30px 10px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-gap: 30px 20px;
     margin: 0 5%;
 `
 

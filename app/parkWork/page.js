@@ -24,12 +24,11 @@ import { Align_Center } from '@/styles/park/adminPage/adminCommonCSS';
 export default function ParkWork() {
     return (
         <>
-            <SideNav />
-            <AdminPage />
-            {/* SideNav가 없어졌을 때
-            <Align_Center>
-                <UserDetail />
-            </Align_Center> */}
+            <Header />
+            <MyProfile />
+            <SubNav />
+            <MyReview />
+            <Footer />
         </>
     )
 }
