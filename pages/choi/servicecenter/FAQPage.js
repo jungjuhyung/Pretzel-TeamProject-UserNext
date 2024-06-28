@@ -9,7 +9,7 @@ import {
   globalStyles , Background , Title , Genre_box , Payment ,
   Error , Rate_Plan , Inquiry , Inquiry_Button
 
-} from '../../../styles/choi/servicecenter/FAQPageCSS';
+} from '../../../styles/choi/servicecenter/PaymentCSS';
 
 const FAQPage = () =>{
   return(

@@ -31,7 +31,13 @@ import GenreSelect from '@/pages/choi/genre/GenreSelect';
 
 // 메인
 import MainHome from '@/pages/choi/main/MainHome';
+
+// FAQ
 import FAQPage from '@/pages/choi/servicecenter/FAQPage';
+import PaymentPage from '@/pages/choi/servicecenter/PaymentPage';
+import AnnouncementPage from '@/pages/choi/servicecenter/AnnouncementPage';
+import ContactPage from '@/pages/choi/servicecenter/ContactPage';
+
 
 export default function ChoiWork() {
     return (
@@ -66,8 +72,11 @@ export default function ChoiWork() {
             {/* 메인 */}
             {/* <MainHome/> */}
 
-            {/* 고객센터 */}
-            <FAQPage/>
+            {/* FAQ */}
+            {/* <FAQPage/> */}
+            {/* <PaymentPage/> */}
+            {/* <AnnouncementPage/> */}
+            <ContactPage/>
             <Footer />
         </>
     )
