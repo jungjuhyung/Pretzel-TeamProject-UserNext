@@ -7,7 +7,7 @@ import { Global } from '@emotion/react';
 
 import {
   globalStyles, Background, Title, Inquiry_Box, Inquiry_Box_Top, Inquiry_Box_Bottom
-} from '../../../styles/choi/servicecenter/PaymentCSS';
+} from '../../../styles/choi/servicecenter/PaymentCSS';
 
 const PaymentPage = () => {
   const [openIndexes, setOpenIndexes] = useState([]);

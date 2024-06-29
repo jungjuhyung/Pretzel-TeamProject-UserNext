@@ -10,7 +10,7 @@ import {
   Text_Input, Text_length_Box , Text_length, Button_Box , Ok_Button,
   Cencle_Button
 
-} from '../../../styles/choi/servicecenter/ContactPageCSS';
+} from '../../../styles/choi/servicecenter/ContactPageCSS';
 
 const ContactPage = () =>{
 
