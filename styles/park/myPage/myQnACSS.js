@@ -32,12 +32,16 @@ export const MyQnAContent = styled.tr`
 
 export const QnATitle = styled.td`
     width: 30%;
-    `
+`
 
 export const QnAContent = styled.td`
-    width: 50%;
-    `
+    width: 40%;
+`
+
+export const WrtieDate = styled.td`
+    width: 15%;
+`
 
 export const QnAState = styled.td`
-    width: 20%;
+    width: 15%;
 `

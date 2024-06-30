@@ -31,6 +31,13 @@ export const ColorRed = styled.span`
     color: red;
 `;
 
+export const HorizenLine = styled.hr`
+    width: 94%;
+    border: 1px solid #363636;
+    box-sizing: border-box;
+    margin: 0 auto;
+`
+
 export const TopButton = styled.button`
     display: block; /* 처음에는 숨겨둔다. */
     position: fixed;

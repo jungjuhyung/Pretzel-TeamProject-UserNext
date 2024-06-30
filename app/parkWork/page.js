@@ -15,14 +15,15 @@ import TopBtn from '@/pages/commons/topBtn';
 import MyQnA from '@/pages/park/myPage/myQnA';
 import MyReview from '@/pages/park/myPage/myReview';
 import SubscriptionPage from '@/pages/park/myPage/subscriptionPage';
+import DetailInfo from '@/pages/park/detailPage/detailInfo';
+import Director from '@/pages/park/detailPage/director';
 
 export default function ParkWork() {
     return (
         <>
             <Header />
-            <MyProfile />
-            <SubNav />
-            <MyQnA />
+            <DetailInfo />
+            <Director />
             <Footer />
         </>
     )
