@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
+// Global Styles
 export const globalStyles = css`
   *, *::before, *::after {
     box-sizing: border-box;
@@ -12,6 +13,7 @@ export const globalStyles = css`
   }
 `;
 
+// Styled Components
 export const Background = styled.div`
   width: 100%;
   height: 320vh; /* 배경의 전체 높이 */
@@ -32,18 +34,17 @@ export const Video = styled.video`
 `;
 
 export const Overlay = styled.div`
-  margin-top: -84px;  
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 80vh;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
-  pointer-events: none;
+  height: 70vh;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent); /* 그라데이션 배경 */
+  pointer-events: none; 
 `;
 
 export const Option_Box = styled.div`
-  bottom: 10vh;
+  bottom: 0.1vh; 
   position: absolute;
   width: 100%;
   height: 154px;

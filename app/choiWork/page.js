@@ -18,6 +18,7 @@ import IdFindSuccessPage from '@/pages/choi/login/IdFindSuccessPage';
 import PwFindPage from '@/pages/choi/login/PwFindPage';
 import PwResetPage from '@/pages/choi/login/PwResetPage';
 import VerificationPage from '@/pages/choi/login/VerificationPage';
+import AdminLoginPage from '@/pages/choi/login/AdminLoginPage';
 
 // 프로필
 import ProfileCreate from '@/pages/choi/profile/ProfileCreate';
@@ -31,6 +32,14 @@ import GenreSelect from '@/pages/choi/genre/GenreSelect';
 
 // 메인
 import MainHome from '@/pages/choi/main/MainHome';
+import AnnouncementPage from '@/pages/choi/servicecenter/AnnouncementPage';
+import ContactPage from '@/pages/choi/servicecenter/ContactPage';
+import FAQPage from '@/pages/choi/servicecenter/FAQPage';
+import PaymentPage from '@/pages/choi/servicecenter/PaymentPage';
+
+// FAQ
+
+
 
 export default function ChoiWork() {
     return (
@@ -49,6 +58,7 @@ export default function ChoiWork() {
             {/* <PwFindPage/> */}
             {/* <PwResetPage/> */}
             {/* <VerificationPage/> */}
+            {/* <AdminLoginPage/> */}
 
 
             {/* 프로필 관련 페이지 */}
@@ -64,6 +74,12 @@ export default function ChoiWork() {
 
             {/* 메인 */}
             <MainHome/>
+
+            {/* FAQ */}
+            {/* <AnnouncementPage/> */}
+            {/* <ContactPage/> */}
+            {/* <FAQPage/> */}
+            {/* <PaymentPage/> */}
             <Footer />
         </>
     )
