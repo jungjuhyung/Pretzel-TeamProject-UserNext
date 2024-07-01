@@ -16,14 +16,18 @@ import MyQnA from '@/pages/park/myPage/myQnA';
 import MyReview from '@/pages/park/myPage/myReview';
 import SubscriptionPage from '@/pages/park/myPage/subscriptionPage';
 import DetailInfo from '@/pages/park/detailPage/detailInfo';
-import Director from '@/pages/park/detailPage/director';
+import Staff from '@/pages/park/detailPage/staff';
+import Cast from '@/pages/park/detailPage/cast';
+import Review from '@/pages/park/detailPage/review';
 
 export default function ParkWork() {
     return (
         <>
             <Header />
             <DetailInfo />
-            <Director />
+            <Cast />
+            <Staff />
+            <Review />
             <Footer />
         </>
     )
