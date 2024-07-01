@@ -32,7 +32,7 @@ export const ColorRed = styled.span`
 `;
 
 export const HorizenLine = styled.hr`
-    width: 94%;
+    width: 90%;
     border: 1px solid #363636;
     box-sizing: border-box;
     margin: 0 auto;

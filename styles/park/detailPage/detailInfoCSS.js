@@ -13,7 +13,7 @@ export const Backdrop = styled.img`
 export const MovieTitle = styled.h1`
     font: 800 50px "Pretendard-Regular";
     color: #ffffff;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 `
 
 export const MovieInfo_Container = styled.div`
@@ -52,7 +52,7 @@ export const Genre = styled.p`
 
 export const Buttons_Container = styled.div`
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 `
 
 export const PlayBtn = styled.button`
@@ -68,7 +68,7 @@ export const PlayBtn = styled.button`
     display: flex;
     align-items: center;
     margin-right: 10px;
-    justify-content: center;
+    justify-content: space-evenly;
 `
 
 export const WishBtn = styled.button`
@@ -83,7 +83,7 @@ export const WishBtn = styled.button`
     border-radius: 5px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 `
 
 export const MovieDiscription = styled.div`

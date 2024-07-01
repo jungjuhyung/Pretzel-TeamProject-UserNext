@@ -3,52 +3,52 @@
 import { HorizenLine } from "@/styles/park/commons/commonsCSS";
 import { All_Container, PersonInfo_Container, Person_Container, Person_Name, Person_Role, Proifle_Img, Subtitle } from "@/styles/park/detailPage/staffAndCastCSS";
 
-const Cast = () => {
+const Staff = () => {
     return (
         <>
             <HorizenLine />
-            <Subtitle>출연진</Subtitle>
+            <Subtitle>스태프</Subtitle>
             <All_Container>
                 <Person_Container>
                     <Proifle_Img src="/images/samples/oing.png" />
                     <PersonInfo_Container>
-                        <Person_Name>나배우</Person_Name>
-                        <Person_Role>주연</Person_Role>
+                        <Person_Name>나감독</Person_Name>
+                        <Person_Role>감독</Person_Role>
                     </PersonInfo_Container>
                 </Person_Container>
                 <Person_Container>
                     <Proifle_Img src="/images/samples/oing.png" />
                     <PersonInfo_Container>
-                        <Person_Name>나배우</Person_Name>
-                        <Person_Role>주연</Person_Role>
+                        <Person_Name>나감독</Person_Name>
+                        <Person_Role>감독</Person_Role>
                     </PersonInfo_Container>
                 </Person_Container>
                 <Person_Container>
                     <Proifle_Img src="/images/samples/oing.png" />
                     <PersonInfo_Container>
-                        <Person_Name>나배우</Person_Name>
-                        <Person_Role>조연</Person_Role>
+                        <Person_Name>나감독</Person_Name>
+                        <Person_Role>감독</Person_Role>
                     </PersonInfo_Container>
                 </Person_Container>
                 <Person_Container>
                     <Proifle_Img src="/images/samples/oing.png" />
                     <PersonInfo_Container>
-                        <Person_Name>나배우</Person_Name>
-                        <Person_Role>조연</Person_Role>
+                        <Person_Name>나감독</Person_Name>
+                        <Person_Role>감독</Person_Role>
                     </PersonInfo_Container>
                 </Person_Container>
                 <Person_Container>
                     <Proifle_Img src="/images/samples/oing.png" />
                     <PersonInfo_Container>
-                        <Person_Name>나배우</Person_Name>
-                        <Person_Role>조연</Person_Role>
+                        <Person_Name>나감독</Person_Name>
+                        <Person_Role>감독</Person_Role>
                     </PersonInfo_Container>
                 </Person_Container>
                 <Person_Container>
                     <Proifle_Img src="/images/samples/oing.png" />
                     <PersonInfo_Container>
-                        <Person_Name>나배우</Person_Name>
-                        <Person_Role>조연</Person_Role>
+                        <Person_Name>나감독</Person_Name>
+                        <Person_Role>감독</Person_Role>
                     </PersonInfo_Container>
                 </Person_Container>
             </All_Container>
@@ -56,4 +56,4 @@ const Cast = () => {
     )
 }
 
-export default Cast;
+export default Staff;
