@@ -12,7 +12,7 @@ const ViewingHistory = () => {
                 <ViewingDate>2024.06.22 시청</ViewingDate>
             </OneMovieContainer>
             <OneMovieContainer>
-                <Movie_Thumbnail src='/images/samples/movieThumbnail.jpg' />
+                <MovieThumbnail src='/images/samples/movieThumbnail.jpg' />
                 <MovieTitle>괴물</MovieTitle>
                 <ViewingDate>2024.06.22 시청</ViewingDate>
             </OneMovieContainer>

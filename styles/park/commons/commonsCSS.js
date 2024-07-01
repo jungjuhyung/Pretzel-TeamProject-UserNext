@@ -1,4 +1,3 @@
-import TopBtn from "@/pages/commons/topBtn";
 import styled from "@emotion/styled";
 
 export const Icon20px = styled.img`
@@ -20,6 +19,25 @@ export const ColorOrange = styled.span`
     color: #f29a2e;
 `;
 
+export const ColorGray = styled.span`
+    color: #868686;
+`;
+
+export const ColorGreen = styled.span`
+    color: green;
+`;
+
+export const ColorRed = styled.span`
+    color: red;
+`;
+
+export const HorizenLine = styled.hr`
+    width: 94%;
+    border: 1px solid #363636;
+    box-sizing: border-box;
+    margin: 0 auto;
+`
+
 export const TopButton = styled.button`
     display: block; /* 처음에는 숨겨둔다. */
     position: fixed;
@@ -40,3 +58,20 @@ export const TopButton = styled.button`
         background-color: #868686;
     }
 `
+
+export const LogoutButton = styled.button`
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font: 16px "Pretendard-Regular";
+    background-color: #f29a2e;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    width: 80px;
+    height: 35px;
+
+    &:hover {
+        background-color: #ad6e21;
+    }
+`;

@@ -11,25 +11,20 @@ import SubNav from '../../pages/park/myPage/subNav';
 import Footer from '../../pages/commons/Footer';
 import ViewingHistory from '@/pages/park/myPage/viewingHistory';
 import MovieWishList from '@/pages/park/myPage/movieWishList';
-import SideNav from '@/pages/park/adminPage/sideNav';
-import UserManage from '@/pages/park/adminPage/userManage';
-import UserDetail from '@/pages/park/adminPage/userDetail';
-import AdminPage from '@/pages/park/adminPage/adminPage';
 import TopBtn from '@/pages/commons/topBtn';
 import MyQnA from '@/pages/park/myPage/myQnA';
 import MyReview from '@/pages/park/myPage/myReview';
 import SubscriptionPage from '@/pages/park/myPage/subscriptionPage';
-import { Align_Center } from '@/styles/park/adminPage/adminCommonCSS';
+import DetailInfo from '@/pages/park/detailPage/detailInfo';
+import Director from '@/pages/park/detailPage/director';
 
 export default function ParkWork() {
     return (
         <>
-            <SideNav />
-            <AdminPage />
-            {/* SideNav가 없어졌을 때
-            <Align_Center>
-                <UserDetail />
-            </Align_Center> */}
+            <Header />
+            <DetailInfo />
+            <Director />
+            <Footer />
         </>
     )
 }
