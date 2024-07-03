@@ -17,47 +17,34 @@ export const globalStyles = css`
 
 export const Background = styled.div`
   width: 100%;
-  height: 100vh;
+  height: 1080px;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  background-color: black;
+  border-radius : 5px;
 `;
 
 export const LoginBox = styled.div`
   background-color: #252525;
   width: 450px;
-  height: 550px;
+  height: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius: 5px;
+  justify-content: center;
 `;
 
 export const Title = styled.div`
-  width: 78px;
+  width: 100%;
   height: 36px;
   color: #ffffff;
   font-size: 30px;
-  font-family: 'Pretendard-Regular';
   font-weight: 600;
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 65px 186px 0px 186px;
-`;
-
-export const SubTitle = styled.div`
-  width: 145px;
-  height: 18px;
-  color: #ffffff;
-  font-size: 15px;
-  font-family: 'Pretendard-Regular';
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 32px 152.5px 0px 152.5px;
 `;
 
 export const BoxBottom = styled.div`
@@ -80,6 +67,7 @@ const PasswordContainer = styled.div`
   width: 100%;
   height: 50px;
   margin-top: 10px;
+  border: none;
 `;
 
 const PasswordField = styled.input`
@@ -121,7 +109,6 @@ export const LoginButton = styled.input`
   background-color: #f29a2e;
   margin-top: 20px;
   font-size: 20px;
-  font-family: 'Pretendard-Regular';
   font-weight: 400;
   color: #ffffff;
   text-align: center;
@@ -137,7 +124,6 @@ export const AccountOptions = styled.div`
 
 export const SelectOption = styled.span`
   font-size: 12px;
-  font-family: 'Pretendard-Regular';
   font-weight: lighter;
   color: #ffffff;
 `;
@@ -145,51 +131,6 @@ export const SelectOption = styled.span`
 export const Move = styled.a`
   color: #ffffff;
   text-decoration: none;
-  cursor: pointer;
-`;
-
-export const Bar = styled.span`
-  color: #ffffff;
-`;
-
-export const BoxFooter = styled.div`
-  width: 300px;
-  height: 163px;
-  border-top: 1px solid #515151;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-export const SubText = styled.div`
-  width: 151px;
-  height: 18px;
-  color: #ffffff;
-  font-size: 12px;
-  font-family: 'Pretendard-Regular';
-  font-weight: 300;
-  text-align: center;
-  margin-top: 15px;
-`;
-
-export const Link = styled.div`
-  width: 300px;
-  height: 120px;
-  display: flex;
-  justify-content: center;
-  margin-top: 10px;
-`;
-
-export const NaverLogin = styled.img`
-  width: 50px;
-  height: 50px;
-  margin-right: 11px;
-`;
-
-export const KaKaoLogin = styled.img`
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
 `;
 
 export const loginClick = (id, password) => {

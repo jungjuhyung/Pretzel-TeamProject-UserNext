@@ -7,9 +7,8 @@ import { Global } from '@emotion/react';
 import {
     globalStyles, Background, LoginBox, Title, SubTitle,
     BoxBottom, Id, PasswordInput, LoginButton, AccountOptions,
-    SelectOption, Bar, BoxFooter, Move, SubText,
-    Link, NaverLogin, KaKaoLogin, loginClick
-} from '../../../styles/choi/login/loginPageCSS';
+    SelectOption, Move
+} from '../../../../styles/choi/login/AdminLoginPageCSS';
 import axios from 'axios';
 
 const LoginPage = () => {
@@ -62,8 +61,7 @@ const LoginPage = () => {
             <Global styles={globalStyles} />
             <Background>
                 <LoginBox>
-                    <Title>로그인</Title>
-                    <SubTitle>pretzel 계정으로 로그인</SubTitle>
+                    <Title>관리자 로그인</Title>
                     <BoxBottom>
                         <Id type='text' placeholder="아이디" value={id} onChange={handleIdChange} />
                         <PasswordInput
@@ -75,17 +73,8 @@ const LoginPage = () => {
                         <LoginButton value='로그인' type='button' onClick={login} />
                     </BoxBottom>
                     <AccountOptions>
-                        <SelectOption><Move href=''>아이디 찾기</Move></SelectOption><Bar>ㅣ</Bar>
-                        <SelectOption><Move href=''>비밀번호 찾기</Move></SelectOption><Bar>ㅣ</Bar>
-                        <SelectOption><Move href=''>회원가입</Move></SelectOption>
+                        <SelectOption><Move href=''>일반 회원 로그인</Move></SelectOption>
                     </AccountOptions>
-                    <BoxFooter>
-                        <SubText>다른 방법으로 로그인하기</SubText>
-                        <Link>
-                            <Move href=''><NaverLogin src='/images/icons/NaverLogin.png'/></Move>
-                            <Move href=''><KaKaoLogin src='/images/icons/KakaoLogin.png'/></Move>
-                        </Link>
-                    </BoxFooter>
                 </LoginBox>
             </Background>
         </>

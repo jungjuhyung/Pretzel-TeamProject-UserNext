@@ -16,14 +16,23 @@ export const globalStyles = css`
 
 export const Background = styled.div`
   width: 100%;
-  height: 1821px;
+  height: 150vh;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border-radius: 5px;
-  
+  background-color: black;
 `;
+
+export const Wrapper_All = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  width: 450px;
+  height: 1124px;
+  padding-left: 1vw;
+`
 
 export const JoinBox = styled.div`
   width: 450px;
@@ -32,6 +41,7 @@ export const JoinBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 5px;
 `;
 
 export const Title = styled.div`
@@ -40,7 +50,7 @@ export const Title = styled.div`
   color: #FFFFFF;
   font-size: 30px;
   font-weight: 600;
-  margin-top: 30px;
+  margin-top: 65px;
 `;
 
 export const Name = styled.input`
@@ -52,13 +62,31 @@ export const Name = styled.input`
   border: none;
 `;
 
-export const Id = styled.input`
-  width: 300px;
+export const IdContainer = styled.div`
+  width: 100%;
   height: 50px;
-  border-radius: 5px;
-  padding: 15px 0px 15px 15px;
+  display: flex;
+  /* align-items: center; */
   margin-top: 45px;
+`;
+
+export const IdInput = styled.input`
+  margin-left: 64px;
+  width: 300px;
+  height: 100%;
+  border-radius: 5px 0 0 5px;
+  padding: 15px;
   border: none;
+`;
+
+export const IdCheckButton = styled.button`
+  width: 40px;
+  height: 100%;
+  border-radius: 0 5px 5px 0;
+  background-color: #F29A2E;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
 `;
 
 export const IdCondition = styled.span`
@@ -67,7 +95,6 @@ export const IdCondition = styled.span`
   font-size: 13px;
   color: #929292;
   margin-top: 5px;
-  margin-left: -30px;
 `;
 
 export const PassWord = styled.input`
@@ -85,7 +112,6 @@ export const PwCondition = styled.div`
   color: #929292;
   font-size: 13px;
   margin-top: 5px;
-  margin-left: -20px;
 `;
 
 export const Re_PassWord = styled.input`
@@ -98,21 +124,15 @@ export const Re_PassWord = styled.input`
 `;
 
 export const Error = styled.div`
-  width: 82px;
+  width: 88px;
   height: 16px;
   font-size: 13px;
   color: red;
   margin-top: 5px;
-  margin-left: -210px;
 `;
 
-export const Ok = styled.div`
-  width: 82px;
-  height: 16px;
-  font-size: 13px;
+export const GreenText = styled.span`
   color: green;
-  margin-top: 5px;
-  margin-left: -210px;
 `;
 
 export const Email_Box = styled.div`
@@ -127,8 +147,7 @@ export const Email = styled.input`
   width: 130px;
   height: 50px;
   padding: 15px 0px 15px 15px;
-  font-size: 17px;
-  border-radius : 5px;
+  border-radius: 5px;
   border: none;
 `;
 
@@ -146,7 +165,7 @@ export const Email_select = styled.select`
   width: 130px;
   height: 50px;
   padding: 15px 0px 15px 15px;
-  border-radius : 5px;
+  border-radius: 5px;
 `;
 
 export const BirthDay = styled.div`
@@ -158,7 +177,7 @@ export const BirthDay = styled.div`
   display: flex;
   align-items: center;
   background-color: #fff;
-  font-size : 17px;
+  font-size: 17px;
   padding-left: 30px;
   box-sizing: border-box;
 
@@ -184,7 +203,7 @@ export const BirthDay = styled.div`
     left: 10px;
     width: 20px;
     height: 20px;
-    background: url('/images/date.png') no-repeat center center;
+    background: url('/images/icons/date.png') no-repeat center center;
     background-size: cover;
     pointer-events: none;
   }
@@ -194,83 +213,84 @@ export const BirthDay = styled.div`
   }
 `;
 
-export const NoticeAllBox= styled.div`
-  margin-top : 45px;
-  width : 300px;
-  height : 207px;
-  display:flex;
-  flex-direction:column;
-`
+export const NoticeAllBox = styled.div`
+  margin-top: 45px;
+  width: 300px;
+  height: 207px;
+  display: flex;
+  flex-direction: column;
+`;
 
 export const NoticeBox_first = styled.div`
-  width : 300px;
-  height : 18px;
+  width: 300px;
+  height: 18px;
   display: flex;
-`
+`;
 
 export const NoticeBox = styled.div`
-  width : 300px;
-  height : 18px;
+  width: 300px;
+  height: 18px;
   display: flex;
   margin-top: 20px;
-`
+`;
 
 export const CheckBoxAll = styled.input`
-  width : 15px;
-  height : 15px;
+  width: 15px;
+  height: 15px;
   margin: 0;
   border: none;
-`
+`;
+
 export const Notice_Title_Main = styled.span`
-  width : 275px;
-  height : 18px;
-  font-size : 15px;
-  font-weight : 400;
-  color : #FFFFFF;
-  margin-left: 10px;;
-`
+  width: 275px;
+  height: 18px;
+  font-size: 15px;
+  font-weight: 400;
+  color: #FFFFFF;
+  margin-left: 10px;
+`;
 
 export const CheckBox_Basic = styled.input`
-  width : 15px;
-  height : 15px;
+  width: 15px;
+  height: 15px;
   margin: 0;
   border: 1px solid #929292;
   border: none;
-`
+`;
 
 export const Notice_Title_Basic = styled.span`
-  width : 275px;
-  height : 18px;
-  font-size : 15px;
-  color : #929292;
-  margin-left: 10px;;
-`
+  width: 275px;
+  height: 18px;
+  font-size: 15px;
+  color: #929292;
+  margin-left: 10px;
+`;
 
 export const Notice_Icon = styled.img`
   width: 20px;
   height: 18px;
-`
+`;
 
 export const CheckBox_Choice = styled.input`
-  width : 15px;
-  height : 15px;
+  width: 15px;
+  height: 15px;
   margin: 0;
   border: 1px solid #929292;
   border: none;
-`
+`;
 
 export const Notice_Title_Choice = styled.span`
-  width : 275px;
-  height : 18px;
-  font-size : 15px;
-  color : #929292;
-  margin-left: 10px;;
-`
+  width: 275px;
+  height: 18px;
+  font-size: 15px;
+  color: #929292;
+  margin-left: 10px;
+`;
 
 export const JoinButton = styled.input`
   background-color: #F29A2E;
   width: 300px;
-  height : 50px;
+  height: 50px;
   border-radius: 50px;
   text-align: center;
   font-size: 20px;
@@ -278,6 +298,15 @@ export const JoinButton = styled.input`
   margin-top: 45px;
   color: #FFFFFF;
   border: none;
-`
+`;
 
-
+export const Button = styled.button`
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+`;

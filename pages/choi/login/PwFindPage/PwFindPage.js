@@ -8,7 +8,7 @@ import { Global } from '@emotion/react';
 import {
   globalStyles , Background , PwFindBox ,Title ,SubTitle,
   Id ,OkButton
-} from '../../../styles/choi/login/PwFindPageCSS';
+} from '../../../../styles/choi/login/PwFindPageCSS';
 
 
 const PwFindPage = () =>{

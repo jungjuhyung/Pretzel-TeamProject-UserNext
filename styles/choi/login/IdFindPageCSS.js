@@ -17,12 +17,12 @@ export const globalStyles = css`
 
 export const Background = styled.div`
   width: 100%;
-  height: 1080px;
+  height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border-radius : 5px;
+  background-color: black;
 `;
 
 export const IdFindBox = styled.div`
@@ -32,6 +32,7 @@ export const IdFindBox = styled.div`
   display:flex;
   flex-direction: column;
   align-items: center;
+  border-radius : 5px;
 `
 export const Title = styled.div`
   width : 137px;

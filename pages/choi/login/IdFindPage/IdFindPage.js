@@ -8,7 +8,7 @@ import { Global } from '@emotion/react';
 import {
   globalStyles, Background , IdFindBox ,Title ,SubTitle,
   NameBox , EmailBox , OkButton
-} from '../../../styles/choi/login/IdFindPageCSS';
+} from '../../../../styles/choi/login/IdFindPageCSS';
 
 const IdFindPage = () => {
   return(
