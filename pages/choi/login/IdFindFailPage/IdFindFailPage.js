@@ -8,7 +8,7 @@ import { Global } from '@emotion/react';
 import {
   globalStyles , Background , FindFailBox, Icon, Title,
   CheckButton
-} from '../../../styles/choi/login/IdFindFailPageCSS';
+} from '../../../../styles/choi/login/IdFindFailPageCSS';
 
 const IdFindFailPage = () =>{
   return(

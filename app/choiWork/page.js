@@ -10,15 +10,15 @@ import SubNav from '../../pages/park/myPage/subNav';
 import Footer from '../../pages/commons/Footer';
 
 // 로그인
-import LoginPage from '@/pages/choi/login/loginPage';
-import IdFindFailPage from '@/pages/choi/login/IdFindFailPage';
-import IdFindPage from '@/pages/choi/login/IdFindPage';
-import JoinPage from '@/pages/choi/login/JoinPage';
-import IdFindSuccessPage from '@/pages/choi/login/IdFindSuccessPage';
-import PwFindPage from '@/pages/choi/login/PwFindPage';
-import PwResetPage from '@/pages/choi/login/PwResetPage';
-import VerificationPage from '@/pages/choi/login/VerificationPage';
-import AdminLoginPage from '@/pages/choi/login/AdminLoginPage';
+import LoginPage from '@/pages/choi/login/loginPage/loginPage';
+import IdFindFailPage from '@/pages/choi/login/IdFindFailPage/IdFindFailPage';
+import IdFindPage from '@/pages/choi/login/IdFindPage/IdFindPage';
+import JoinPage from '@/pages/choi/login/JoinPage/JoinPage';
+import IdFindSuccessPage from '@/pages/choi/login/IdFindSuccessPage/IdFindSuccessPage';
+import PwFindPage from '@/pages/choi/login/PwFindPage/PwFindPage';
+import PwResetPage from '@/pages/choi/login/PwResetPage/PwResetPage';
+import VerificationPage from '@/pages/choi/login/VerificationPage/VerificationPage';
+import AdminLoginPage from '@/pages/choi/login/AdminLoginPage/AdminLoginPage';
 
 // 프로필
 import ProfileCreate from '@/pages/choi/profile/ProfileCreate';
@@ -63,7 +63,7 @@ export default function ChoiWork() {
 
             {/* 프로필 관련 페이지 */}
 
-            {/* <ProfileCreate/> */}
+            <ProfileCreate/>
             {/* <ProfileManagement/> */}
             {/* <ProfileSelect/> */}
             {/* <ProfileUpdate/> */}
@@ -73,7 +73,7 @@ export default function ChoiWork() {
             {/* <GenreSelect/> */}
 
             {/* 메인 */}
-            <MainHome/>
+            {/* <MainHome/> */}
 
             {/* FAQ */}
             {/* <AnnouncementPage/> */}

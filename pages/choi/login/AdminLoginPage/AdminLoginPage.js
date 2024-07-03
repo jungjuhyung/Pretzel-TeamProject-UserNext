@@ -8,7 +8,7 @@ import {
     globalStyles, Background, LoginBox, Title, SubTitle,
     BoxBottom, Id, PasswordInput, LoginButton, AccountOptions,
     SelectOption, Move
-} from '../../../styles/choi/login/AdminLoginPageCSS';
+} from '../../../../styles/choi/login/AdminLoginPageCSS';
 import axios from 'axios';
 
 const LoginPage = () => {
