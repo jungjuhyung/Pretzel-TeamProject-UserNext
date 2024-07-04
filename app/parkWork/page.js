@@ -19,15 +19,21 @@ import DetailInfo from '@/pages/park/detailPage/detailInfo';
 import Staff from '@/pages/park/detailPage/staff';
 import Cast from '@/pages/park/detailPage/cast';
 import Review from '@/pages/park/detailPage/review';
+import Checkout from '../toss/checkout/page';
 
 export default function ParkWork() {
     return (
         <>
-            <Header />
+            {/* <Header />
             <DetailInfo />
             <Cast />
             <Staff />
             <Review />
+            <Footer /> */}
+            <Header />
+            <MyProfile />
+            <SubNav />
+            <ViewingHistory />
             <Footer />
         </>
     )
