@@ -12,6 +12,8 @@ import {
 
 } from '../../../styles/choi/servicecenter/ContactPageCSS';
 
+import Layout from '@/pages/commons/Layout';
+
 const ContactPage = () =>{
 
   function myText() {
@@ -28,6 +30,7 @@ const ContactPage = () =>{
 }
   return(
     <>
+    <Layout>
       <Global styles={globalStyles} />
         <Background>
           <Wrapper>
@@ -46,6 +49,7 @@ const ContactPage = () =>{
             </Button_Box>
           </Wrapper>
         </Background>
+      </Layout>
     </>
   )
 }

@@ -9,10 +9,12 @@ import {
   globalStyles , Background , FindSuccessBox , IconBox , Title,
   Icon , Result , SubTitle , MoveLogin
 } from '../../../../styles/choi/login/IdFindSuccessPageCSS';
+import Layout from '@/pages/commons/Layout';
 
 const IdFindSuccessPage = () =>{
   return(
     <>
+    <Layout>
       <Global styles={globalStyles} />
         <Background>
           <FindSuccessBox>
@@ -23,6 +25,7 @@ const IdFindSuccessPage = () =>{
             <MoveLogin value={'로그인 하러 가기'} type='button'/>
           </FindSuccessBox>
         </Background>
+    </Layout>
     </>
   )
 }

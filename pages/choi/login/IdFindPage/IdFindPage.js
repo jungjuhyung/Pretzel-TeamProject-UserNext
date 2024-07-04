@@ -9,10 +9,12 @@ import {
   globalStyles, Background , IdFindBox ,Title ,SubTitle,
   NameBox , EmailBox , OkButton
 } from '../../../../styles/choi/login/IdFindPageCSS';
+import Layout from '@/pages/commons/Layout';
 
 const IdFindPage = () => {
   return(
     <>
+    <Layout>
       <Global styles={globalStyles} />
       <Background>
         <IdFindBox>
@@ -23,6 +25,7 @@ const IdFindPage = () => {
           <OkButton type='button' value={'확인'}/>
         </IdFindBox>
       </Background>
+      </Layout>
     </>
   )
 }

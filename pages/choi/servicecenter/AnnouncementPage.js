@@ -9,6 +9,8 @@ import {
   globalStyles, Background, Title, Inquiry_Box, Inquiry_Box_Top, Inquiry_Box_Bottom
 } from '../../../styles/choi/servicecenter/AnnouncemnetCSS';
 
+import Layout from '@/pages/commons/Layout';
+
 const AnnouncementPage = () => {
   const [openIndexes, setOpenIndexes] = useState([]);
 
@@ -22,6 +24,7 @@ const AnnouncementPage = () => {
 
   return (
     <>
+    <Layout>
       <Global styles={globalStyles} />
       <Background>
         <Title>공지사항</Title>
@@ -34,6 +37,7 @@ const AnnouncementPage = () => {
           </Inquiry_Box>
         ))}
       </Background>
+      </Layout>
     </>
   );
 };

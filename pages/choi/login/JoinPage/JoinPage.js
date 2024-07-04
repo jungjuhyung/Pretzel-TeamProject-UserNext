@@ -9,8 +9,11 @@ import {
   Error, Email_Box, Email, Icon, Email_select,
   BirthDay, NoticeAllBox, CheckBoxAll, NoticeBox_first, NoticeBox,
   Notice_Title_Main, CheckBox_Basic, Notice_Title_Basic, Notice_Icon,
-  CheckBox_Choice, Notice_Title_Choice, JoinButton, GreenText , Wrapper_All
+  CheckBox_Choice, Notice_Title_Choice, JoinButton, GreenText , Wrapper_All,
+  IdCheckButton
 } from '../../../../styles/choi/login/JoinPageCSS';
+
+import Layout from '@/pages/commons/Layout';
 
 const JoinPage = () => {
   const [startDate, setStartDate] = useState(null);
@@ -110,88 +113,90 @@ const JoinPage = () => {
 
   return (
     <>
-      <Global styles={globalStyles} />
+    <Layout>
+    <Global styles={globalStyles} />
       <Background>
         <JoinBox>
           <Wrapper_All>
-          <Title>회원가입</Title>
-          <Name type='text' placeholder='이름' name='name' value={formData.name} onChange={handleInputChange} />
-          <IdContainer>
-            <IdInput type='text' placeholder='아이디' name='id' value={formData.id} onChange={handleInputChange} />
-            <button type='button' onClick={handleIdCheck}>중복확인</button>
-          </IdContainer>
-          <IdCondition>영문 소문자 또는 영문 소문자 , 숫자 조합 6~12자리</IdCondition>
-          <PassWord type='password' placeholder='비밀번호' name='password' value={formData.password} onChange={handleInputChange} />
-          <PwCondition>영문 , 숫자 , 특수문자(~!@#$%^&*)조합 8~15자리 </PwCondition>
-          <Re_PassWord type='password' placeholder='비밀번호 재입력' name='rePassword' value={formData.rePassword} onChange={handleInputChange} />
-          <Error>
-            {formData.password !== formData.rePassword && formData.rePassword && (
-              <>비밀번호 불일치!</>
-            )}
-            {formData.password === formData.rePassword && formData.rePassword && (
-              <GreenText>비밀번호 일치!</GreenText>
-            )}
-          </Error>
-          <Email_Box>
-            <Email type='text' placeholder='이메일' name='email' value={formData.email} onChange={handleInputChange} />
-            <Icon>@</Icon>
-            <Email_select>
-              <option>이메일 선택</option>
-              <option>naver.com</option>
-              <option>daum.net</option>
-              <option>gmail.com</option>
-            </Email_select>
-          </Email_Box>
-          <BirthDay>
-            <DatePicker
-              selected={startDate}
-              onChange={date => setStartDate(date)}
-              dateFormat="yyyy-MM-dd"
-              placeholderText="생년월일"
-            />
-          </BirthDay>
-          <NoticeAllBox>
+            <Title>회원가입</Title>
+            <Name type='text' placeholder='이름' name='name' value={formData.name} onChange={handleInputChange} />
+            <IdContainer>
+              <IdInput type='text' placeholder='아이디' name='id' value={formData.id} onChange={handleInputChange} />
+              <IdCheckButton type='button' onClick={handleIdCheck}>중복확인</IdCheckButton>
+            </IdContainer>
+            <IdCondition>영문 소문자 또는 영문 소문자 , 숫자 조합 6~12자리</IdCondition>
+            <PassWord type='password' placeholder='비밀번호' name='password' value={formData.password} onChange={handleInputChange} />
+            <PwCondition>영문 , 숫자 , 특수문자(~!@#$%^&*)조합 8~15자리 </PwCondition>
+            <Re_PassWord type='password' placeholder='비밀번호 재입력' name='rePassword' value={formData.rePassword} onChange={handleInputChange} />
+            <Error>
+              {formData.password !== formData.rePassword && formData.rePassword && (
+                <>비밀번호 불일치!</>
+              )}
+              {formData.password === formData.rePassword && formData.rePassword && (
+                <GreenText>비밀번호 일치!</GreenText>
+              )}
+            </Error>
+            <Email_Box>
+              <Email type='text' placeholder='이메일' name='email' value={formData.email} onChange={handleInputChange} />
+              <Icon>@</Icon>
+              <Email_select>
+                <option>이메일 선택</option>
+                <option>naver.com</option>
+                <option>daum.net</option>
+                <option>gmail.com</option>
+              </Email_select>
+            </Email_Box>
+            <BirthDay>
+              <DatePicker
+                selected={startDate}
+                onChange={date => setStartDate(date)}
+                dateFormat="yyyy-MM-dd"
+                placeholderText="생년월일"
+              />
+            </BirthDay>
+            <NoticeAllBox>
 
-            <NoticeBox_first>
-              <CheckBoxAll type='checkbox' checked={allChecked} onChange={handleAllCheck} />
-              <Notice_Title_Main>필수 및 선택 항목을 모두 포함하여 동의합니다.</Notice_Title_Main>
-            </NoticeBox_first>
+              <NoticeBox_first>
+                <CheckBoxAll type='checkbox' checked={allChecked} onChange={handleAllCheck} />
+                <Notice_Title_Main>필수 및 선택 항목을 모두 포함하여 동의합니다.</Notice_Title_Main>
+              </NoticeBox_first>
 
-            <NoticeBox>
-              <CheckBox_Basic type='checkbox' checked={requiredChecks.age} onChange={() => handleRequiredCheckChange('age')} />
-              <Notice_Title_Basic>[필수] 만 14세 이상입니다.</Notice_Title_Basic>
-              <Notice_Icon src='/images/icons/ArrowDown.png' />
-            </NoticeBox>
+              <NoticeBox>
+                <CheckBox_Basic type='checkbox' checked={requiredChecks.age} onChange={() => handleRequiredCheckChange('age')} />
+                <Notice_Title_Basic>[필수] 만 14세 이상입니다.</Notice_Title_Basic>
+                <Notice_Icon src='/images/icons/ArrowDown.png' />
+              </NoticeBox>
 
-            <NoticeBox>
-              <CheckBox_Basic type='checkbox' checked={requiredChecks.terms} onChange={() => handleRequiredCheckChange('terms')} />
-              <Notice_Title_Basic>[필수] 서비스 이용약관 동의</Notice_Title_Basic>
-              <Notice_Icon src='/images/icons/ArrowDown.png' />
-            </NoticeBox>
+              <NoticeBox>
+                <CheckBox_Basic type='checkbox' checked={requiredChecks.terms} onChange={() => handleRequiredCheckChange('terms')} />
+                <Notice_Title_Basic>[필수] 서비스 이용약관 동의</Notice_Title_Basic>
+                <Notice_Icon src='/images/icons/ArrowDown.png' />
+              </NoticeBox>
 
-            <NoticeBox>
-              <CheckBox_Basic type='checkbox' checked={requiredChecks.privacy} onChange={() => handleRequiredCheckChange('privacy')} />
-              <Notice_Title_Basic>[필수] 개인정보 수집 및 이용 동의</Notice_Title_Basic>
-              <Notice_Icon src='/images/icons/ArrowDown.png' />
-            </NoticeBox>
+              <NoticeBox>
+                <CheckBox_Basic type='checkbox' checked={requiredChecks.privacy} onChange={() => handleRequiredCheckChange('privacy')} />
+                <Notice_Title_Basic>[필수] 개인정보 수집 및 이용 동의</Notice_Title_Basic>
+                <Notice_Icon src='/images/icons/ArrowDown.png' />
+              </NoticeBox>
 
-            <NoticeBox>
-              <CheckBox_Choice type='checkbox' checked={optionalChecks.privacyOptional} onChange={() => handleOptionalCheckChange('privacyOptional')} />
-              <Notice_Title_Choice>[선택] 개인정보 수집 및 이용 동의</Notice_Title_Choice>
-              <Notice_Icon src='/images/icons/ArrowDown.png' />
-            </NoticeBox>
+              <NoticeBox>
+                <CheckBox_Choice type='checkbox' checked={optionalChecks.privacyOptional} onChange={() => handleOptionalCheckChange('privacyOptional')} />
+                <Notice_Title_Choice>[선택] 개인정보 수집 및 이용 동의</Notice_Title_Choice>
+                <Notice_Icon src='/images/icons/ArrowDown.png' />
+              </NoticeBox>
 
-            <NoticeBox>
-              <CheckBox_Choice type='checkbox' checked={optionalChecks.marketing} onChange={() => handleOptionalCheckChange('marketing')} />
-              <Notice_Title_Choice>[선택] 마케팅 정보 수신 동의 </Notice_Title_Choice>
-              <Notice_Icon src='/images/icons/ArrowDown.png' />
-            </NoticeBox>
+              <NoticeBox>
+                <CheckBox_Choice type='checkbox' checked={optionalChecks.marketing} onChange={() => handleOptionalCheckChange('marketing')} />
+                <Notice_Title_Choice>[선택] 마케팅 정보 수신 동의 </Notice_Title_Choice>
+                <Notice_Icon src='/images/icons/ArrowDown.png' />
+              </NoticeBox>
 
-          </NoticeAllBox>
-          <JoinButton type='button' value={'회원가입'} onClick={handleSubmit} />
+            </NoticeAllBox>
+            <JoinButton type='button' value={'회원가입'} onClick={handleSubmit} />
           </Wrapper_All>
         </JoinBox>
       </Background>
+      </Layout>
     </>
   );
 }

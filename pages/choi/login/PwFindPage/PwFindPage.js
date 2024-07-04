@@ -9,12 +9,13 @@ import {
   globalStyles , Background , PwFindBox ,Title ,SubTitle,
   Id ,OkButton
 } from '../../../../styles/choi/login/PwFindPageCSS';
-
+import Layout from '@/pages/commons/Layout';
 
 const PwFindPage = () =>{
 
   return(
     <>
+    <Layout>
       <Global styles={globalStyles} />
         <Background>
           <PwFindBox>
@@ -26,6 +27,7 @@ const PwFindPage = () =>{
             </SubTitle>
           </PwFindBox>
         </Background>
+      </Layout>
     </>
   )
 }

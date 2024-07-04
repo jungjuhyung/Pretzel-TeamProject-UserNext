@@ -10,10 +10,12 @@ import {
   Error , Rate_Plan , Inquiry , Inquiry_Button
 
 } from '../../../styles/choi/servicecenter/FAQPageCSS';
+import Layout from '@/pages/commons/Layout';
 
 const FAQPage = () =>{
   return(
     <>
+    <Layout>
       <Global styles={globalStyles} />
         <Background>
           <Title>FAQ</Title>
@@ -25,6 +27,7 @@ const FAQPage = () =>{
           </Genre_box>
           <Inquiry_Button type='button' value={"1:1문의하기"}/>
         </Background>
+      </Layout>
     </>
   )
 }

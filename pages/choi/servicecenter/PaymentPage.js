@@ -8,6 +8,7 @@ import { Global } from '@emotion/react';
 import {
   globalStyles, Background, Title, Inquiry_Box, Inquiry_Box_Top, Inquiry_Box_Bottom
 } from '../../../styles/choi/servicecenter/PaymentCSS';
+import Layout from '@/pages/commons/Layout';
 
 const PaymentPage = () => {
   const [openIndexes, setOpenIndexes] = useState([]);
@@ -22,6 +23,7 @@ const PaymentPage = () => {
 
   return (
     <>
+    <Layout>
       <Global styles={globalStyles} />
       <Background>
         <Title>결제 / 환불</Title>
@@ -34,6 +36,7 @@ const PaymentPage = () => {
           </Inquiry_Box>
         ))}
       </Background>
+      </Layout>
     </>
   );
 };

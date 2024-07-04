@@ -10,6 +10,7 @@ import {
   Poster, PosterWrapper, PosterRank, PrevButton, NextButton , Contents,
   Contents_Title , Contents_Box , Contents_img , New_Contents
 } from '../../../styles/choi/main/MainHomeCSS';
+import Layout from '@/pages/commons/Layout';
 
 const MainHome = () => {
   const [isHovered, setIsHovered] = useState(false);
@@ -70,6 +71,7 @@ const MainHome = () => {
 
   return (
     <>
+    <Layout>
       <Global styles={globalStyles} />
       <Background>
         <VideoContainer
@@ -160,6 +162,7 @@ const MainHome = () => {
           </Contents>
         ))}
       </Background>
+      </Layout>
     </>
   );
 }

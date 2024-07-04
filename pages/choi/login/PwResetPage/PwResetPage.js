@@ -13,6 +13,7 @@ import {
   NewPassWord, SubText, Re_NewPassWord, Error as StyledError,
   Ok as StyledOk, OkButton
 } from '../../../../styles/choi/login/PwRestPageCSS';
+import Layout from '@/pages/commons/Layout';
 
 const PwResetPage = observer(() => {
   const { newPassword, reNewPassword, passwordsMatch, setNewPassword, setReNewPassword } = passwordStore;
@@ -27,6 +28,7 @@ const PwResetPage = observer(() => {
 
   return (
     <>
+    <Layout>
       <Global styles={globalStyles} />
       <Background>
         <PwResetBox>
@@ -52,6 +54,7 @@ const PwResetPage = observer(() => {
           <OkButton type='button' value='확인' />
         </PwResetBox>
       </Background>
+      </Layout>
     </>
   );
 });

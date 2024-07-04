@@ -60,33 +60,37 @@ export const Name = styled.input`
   padding: 15px 0px 15px 15px;
   margin-top: 58px;
   border: none;
+  outline: none;
 `;
 
 export const IdContainer = styled.div`
-  width: 100%;
+  width: 300px;
   height: 50px;
   display: flex;
-  /* align-items: center; */
+  position: relative;
   margin-top: 45px;
 `;
 
 export const IdInput = styled.input`
-  margin-left: 64px;
-  width: 300px;
+  width: 100%;
   height: 100%;
-  border-radius: 5px 0 0 5px;
+  border-radius: 5px;
   padding: 15px;
   border: none;
+  box-sizing: border-box;
+  outline: none;
 `;
 
 export const IdCheckButton = styled.button`
-  width: 40px;
+  position: absolute;
+  right: 0;
   height: 100%;
   border-radius: 0 5px 5px 0;
   background-color: #F29A2E;
   color: #FFFFFF;
   border: none;
   cursor: pointer;
+  padding: 0 10px;
 `;
 
 export const IdCondition = styled.span`
@@ -104,6 +108,7 @@ export const PassWord = styled.input`
   padding: 15px 0px 15px 15px;
   margin-top: 35px;
   border: none;
+  outline: none;
 `;
 
 export const PwCondition = styled.div`
@@ -121,6 +126,7 @@ export const Re_PassWord = styled.input`
   padding: 15px 0px 15px 15px;
   margin-top: 15px;
   border: none;
+  outline: none;
 `;
 
 export const Error = styled.div`
@@ -149,6 +155,7 @@ export const Email = styled.input`
   padding: 15px 0px 15px 15px;
   border-radius: 5px;
   border: none;
+  outline: none;
 `;
 
 export const Icon = styled.div`

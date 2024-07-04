@@ -40,11 +40,14 @@ import PaymentPage from '@/pages/choi/servicecenter/PaymentPage';
 // FAQ
 
 
+// 검색
+import SearchPage from '@/pages/choi/search/SerchPage';
+
 
 export default function ChoiWork() {
     return (
         <>
-            <Header />
+            {/* <Header /> */}
             {/* <SubNav /> */}
 
             {/* 임시 내용 보는 공간 */}
@@ -63,7 +66,7 @@ export default function ChoiWork() {
 
             {/* 프로필 관련 페이지 */}
 
-            <ProfileCreate/>
+            {/* <ProfileCreate/> */}
             {/* <ProfileManagement/> */}
             {/* <ProfileSelect/> */}
             {/* <ProfileUpdate/> */}
@@ -80,7 +83,8 @@ export default function ChoiWork() {
             {/* <ContactPage/> */}
             {/* <FAQPage/> */}
             {/* <PaymentPage/> */}
-            <Footer />
+            <SearchPage/>
+            {/* <Footer /> */}
         </>
     )
 }

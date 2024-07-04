@@ -10,6 +10,7 @@ import {
     SelectOption, Move
 } from '../../../../styles/choi/login/AdminLoginPageCSS';
 import axios from 'axios';
+import Layout from '@/pages/commons/Layout';
 
 const LoginPage = () => {
     const [id, setId] = useState('');
@@ -58,6 +59,7 @@ const LoginPage = () => {
 
     return (
         <>
+        <Layout>
             <Global styles={globalStyles} />
             <Background>
                 <LoginBox>
@@ -77,6 +79,7 @@ const LoginPage = () => {
                     </AccountOptions>
                 </LoginBox>
             </Background>
+            </Layout>    
         </>
     );
 }

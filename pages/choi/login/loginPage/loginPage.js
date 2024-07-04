@@ -12,6 +12,7 @@ import {
     Link, NaverLogin, KaKaoLogin, loginClick
 } from '../../../../styles/choi/login/loginPageCSS';
 import axios from 'axios';
+import Layout from '@/pages/commons/Layout';
 
 const LoginPage = () => {
     const [id, setId] = useState('');
@@ -75,6 +76,7 @@ const LoginPage = () => {
 
     return (
         <>
+        <Layout>
             <Global styles={globalStyles} />
             <Background>
                 <LoginBox>
@@ -104,7 +106,9 @@ const LoginPage = () => {
                     </BoxFooter>
                 </LoginBox>
             </Background>
+        </Layout>
         </>
+
     );
 }
 

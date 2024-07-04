@@ -9,12 +9,13 @@ import {
   globalStyles, Background, VerificationBox ,Title ,SubTitle,
   Verification ,ButtonBox, OkButton ,Re_send
 } from '../../../../styles/choi/login/VerificationPageCSS';
-
+import Layout from '@/pages/commons/Layout';
 
 const VerificationPage = () =>{
 
   return(
     <>
+    <Layout>
       <Global styles={globalStyles} />
         <Background>
           <VerificationBox>
@@ -28,6 +29,7 @@ const VerificationPage = () =>{
             
           </VerificationBox>
         </Background>
+        </Layout>
     </>
   )
 }

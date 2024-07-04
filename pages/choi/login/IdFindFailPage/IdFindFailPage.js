@@ -10,9 +10,12 @@ import {
   CheckButton
 } from '../../../../styles/choi/login/IdFindFailPageCSS';
 
+import Layout from '@/pages/commons/Layout';
+
 const IdFindFailPage = () =>{
   return(
     <>
+    <Layout>
       <Global styles={globalStyles} />
         <Background>
           <FindFailBox>
@@ -21,6 +24,7 @@ const IdFindFailPage = () =>{
           <CheckButton type='button' value={'확인'}/>
           </FindFailBox>
         </Background>
+    </Layout>    
     </>
   )
 }
