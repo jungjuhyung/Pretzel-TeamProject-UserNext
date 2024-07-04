@@ -25,6 +25,7 @@ const genreSelect = () =>{
             <Animation_box>애니메이션</Animation_box>
           </Genre_box>
         </Background>
+        
     </>
   )
 }
