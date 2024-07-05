@@ -58,7 +58,7 @@ export default function ChoiWork() {
             {/* <IdFindPage/> */}
             {/* <JoinPage/> */}
             {/* <IdFindSuccessPage/> */}
-            {/* <PwFindPage/> */}
+            <PwFindPage/>
             {/* <PwResetPage/> */}
             {/* <VerificationPage/> */}
             {/* <AdminLoginPage/> */}
@@ -83,7 +83,7 @@ export default function ChoiWork() {
             {/* <ContactPage/> */}
             {/* <FAQPage/> */}
             {/* <PaymentPage/> */}
-            <SearchPage/>
+            {/* <SearchPage/> */}
             {/* <Footer /> */}
         </>
     )
