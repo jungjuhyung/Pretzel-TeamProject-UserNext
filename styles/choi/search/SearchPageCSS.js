@@ -134,45 +134,101 @@ export const RealTime_title = styled.div`
     font-weight: bold;
     color: #FFFFFF;
     font-size: 30px;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
 `;
 
 export const RealTime_Keyword_Box = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
+    
 `;
 
 export const RealTime_Keyword = styled.div`
     width: 100%;
-    height: 22px;
+    height: 50px;
     color: #FFFFFF;
     font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 `;
+
 
 export const SuggestionsBox = styled.div`
     padding-top: 10px;
-    position: relative;
-    background-color: #1D1D1D;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(29, 29, 29, 0.9);
     border: none;
-    max-height: 500px; /* 최대 높이 설정 */
-    width: 100%;
+    max-height: 80%;
+    width: 80%;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    display: grid;
-    grid-template-rows: repeat(6, 1fr);
-    grid-template-columns: repeat(6, 1fr);
-    gap: 10px;
     border-radius: 5px;
-    z-index: 99;
+    z-index: 1000;
     overflow-y: auto;
-    scrollbar-width: none; 
+    scrollbar-width: none;
 `;
-export const SearchDetail = styled.div`
-    width: 100%;
-    padding: 10px;
+
+export const SuggBox = styled.div`
+    width: auto;
+    height: auto;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+`
+
+// Firefox에서 스크롤바 숨기기 위한 스타일
+SuggestionsBox.defaultProps = {
+    ...SuggestionsBox.defaultProps,
+    css: `
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    `,
+};
+
+export const SuggestionsBoxHeader = styled.div`
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+    position: sticky;
+    top: 0;
+    background-color: rgba(29, 29, 29, 0.9);
+    z-index: 1001; /* 모달 내부 콘텐츠보다 위에 표시되도록 설정 */
+    transition: background-color 0.3s ease; /* 배경 색상 전환 효과 추가 */
+`;
+
+// 스크롤 시 배경 색상을 투명하게 변경하는 스타일 추가
+export const TransparentBackground = styled.div`
+    ${SuggestionsBoxHeader}:not(:hover) {
+        background-color: rgba(29, 29, 29, 0); /* 스크롤 시 배경 투명하게 설정 */
+    }
+`;
+export const CloseIcon = styled.img`
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    margin-right: 10px; /* 오른쪽 여백 추가 */
+    align-self: center; /* 세로 중앙 정렬 */
+`;
+
+export const SuggestionsBoxContent = styled.div`
+    padding: 10px;
+    width: auto;
+    height: auto;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr); 
+    grid-template-columns: repeat(6, 1fr); 
+    gap: 10px;
+`;
+
+export const SearchDetail = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 `;
 
 export const SearchPoster = styled.img`
@@ -180,28 +236,31 @@ export const SearchPoster = styled.img`
     height: 300px;
     border-radius: 5px;
     object-fit: cover;
-    margin-bottom: 10px;
+    margin-right: 10px;
+    margin-bottom: 2px;
 `;
 
-export const SearchText = styled.div`
-    width: 200px;
+export const SearchTitle = styled.div`
     color: #FFFFFF;
     font-size: 17px;
-    text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
+    
+`;
+export const SearchText = styled.div`
+    color: #FFFFFF;
+    font-size: 17px;
+    margin-bottom: 3px;
+    color: silver;
 `;
 
 export const SearchNone = styled.div`
-    width: 1500px;
-    min-height: 360px;
     font-size: 30px;
     color: #FFFFFF;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
+    min-height: 400px;
 `;
-
 export const PaginationContainer = styled.div`
     width: 100%;
     display: flex;
@@ -226,8 +285,9 @@ export const PaginationButton = styled.button`
     }
 `;
 
-export const Real_Text = styled.div`
+export const RealText = styled.div`
     width: auto;
     height: auto;
-    color: #FFFFFF;
+    color: ${props => props.highlighted ? '#FFFF00' : '#FFFFFF'}; /* 조건에 따라 색상 변경 */
+    font-weight: 300;
 `

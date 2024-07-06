@@ -1,31 +1,23 @@
-"use client";
-
-
-import { use, useContext, useEffect } from "react";
-import React, { useState } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Global } from '@emotion/react';
+import axios from 'axios';
 import { observer } from "mobx-react-lite";
 import { useRouter } from "next/navigation";
 import Layout from '@/pages/commons/Layout';
-import axios from 'axios';
-
 
 import {
-    globalStyles , Background , KeywordBox , KeywordBox_Top , KeywordBox_Bottom,
-    KeywordWrapper, Keyword, Icon, Bottom_left , Bottom_right ,
-    Recent_title , Recent_Keyword_Box , Recent_Keyword, Recent_Keyword_Item, DeleteIcon,
-    RealTime_title , RealTime_Keyword_Box, RealTime_Keyword , SuggestionsBox , SearchText
-    ,SearchDetail , SearchPoster ,SearchActor , SearchNone , Real_Text
+    globalStyles, Background, KeywordBox, KeywordBox_Top, KeywordWrapper, Keyword, Icon,
+    Bottom_left, Bottom_right, Recent_title, Recent_Keyword_Box, Recent_Keyword, Recent_Keyword_Item, DeleteIcon,
+    RealTime_title, RealTime_Keyword_Box, RealTime_Keyword, SuggestionsBox, SearchText, SearchDetail, SearchPoster,
+    SearchNone, RealText, SuggestionsBoxHeader, CloseIcon , KeywordBox_Bottom ,SuggestionsBoxContent , SuggBox,SearchTitle
 } from '../../../styles/choi/search/SearchPageCSS';
+
 import { SearchContext } from "@/stores/StoreContext";
 
-
-// 아이콘 이미지 파일 경로 (절대 경로로 변경)
 const searchIcon = '/images/icons/search.png';
-const deleteIcon = '/images/icons/delete.png'; // 삭제 아이콘 이미지 파일 경로
+const deleteIcon = '/images/icons/delete.png';
 
 const SearchPage = observer(() => {
-
     const router = useRouter();
     const SearchStore = useContext(SearchContext)
 
@@ -63,7 +55,6 @@ const SearchPage = observer(() => {
                         "keyword": inputValue
                     }
                 });
-                // console.log(response.data);
                 setCast(response.data.cast);
                 setResult(response.data.movie);
                 setShowSuggestions(true); // 검색 시 모달 창 표시
@@ -74,8 +65,6 @@ const SearchPage = observer(() => {
         }
     };
 
-
-
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -85,16 +74,15 @@ const SearchPage = observer(() => {
                 console.error('Error fetching real time list:', error);
             }
         };
-    
+
         fetchData(); // 컴포넌트가 마운트될 때 데이터 가져오기
-    
+
     }, []);
 
     const handleClearInput = () => {
         setInputValue('');
         setShowSuggestions(false); // 입력 값 지우면 모달 창 숨기기
     };
-
 
     return (
         <>
@@ -119,30 +107,33 @@ const SearchPage = observer(() => {
                         {/* 모달 창 */}
                         {showSuggestions && (
                             <SuggestionsBox>
-                                {(result.length > 0 || cast.length > 0) ? (
-                                    <>
-                                        {result.slice((page - 1) * perPage, page * perPage).map(item => (
-                                            <SearchDetail key={item.movie_id}>
-                                                <div>
-                                                    <SearchPoster src={`https://image.tmdb.org/t/p/w500/${item.poster_url}`} />
-                                                    <SearchText>{item.korea_title}</SearchText>
-                                                </div>
-                                            </SearchDetail>
-                                        ))}
-                                        {cast.slice((page - 1) * perPage, page * perPage).map(item => (
-                                            <SearchDetail key={item.cast_idx}>
-                                                <div>
-                                                    <SearchPoster src={`https://image.tmdb.org/t/p/w500/${item.poster_url}`} />
-                                                    <SearchText>{item.korea_title}</SearchText>
-                                                    <SearchText>{item.cast_name}</SearchText>
-                                                </div>
-                                            </SearchDetail>
-                                        ))}
-                                    </>
-                                ) : (
-                                    <SearchNone>일치하는 결과가 없습니다.</SearchNone>
-                                )}
-                            </SuggestionsBox>
+                            <SuggestionsBoxHeader>
+                                <CloseIcon src={deleteIcon} alt="Close Icon" onClick={() => setShowSuggestions(false)} />
+                            </SuggestionsBoxHeader>
+                            {(result.length > 0 || cast.length > 0) ? (
+                                <SuggestionsBoxContent>
+                                    {result.slice((page - 1) * perPage, page * perPage).map(item => (
+                                        <SearchDetail key={item.movie_id}>
+                                            <SuggBox>
+                                                <SearchPoster src={`https://image.tmdb.org/t/p/w500/${item.poster_url}`} />
+                                                <SearchTitle>{item.korea_title}</SearchTitle>
+                                            </SuggBox>
+                                        </SearchDetail>
+                                    ))}
+                                    {cast.slice((page - 1) * perPage, page * perPage).map(item => (
+                                        <SearchDetail key={item.cast_idx}>
+                                            <SuggBox>
+                                                <SearchPoster src={`https://image.tmdb.org/t/p/w500/${item.poster_url}`} />
+                                                <SearchTitle>{item.korea_title}</SearchTitle>
+                                                <SearchText>{item.cast_name}</SearchText>
+                                            </SuggBox>
+                                        </SearchDetail>
+                                    ))}
+                                </SuggestionsBoxContent>
+                            ) : (
+                                <SearchNone>일치하는 결과가 없습니다.</SearchNone>
+                            )}
+                        </SuggestionsBox>
                         )}
                         <KeywordBox_Bottom>
                             <Bottom_left>
@@ -159,14 +150,11 @@ const SearchPage = observer(() => {
                             <Bottom_right>
                                 <RealTime_title>실시간 인기 검색어</RealTime_title> 
                                 <RealTime_Keyword_Box>
-                                {realSearch.map(item => (
-                                    <RealTime_Keyword key={item.movie_idx}>
-                                        <div>
-                                            <Real_Text>{item.korea_title}</Real_Text>
-                                            {/* 기타 필요한 데이터 표시 */}
-                                        </div>
-                                    </RealTime_Keyword>
-                                ))}
+                                    {realSearch.map((item, index) => (
+                                        <RealTime_Keyword key={item.movie_idx}>
+                                            <RealText highlighted={index < 3}>{`${index + 1}. ${item.korea_title}`}</RealText>
+                                        </RealTime_Keyword>
+                                    ))}
                                 </RealTime_Keyword_Box>
                             </Bottom_right>
                         </KeywordBox_Bottom>
