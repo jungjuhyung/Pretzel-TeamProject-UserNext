@@ -1,21 +1,22 @@
 import { makeAutoObservable } from "mobx";
 
 class MyPageStore {
+    price = ''; // 구독권 가격
+    orderName = ''; // 구독권 이름
 
     constructor() {
         makeAutoObservable(this);
     }
 
-    // 관리자 정보 변경
-    setAdminInfo(k, v) {
-        this.adminInfo[k] = v;
+    // 구독권 가격
+    setPrice(price) {
+        this.price = price;
     }
 
-    // 로그인 - 아이디
-    setAdminId(admin_id) {
-        this.admin_id = admin_id;
+    // 구독권 가격
+    setOrderName(orderName) {
+        this.orderName = orderName;
     }
-
 }
 
 export default new MyPageStore();
