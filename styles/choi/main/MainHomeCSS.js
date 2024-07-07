@@ -13,6 +13,8 @@ export const globalStyles = css`
   }
 `;
 
+// e6VTGJ9BH2XNAJUm
+
 // Styled Components
 export const Background = styled.div`
   width: 100%;
@@ -27,7 +29,7 @@ export const VideoContainer = styled.div`
   pointer-events: auto; 
 `;
 
-export const Video = styled.video`
+export const Video = styled.iframe`
   width: 100%;
   height: 70vh; 
   object-fit: cover; 

@@ -1,6 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Global } from '@emotion/react';
 import styled from '@emotion/styled';
+import axios from 'axios';
+import { useRouter } from "next/navigation";
 
 // Importing styled components from external file
 import {
@@ -25,6 +27,22 @@ const MainHome = () => {
     '/images/Poster/Poster7.webp', '/images/Poster/Poster8.webp', '/images/Poster/Poster9.webp',
     '/images/Poster/Poster10.webp'
   ];
+  const [content , setContent] = useState([]);
+
+  useEffect(() => {
+    const ContentData = async () => {
+        try {
+            const response = await axios.post("/main/thema_list");
+            setContent(response.data); 
+            console.log(setContent);
+        } catch (error) {
+            console.error('Error fetching Main-thema list:', error);
+        }
+    };
+
+    ContentData(); // 컴포넌트가 마운트될 때 데이터 가져오기
+
+  }, []);
 
   useEffect(() => {
     const videoElement = videoRef.current;
@@ -71,97 +89,100 @@ const MainHome = () => {
 
   return (
     <>
-    <Layout>
-      <Global styles={globalStyles} />
-      <Background>
-        <VideoContainer
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <Video ref={videoRef} muted={isMuted} loop autoPlay>
-            <source src="https://storage.googleapis.com/pretzel-movie/pretzel-action/Doctor_Strange.mp4" type="video/mp4" />
-          </Video>
-          <Overlay />
-          <Option_Box>
-            <Option_Box_Left>
-              <Title>캡틴</Title>
-            </Option_Box_Left>
-            <Option_Box_Right>
-              <Volume
-                src={isMuted ? '/images/icons/VolumeOff.png' : '/images/icons/VolumeOn.png'}
-                onClick={handleToggleMute}
-              />
-              <AgeIcon>15</AgeIcon>
-              <PlayButton type='button' value={"재생"} />
-              <Info_button type='button' value={"상세정보"} />
-            </Option_Box_Right>
-          </Option_Box>
-        </VideoContainer>
-
-        {/* 인기 순위 TOP 10 */}
-        <Week_Popular>
-          <Week_Title>이 주의 인기 순위 TOP 10</Week_Title>
-          <div style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-            {currentIndex > 0 && (
-              <PrevButton onClick={handlePrevClick} style={{ zIndex: 1 }}>
-                Prev
-              </PrevButton>
-            )}
-            <div style={{ overflow: 'hidden', width: `${postersPerPage * (250 + 20)}px` }}>
-              <Week_Poster_Box
-                style={{
-                  display: 'flex',
-                  transition: 'transform 0.3s ease',
-                  transform: `translateX(-${currentIndex * (250 + 20)}px)`,
-                }}
-              >
-                {posters.slice(currentIndex, currentIndex + postersPerPage).map((poster, index) => (
-                  <PosterWrapper
-                    key={index}
-                    onClick={() => handlePosterClick(currentIndex + index)}
-                    isActive={activePoster === currentIndex + index}
-                    className={activePoster === currentIndex + index ? 'active' : ''}
-                  >
-                    <Poster src={poster} />
-                    <PosterRank className={activePoster === currentIndex + index ? 'active' : ''}>{currentIndex + index + 1}</PosterRank>
-                  </PosterWrapper>
-                ))}
-              </Week_Poster_Box>
+      <Layout>
+        <Global styles={globalStyles} />
+        <Background>
+          <VideoContainer 
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+            key={item.movie_idx}
+          >
+            <Video
+            src={`https://www.youtube.com/watch?v=${item.trailer_url}`}
+            title="YouTube video player"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            />
+            <Overlay />
+            <Option_Box>
+              <Option_Box_Left>
+                <Title>{content.title}</Title>
+              </Option_Box_Left>
+              <Option_Box_Right>
+                <Volume
+                  src={isMuted ? '/images/icons/VolumeOff.png' : '/images/icons/VolumeOn.png'}
+                  onClick={handleToggleMute}
+                />
+                <AgeIcon>{content.age}</AgeIcon>
+                <PlayButton type='button' value={"재생"} />
+                <Info_button type='button' value={"상세정보"} />
+              </Option_Box_Right>
+            </Option_Box>
+          </VideoContainer>
+          {/* 인기 순위 TOP 10 */}
+          <Week_Popular>
+            <Week_Title>이 주의 인기 순위 TOP 10</Week_Title>
+            <div style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+              {currentIndex > 0 && (
+                <PrevButton onClick={handlePrevClick} style={{ zIndex: 1 }}>
+                  Prev
+                </PrevButton>
+              )}
+              <div style={{ overflow: 'hidden', width: `${postersPerPage * (250 + 20)}px` }}>
+                <Week_Poster_Box
+                  style={{
+                    display: 'flex',
+                    transition: 'transform 0.3s ease',
+                    transform: `translateX(-${currentIndex * (250 + 20)}px)`,
+                  }}
+                >
+                  {posters.slice(currentIndex, currentIndex + postersPerPage).map((poster, index) => (
+                    <PosterWrapper
+                      key={index}
+                      onClick={() => handlePosterClick(currentIndex + index)}
+                      isActive={activePoster === currentIndex + index}
+                      className={activePoster === currentIndex + index ? 'active' : ''}
+                    >
+                      <Poster src={poster} />
+                      <PosterRank className={activePoster === currentIndex + index ? 'active' : ''}>{currentIndex + index + 1}</PosterRank>
+                    </PosterWrapper>
+                  ))}
+                </Week_Poster_Box>
+              </div>
+              {currentIndex + postersPerPage < posters.length && (
+                <NextButton onClick={handleNextClick} style={{ zIndex: 1 }}>
+                  Next
+                </NextButton>
+              )}
             </div>
-            {currentIndex + postersPerPage < posters.length && (
-              <NextButton onClick={handleNextClick} style={{ zIndex: 1 }}>
-                Next
-              </NextButton>
-            )}
-          </div>
-        </Week_Popular>
-        
-        {/* 새로 올라온 콘텐츠 */}
-        <New_Contents>
-          <Contents_Title>
-              새로 올라온 콘텐츠
-          </Contents_Title>
-          <Contents_Box>
-            {Array.from({ length: 5 }).map((_, index) => (
-              <Contents_img key={index} src='/images/contents/content.jpeg'/>
-            ))}
-          </Contents_Box>
-        </New_Contents>
-
-        {/* 장르별 콘텐츠 */}
-        {['공포', '로맨스', '범죄/스릴러', '액션', '애니메이션'].map((genre, index) => (
-          <Contents key={index}>
+          </Week_Popular>
+          
+          {/* 새로 올라온 콘텐츠 */}
+          <New_Contents>
             <Contents_Title>
-              {genre}
+                새로 올라온 콘텐츠
             </Contents_Title>
             <Contents_Box>
               {Array.from({ length: 5 }).map((_, index) => (
                 <Contents_img key={index} src='/images/contents/content.jpeg'/>
               ))}
             </Contents_Box>
-          </Contents>
-        ))}
-      </Background>
+          </New_Contents>
+
+          {/* 장르별 콘텐츠 */}
+          {['공포', '로맨스', '범죄/스릴러', '액션', '애니메이션'].map((genre, index) => (
+            <Contents key={index}>
+              <Contents_Title>
+                {genre}
+              </Contents_Title>
+              <Contents_Box>
+                {Array.from({ length: 5 }).map((_, index) => (
+                  <Contents_img key={index} src='/images/contents/content.jpeg'/>
+                ))}
+              </Contents_Box>
+            </Contents>
+          ))}
+        </Background>
       </Layout>
     </>
   );

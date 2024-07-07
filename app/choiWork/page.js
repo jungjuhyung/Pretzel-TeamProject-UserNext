@@ -60,12 +60,12 @@ export default function ChoiWork() {
             {/* 임시 내용 보는 공간 */}
 
             {/* 로그인 관련 페이지 */}
-            {/* <LoginPage/> */}
+            <LoginPage/>
             {/* <IdFindFailPage/> */}
             {/* <IdFindPage/> */}
             {/* <JoinPage/> */}
             {/* <IdFindSuccessPage/> */}
-            <PwFindPage/>
+            {/* <PwFindPage/> */}
             {/* <PwResetPage/> */}
             {/* <VerificationPage/> */}
             {/* <AdminLoginPage/> */}
@@ -81,7 +81,7 @@ export default function ChoiWork() {
 
             {/* 장르 선택 */}
             {/* <GenreSelect/> */}
-            <Action/>
+            {/* <Action/> */}
             {/* <Animation/> */}
             {/* <Comic/> */}
             {/* <Crime/> */}
