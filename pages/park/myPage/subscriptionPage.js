@@ -19,6 +19,10 @@ const SubscriptionPage = () => {
 
     const isSelected = (plan) => selectedPlan === plan;
 
+    const onClickSub = () => {
+        
+    }
+
     return (
         <>
             <Container>
@@ -57,7 +61,7 @@ const SubscriptionPage = () => {
                     </Plan_Container>
 
                 </Subscription_Container>
-                <Subscription_Btn onClick={subs}>구독 시작하기</Subscription_Btn>
+                <Subscription_Btn onClick={onClickSub}>구독 시작하기</Subscription_Btn>
             </Container>
             <Footer />
         </>
