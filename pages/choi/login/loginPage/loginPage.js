@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Global } from '@emotion/react';
 import { observer } from "mobx-react-lite";
@@ -78,6 +78,26 @@ const LoginPage = observer(() => {
         }
     }
 
+    useEffect(() => {
+        // URL에서 토큰 가져오기
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+        
+        console.log("sns 로그인 토큰 : ", token);
+        
+        if (token) {
+            console.log("정상계정")
+            // 토큰을 MobX store에 저장
+
+            // 프로필 리스트 페이지로
+
+        }else {
+            console.log("탈퇴 및 정지계정")
+            // 다시 로그인 페이지 => 경고창
+        }
+
+    }, []);
+
     return (
         <>
         <Layout>
@@ -104,8 +124,10 @@ const LoginPage = observer(() => {
                     <BoxFooter>
                         <SubText>다른 방법으로 로그인하기</SubText>
                         <Link>
-                            <Move href=''><NaverLogin src='/images/icons/NaverLogin.png'/></Move>
-                            <Move href=''><KaKaoLogin src='/images/icons/KakaoLogin.png'/></Move>
+                            <Move href='http://localhost:8080/oauth2/authorization/naver'>
+                            <NaverLogin src='/images/icons/NaverLogin.png'/></Move>
+                            <Move href='http://localhost:8080/oauth2/authorization/kakao'>
+                            <KaKaoLogin src='/images/icons/KakaoLogin.png'/></Move>
                         </Link>
                     </BoxFooter>
                 </LoginBox>

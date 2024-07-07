@@ -22,6 +22,7 @@ export const Background = styled.div`
   
   align-items: center;
   box-sizing: border-box;
+  background-color: black;
 `;
 
 export const Wrapper_box = styled.div`
@@ -35,7 +36,7 @@ export const Wrapper_box = styled.div`
 `
 
 export const Title = styled.div`
-  width: 477px;
+  width: auto;
   height: 36px;
   font-size: 30px;
   font-weight: 600;
@@ -45,16 +46,19 @@ export const Title = styled.div`
 export const Profile_All_Box = styled.div`
   margin-top: 112px;
   width: 1080px;
-  height: 336px;
-  display: flex;
-  justify-content: space-between;
+  height: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
+  gap: 20px;
 `
 
 export const Profile_Box = styled.div`
   display: flex;
   flex-direction: column;
   width: 250px;
-  height: 336px;
+  height: auto;
+  align-items: center;
 `
 
 export const Profile_Image = styled.img`
@@ -67,6 +71,9 @@ export const Profile_Name = styled.span`
   width: 130px;
   height: 36px;
   font-size: 30px;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 10px;
 `
 
 export const New_Profile_Create = styled.div`
@@ -96,6 +103,7 @@ export const Management_Button = styled.input`
   background-color: #F29A2E;
   border-radius: 50px;
   font-size: 20px;
+  margin-top: 60px;
   
 `
 

@@ -11,6 +11,12 @@ const nextConfig = {
                 destination: "http://localhost:8080/user/:path*",
             },
             {
+                //  /api/user 으로 시작되는 모든 요청
+                //  SpringBoot 의 /api/user 으로 리 라이트 됩니다.
+                source: "/profile/:path*",
+                destination: "http://localhost:8080/profile/:path*",
+            },
+            {
                 //  /api/toss 으로 시작되는 모든 요청
                 //  SpringBoot 의 /api/toss 으로 리 라이트 됩니다.
                 source: "/toss/:path*",

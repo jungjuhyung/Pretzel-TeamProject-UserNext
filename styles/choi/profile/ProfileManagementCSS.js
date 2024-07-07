@@ -22,6 +22,7 @@ export const Background = styled.div`
   
   align-items: center;
   box-sizing: border-box;
+  background-color: black;
 `;
 
 export const Wrapper_box = styled.div`
@@ -35,7 +36,7 @@ export const Wrapper_box = styled.div`
 `
 
 export const Title = styled.div`
-  width: 138px;
+  width: auto;
   height: 36px;
   font-size: 30px;
   font-weight: 600;
@@ -46,8 +47,9 @@ export const Profile_All_Box = styled.div`
   margin-top: 112px;
   width: 1080px;
   height: 336px;
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: 1fr;
 `
 
 export const Profile_Box = styled.div`
@@ -55,18 +57,28 @@ export const Profile_Box = styled.div`
   flex-direction: column;
   width: 250px;
   height: 336px;
+  align-items: center;
 `
 
 export const Profile_Image = styled.img`
   width: 250px;
   height: 250px;
   border-radius: 50%;
-`
+  margin-bottom: 10px;
+  transition: all 0.3s ease; /* hover 효과를 부드럽게 만들기 위한 transition */
+
+  &:hover {
+    filter: brightness(50%); /* 이미지를 어둡게 만드는 효과 */
+
+  }
+`;
 
 export const Profile_Name = styled.span`
   width: 130px;
   height: 36px;
   font-size: 30px;
+  text-align: center;
+  color: #FFFFFF;
 `
 
 export const New_Profile_Create = styled.div`
