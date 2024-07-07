@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Global } from '@emotion/react';
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
@@ -28,13 +28,20 @@ const JoinPage = () => {
     marketing: false,
   });
 
-  const [formData, setFormData] = useState({
-    name: '',
-    id: '',
-    password: '',
-    rePassword: '',
-    email: '',
-  });
+  const [uvo, setUvo] = useState({
+    name : '' ,
+    user_id : '',
+    pwd : '',
+    email : '',
+  })
+
+  function handleInputChange(e){
+    setUvo({
+        // 기존 uvo 복사
+        ...uvo,
+        [e.target.name] : e.target.value
+    })
+  }
 
   const handleAllCheck = () => {
     const newCheckState = !allChecked;
@@ -64,50 +71,88 @@ const JoinPage = () => {
     }));
   };
 
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value,
-    }));
-  };
+  const [emailId, setEmailId] = useState('')
+    const [domain, setDomain] = useState('')
 
-  const validateUsername = (username) => {
-    const usernameRegex = /^[a-z][a-z0-9]{5,11}$/;
-    return usernameRegex.test(username);
-  };
+    const handleEmailId = (e) => {
+      setEmailId(e.target.value)
+    }
 
-  const handleIdCheck = () => {
-    // 여기에 중복 확인 로직을 추가합니다.
-    axios.get(`http://localhost:8080/user/checkId/${formData.id}`)
-      .then(response => {
-        if (response.data.available) {
-          alert('사용 가능한 아이디입니다.');
-        } else {
-          alert('이미 사용 중인 아이디입니다. 다른 아이디를 입력해주세요.');
+    const handleDomain = (e) => {
+      setDomain(e.target.value)
+    }
+
+    useEffect(() => {
+      setUvo((prevUvo) => ({
+        ...prevUvo,
+        email: `${emailId}@${domain}`,
+      }));
+    }, [emailId, domain]);
+
+    async function handleIdCheck(){
+        console.log('보내는 데이터 : ', uvo)
+        try {
+            // axios 서버로 정보 보내기
+            const response = 
+                await axios.post('/user/id_check', uvo);
+            console.log('결과 : ' , response.data)
+            if (response.data === 1) {
+                console.log('중복아이디 있음')
+                alert("중복아이디 있음");
+              }else {
+                console.log('사용가능')
+                alert("사용가능");
+            }
+        } catch (error) {
+            console.error('실패 : ', error)
         }
-      })
-      .catch(error => {
-        console.error('중복 확인 에러:', error);
-        alert('중복 확인 과정에서 오류가 발생했습니다.');
-      });
-  };
+    }
 
-  const handleSubmit = () => {
-    const { name, id, password, rePassword, email } = formData;
+    async function handleEmailCheck(){
+        console.log('보내는 데이터 : ', uvo)
+        try {
+            // axios 서버로 정보 보내기
+            const response = 
+                await axios.post('/user/email_check', uvo);
+            console.log('결과 : ' , response.data)
+            if (response.data === 1) {
+                console.log('중복이메일 있음')
+                alert("중복이메일 있음");
+              }else {
+                console.log('사용가능')
+                alert("사용가능");
+            }
+        } catch (error) {
+            console.error('실패 : ', error)
+        }
+    }
+
+
+  const handleSubmit = async () => {
+    const { name, user_id, pwd, email } = uvo;
     const allRequiredChecked = Object.values(requiredChecks).every(Boolean);
 
-    if (!name || !id || !password || !rePassword || !email || !startDate) {
+    if (!name || !user_id || !pwd || !email || !startDate) {
       alert("모든 칸을 작성해주세요.");
-    } else if (!validateUsername(id)) {
-      alert("아이디는 영문 소문자 또는 영문 소문자, 숫자 조합 6~12자리로 입력해야 합니다.");
     } else if (!allRequiredChecked) {
       alert("모든 필수 항목에 동의해야 합니다.");
-    } else if (password !== rePassword) {
-      alert("비밀번호가 일치하지 않습니다.");
     } else {
       // 회원가입 로직 실행
-      alert("회원가입이 완료되었습니다.");
+      const API_URL = '/user/join'
+      console.log("보내기전 : " , uvo)
+      try {
+        const response = await axios.post(API_URL, uvo)
+        console.log(response.data) 
+        // 결과 1 이면 성공 => 로그인 페이지로 
+        if (response.data === 1) {
+          alert("회원가입이 완료되었습니다.");
+
+          // 로그인 페이지로 가줘~
+          
+        }
+      } catch (error) {
+        console.log('error')
+      }
     }
   };
 
@@ -119,33 +164,36 @@ const JoinPage = () => {
         <JoinBox>
           <Wrapper_All>
             <Title>회원가입</Title>
-            <Name type='text' placeholder='이름' name='name' value={formData.name} onChange={handleInputChange} />
+            <Name type='text' placeholder='이름' name='name'  onChange={handleInputChange} />
             <IdContainer>
-              <IdInput type='text' placeholder='아이디' name='id' value={formData.id} onChange={handleInputChange} />
+              <IdInput type='text' placeholder='아이디' name='user_id'  onChange={handleInputChange} />
               <IdCheckButton type='button' onClick={handleIdCheck}>중복확인</IdCheckButton>
             </IdContainer>
             <IdCondition>영문 소문자 또는 영문 소문자 , 숫자 조합 6~12자리</IdCondition>
-            <PassWord type='password' placeholder='비밀번호' name='password' value={formData.password} onChange={handleInputChange} />
+            <PassWord type='password' placeholder='비밀번호' name='pwd'  onChange={handleInputChange} />
             <PwCondition>영문 , 숫자 , 특수문자(~!@#$%^&*)조합 8~15자리 </PwCondition>
-            <Re_PassWord type='password' placeholder='비밀번호 재입력' name='rePassword' value={formData.rePassword} onChange={handleInputChange} />
+            <Re_PassWord type='password' placeholder='비밀번호 재입력' name='repwd'  onChange={handleInputChange} />
             <Error>
-              {formData.password !== formData.rePassword && formData.rePassword && (
+              {uvo.pwd !== uvo.repwd && uvo.repwd && (
                 <>비밀번호 불일치!</>
               )}
-              {formData.password === formData.rePassword && formData.rePassword && (
+              {uvo.pwd === uvo.repwd && uvo.repwd && (
                 <GreenText>비밀번호 일치!</GreenText>
               )}
             </Error>
+            <IdContainer>
             <Email_Box>
-              <Email type='text' placeholder='이메일' name='email' value={formData.email} onChange={handleInputChange} />
+              <Email type='text' placeholder='이메일' name='email' onChange={handleEmailId} />
               <Icon>@</Icon>
-              <Email_select>
+              <Email_select onChange={handleDomain}>
                 <option>이메일 선택</option>
                 <option>naver.com</option>
                 <option>daum.net</option>
                 <option>gmail.com</option>
               </Email_select>
             </Email_Box>
+              <IdCheckButton type='button' onClick={handleEmailCheck}>중복확인</IdCheckButton>
+            </IdContainer>
             <BirthDay>
               <DatePicker
                 selected={startDate}

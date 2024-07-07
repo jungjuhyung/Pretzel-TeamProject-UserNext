@@ -15,10 +15,12 @@ import axios from 'axios';
 import Layout from '@/pages/commons/Layout';
 
 const LoginPage = () => {
-    const [id, setId] = useState('');
-    const [password, setPassword] = useState('');
+
     const [showPassword, setShowPassword] = useState(false);
-    const API_URL = "/user/login"
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(prevShowPassword => !prevShowPassword);
+    };
 
     const router = useRouter()
 
@@ -34,6 +36,9 @@ const LoginPage = () => {
         router.push("/choi/login/JoinPage/JoinPage")
     }
 
+    const [id, setId] = useState('');
+    const [password, setPassword] = useState('');
+
     const handleIdChange = (e) => {
         setId(e.target.value);
     };
@@ -42,37 +47,26 @@ const LoginPage = () => {
         setPassword(e.target.value);
     };
 
-    // const handleLoginClick = () => {
-    //     // oginClick(id, password);
-    //     // axios 서버로 정보 보내기
-    //     const response = axios.post("/user/login", {
-    //         user_id : id, 
-    //         pwd : password
-    //     });
-    //     console.log(response.data)
-    // };
+
+    const API_URL = '/user/login'
 
     async function login(){
+        console.log('보내는 데이터 : ', id , password)
         try {
             // axios 서버로 정보 보내기
-            console.log(API_URL)
-            const response = await axios.post(API_URL, {
-                user_id : id, 
-                pwd : password
+            const response = 
+                await axios.post(API_URL, {
+                    user_id : id,
+                    pwd : password,
                 });
-            console.log(response)
-            console.log(response.data)
-            
-            // token 토큰을 로컬 스토리지에 저장
+            console.log('결과 : ' , response.data)
+
+            const token = response.data.token
+
         } catch (error) {
-            console.error('로그인 실패 : ', error)
-            setId("error");
-            setPassword("")
+            console.error('실패 : ', error)
         }
     }
-    const togglePasswordVisibility = () => {
-        setShowPassword(prevShowPassword => !prevShowPassword);
-    };
 
     return (
         <>
@@ -83,7 +77,7 @@ const LoginPage = () => {
                     <Title>로그인</Title>
                     <SubTitle>pretzel 계정으로 로그인</SubTitle>
                     <BoxBottom>
-                        <Id type='text' placeholder="아이디" value={id} onChange={handleIdChange} />
+                        <Id type='text' placeholder="아이디" onChange={handleIdChange} />
                         <PasswordInput
                             placeholder="비밀번호"
                             onChange={handlePasswordChange}
