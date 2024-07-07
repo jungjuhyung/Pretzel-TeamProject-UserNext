@@ -9,7 +9,7 @@ const Review = () => {
             <HorizenLine />
             <Subtitle>리뷰 (204)</Subtitle>
             <StarAvg>평균 별점 : <ColorOrange>4.7</ColorOrange> <ReviewWriteBtn>리뷰 작성</ReviewWriteBtn></StarAvg>
-            
+
             <Review_Container>
                 <Profile_Image src="/images/samples/oing.png" />
                 <ReviewContent_Container>
@@ -22,7 +22,7 @@ const Review = () => {
                     <Review_Content>이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ</Review_Content>
                 </ReviewContent_Container>
             </Review_Container>
-            
+
             <Review_Container>
                 <Profile_Image src="/images/samples/oing.png" />
                 <ReviewContent_Container>
@@ -35,7 +35,7 @@ const Review = () => {
                     <Review_Content>이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ</Review_Content>
                 </ReviewContent_Container>
             </Review_Container>
-            
+
             <Review_Container>
                 <Profile_Image src="/images/samples/oing.png" />
                 <ReviewContent_Container>
@@ -48,7 +48,7 @@ const Review = () => {
                     <Review_Content>이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ</Review_Content>
                 </ReviewContent_Container>
             </Review_Container>
-            
+
             <Review_Container>
                 <Profile_Image src="/images/samples/oing.png" />
                 <ReviewContent_Container>
@@ -61,7 +61,7 @@ const Review = () => {
                     <Review_Content>이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ</Review_Content>
                 </ReviewContent_Container>
             </Review_Container>
-            
+
             <Review_Container>
                 <Profile_Image src="/images/samples/oing.png" />
                 <ReviewContent_Container>
@@ -74,7 +74,7 @@ const Review = () => {
                     <Review_Content>이 영화 넘 재밌어여 짱이다~ 짱짜아ㅉㅇ</Review_Content>
                 </ReviewContent_Container>
             </Review_Container>
-            
+
             <Review_Container>
                 <Profile_Image src="/images/samples/oing.png" />
                 <ReviewContent_Container>

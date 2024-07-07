@@ -13,6 +13,7 @@
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
     "@mui/material": "^5.15.21",
+    "@mui/x-charts": "^7.9.0",
     "@tosspayments/payment-widget-sdk": "^0.11.1",
     "antd": "^5.18.1",
     "axios": "^1.7.2",

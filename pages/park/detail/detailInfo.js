@@ -2,8 +2,20 @@
 
 import { Icon24px } from "@/styles/park/commons/commonsCSS";
 import { Backdrop, Buttons_Container, Genre, MovieContainer, MovieDetail_Container, MovieDiscription, MovieGrade, MovieInfo_Container, MoviePoster, MovieTitle, PlayBtn, ReleaseYear, RunTime, VerticalLine, WishBtn } from "@/styles/park/detailPage/detailInfoCSS";
+import { useRouter } from "next/navigation";
 
 const DetailInfo = () => {
+    const router = useRouter();
+
+    // 재생 버튼 누르기
+    const onClickPlay = () => {
+        router.push("/park/moviePlayPage")
+    }
+
+    // 위시리스트 추가
+    const onClickWish = () => {
+    }
+
     return (
         <>
             <Backdrop src="/images/samples/moviePoster.jpg" />
@@ -22,8 +34,8 @@ const DetailInfo = () => {
                     </MovieInfo_Container>
 
                     <Buttons_Container>
-                        <PlayBtn><Icon24px src="images/icons/play.png" /> 재생</PlayBtn>
-                        <WishBtn><Icon24px src="images/icons/add_white.png" /> 보고싶어요</WishBtn>
+                        <PlayBtn onClick={onClickPlay}><Icon24px src="images/icons/play.png" /> 재생</PlayBtn>
+                        <WishBtn onClick={onClickWish}><Icon24px src="images/icons/add_white.png" /> 보고싶어요</WishBtn>
                     </Buttons_Container>
 
                     <MovieDiscription>

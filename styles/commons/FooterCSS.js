@@ -52,6 +52,7 @@ export const TermsOne = styled.span`
   font-size: 17px;
   color: #868686;
   margin-left : 8px;
+  font-family: "Pretendard-Regular";
 `
 
 export const TermsTwo = styled.span`
@@ -59,6 +60,7 @@ export const TermsTwo = styled.span`
   height: 24px;
   font-size: 17px;
   color: #868686;
+  font-family: "Pretendard-Regular";
 `
 
 export const TermsThree = styled.span`
@@ -66,6 +68,7 @@ export const TermsThree = styled.span`
   height: 24px;
   font-size: 17px;
   color: #868686;
+  font-family: "Pretendard-Regular";
 `
 
 export const TermsFour = styled.span`
@@ -73,12 +76,14 @@ export const TermsFour = styled.span`
   height: 24px;
   font-size: 17px;
   color: #868686;
+  font-family: "Pretendard-Regular";
 `
 export const Bar = styled.span`
   height: 24px;
   color: #413939;
   font-size: 17px;
   margin: 0px 8.5px;
+  font-family: "Pretendard-Regular";
 `
 
 export const Footer_Middle = styled.div`
@@ -100,12 +105,14 @@ export const Bottom_Title = styled.span`
   width: 180px;
   height: 24px;
   color: #868686;
+  font-family: "Pretendard-Regular";
 `
 
 export const Bottom_information= styled.span`
   width: 315px;
   height: 24px;
   color: #868686;
+  font-family: "Pretendard-Regular";
 `
 
 export const Social = styled.div`
@@ -157,12 +164,14 @@ export const Footer_Title = styled.span`
   width: 180px;
   height: 24px;
   color: #868686;
+  font-family: "Pretendard-Regular";
 `
 
 export const Footer_information= styled.span`
   width: 315px;
   height: 24px;
   color: #868686;
+  font-family: "Pretendard-Regular";
 `
 
 

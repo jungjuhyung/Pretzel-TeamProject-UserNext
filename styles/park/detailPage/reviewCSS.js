@@ -44,6 +44,7 @@ export const ReviewContent_Container = styled.div`
     display: flex;
     flex-direction: column;
     margin-left: 20px;
+    width: 80vw
 `
 
 export const Review_TopContent = styled.div`

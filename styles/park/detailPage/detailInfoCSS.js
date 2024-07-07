@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Backdrop = styled.img`
     width: 100%;
-    height: 80vh;
+    height: 85vh;
     top: 0;
     object-fit: cover;
     filter: brightness(15%);
@@ -69,6 +69,11 @@ export const PlayBtn = styled.button`
     align-items: center;
     margin-right: 10px;
     justify-content: space-evenly;
+
+    &:hover {
+        background-color: black;
+        cursor: pointer;
+    }
 `
 
 export const WishBtn = styled.button`
@@ -84,10 +89,15 @@ export const WishBtn = styled.button`
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+
+    &:hover {
+        background-color: black;
+        cursor: pointer;
+    }
 `
 
 export const MovieDiscription = styled.div`
-    width: 800px;
+    width: 1000px;
     font: 17px "Pretendard-Regular";
     color: #ffffff;
     line-height: 30px;
@@ -104,7 +114,7 @@ export const MovieDetail_Container = styled.div`
     justify-content: space-between;
     box-sizing: border-box;
     padding: 10px 40px 0 40px;
-    height: calc(80vh - 100px);
+    height: calc(85vh - 100px);
 `
 
 export const MovieContainer = styled.div`

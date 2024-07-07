@@ -9,7 +9,8 @@ export const HeaderContainer = styled.div`
     justify-content: space-between;
     z-index: 1;
     padding: 30px 40px 30px 40px;
-    background-color: #0D0D0D;
+    background-color: ${({ scrollY }) => (scrollY > 50 ? '#0D0D0D' : 'transparent')};
+    transition: background-color ease-in-out 0.5s;
     z-index: 99;
 `;
 
@@ -39,6 +40,7 @@ export const Title = styled.li`
 `;
 
 export const Menus = styled.li`
+    font-family: "Pretendard-Regular";
     color: #ffffff;
     
     &:hover {

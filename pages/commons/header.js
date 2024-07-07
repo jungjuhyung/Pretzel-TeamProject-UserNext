@@ -1,12 +1,16 @@
 "use client";
 import { useRouter } from 'next/navigation';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { HeaderContainer, HeaderLeft, HeaderRight, LoginBtn, Menus, SearchIcon, SignUpBtn, Title, Whitespace } from "@/styles/commons/headerCSS";
-import { Icon24px } from "@/styles/park/commons/commonsCSS";
 
 const Header = ({ isVideoHovered }) => {
+    const [scrollY, setScrollY] = useState(0);
     const router = useRouter()
+
+    const handleScroll = () => {
+        setScrollY(window.scrollY);
+    };
 
     const goLogin = () => {
         router.push("/choi/login/loginPage/loginPage")
@@ -16,9 +20,16 @@ const Header = ({ isVideoHovered }) => {
         router.push("/choi/login/JoinPage/JoinPage")
     }
 
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+
     return (
         <>
-            <HeaderContainer>
+            <HeaderContainer scrollY={scrollY}>
                 <HeaderLeft>
                     <Title>pretzel</Title>
                     <Menus>홈</Menus>

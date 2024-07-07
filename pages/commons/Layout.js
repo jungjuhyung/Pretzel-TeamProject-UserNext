@@ -6,7 +6,7 @@ import '@/styles/commons/reset.css'
 import '@/styles/commons/font.css'
 import '../../styles/commons/commons.css'
 
-import Header from "./header"; 
+import Header from "./header";
 import Footer from "./Footer";
 
 const Layout = ({ children }) => {
