@@ -21,13 +21,14 @@ export const Background = styled.div`
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
+  background-color: black;
 `;
 
 export const Title = styled.div`
   margin-top: 147px;
-  width: 137px;
-  height: 36px;
-  font-size: 29px;
+  width: auto;
+  height: auto;
+  font-size: 30px;
   font-weight: 600;
   color: #FFFFFF;
 `;
@@ -63,11 +64,12 @@ export const Profile_Box_Right = styled.div`
 `;
 
 export const NickName = styled.div`
-  width: 52px;
+  width: auto;
   height: 24px;
   font-size: 20px;
   font-weight: 400;
   color: #FFFFFF;
+  margin-bottom: 10px;
 `;
 
 export const NickName_Input = styled.input`
@@ -83,11 +85,12 @@ export const NickName_Input = styled.input`
 
 export const Profile_image_title = styled.div`
   margin-top: 15px;
-  width: 92px;
+  width: auto;
   height: 24px;
   font-size: 20px;
   color: #FFFFFF;
   font-weight: 400;
+  margin-bottom: 10px;
 `;
 
 export const Profile_image_Upload = styled.input`
@@ -162,10 +165,11 @@ export const GenderSelect = styled.div`
 
 export const Gender_Title = styled.div`
   font-size: 20px;
-  width: 80px;
+  width: auto;
   height: 24px;
   font-weight: 400;
   color: #FFFFFF;
+  margin-bottom: 10px;
 `;
 
 export const Gender = styled.select`
@@ -189,6 +193,7 @@ export const Birth_Title = styled.div`
   height: 24px;
   font-weight: 400;
   color: #FFFFFF;
+  margin-bottom: 10px;
 `;
 
 export const Birth = styled.input`
@@ -210,11 +215,12 @@ export const GenreSelect = styled.div`
 `;
 
 export const Genre_Title = styled.div`
-  width: 76px;
+  width: auto;
   height: 24px;
   font-weight: 400;
   font-size: 20px;
   color:#FFFFFF;
+  margin-bottom: 10px;
 `;
 
 export const Genre_Box = styled.div`
