@@ -41,6 +41,12 @@ export const ProfileManageBtn = styled.button`
     border: none;
     border-radius: 5px;
     margin-left: 10px;
+
+    &:hover{
+        background-color: black;
+        color: #868686;
+        cursor: pointer;
+    }
 `;
 
 export const EditSubscriptionBtn = styled.button`
@@ -53,6 +59,12 @@ export const EditSubscriptionBtn = styled.button`
     border: none;
     border-radius: 5px;
     margin-left: 10px;
+
+    &:hover{
+        background-color: black;
+        color: #868686;
+        cursor: pointer;
+    }
 `;
 
 export const SubscriptionInfo = styled.p`

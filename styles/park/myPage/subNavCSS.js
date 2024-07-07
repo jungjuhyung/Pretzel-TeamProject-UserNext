@@ -13,10 +13,12 @@ export const Menus = styled.p`
     font-size: 17px;
     height: 51px;
     line-height: 51px;
-    color: #868686;
+    color: ${props => props.active ? '#ffffff' : '#868686'};
+    border-bottom: ${props => props.active ? '2px solid #ffffff' : 'none'};
 
     &:hover {
         color: #ffffff;
         border-bottom: 2px solid #ffffff;
+        cursor: pointer;
     }
 `;

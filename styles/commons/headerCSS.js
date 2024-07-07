@@ -34,6 +34,7 @@ export const Title = styled.li`
 
     &:hover {
         color: #ad6e21;
+        cursor: pointer;
     }
 `;
 
@@ -42,6 +43,7 @@ export const Menus = styled.li`
     
     &:hover {
         color: #868686;
+        cursor: pointer;
     }
 `;
 
@@ -54,6 +56,12 @@ export const LoginBtn = styled.button`
     width: 65px;
     height: 35px;
     font-size: 16px;
+
+    &:hover {
+        background-color: #1D1D1D;
+        color: #868686;
+        cursor: pointer;
+    }
 `;
 
 export const SignUpBtn = styled.button`
@@ -65,9 +73,24 @@ export const SignUpBtn = styled.button`
     width: 80px;
     height: 35px;
     font-size: 16px;
+
+    &:hover {
+        background-color: #ad6e21;
+        color: #868686;
+        cursor: pointer;
+    }
 `;
 
 export const Whitespace = styled.div`
     width: 100%;
     height: 100px;
 `;
+
+export const SearchIcon = styled.img`
+    width: 24px;
+    height: 24px;
+
+    &:hover {
+        cursor: pointer;
+    }
+`

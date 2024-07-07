@@ -75,3 +75,11 @@ export const LogoutButton = styled.button`
         background-color: #ad6e21;
     }
 `;
+
+export const Loading = styled.div`
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+`

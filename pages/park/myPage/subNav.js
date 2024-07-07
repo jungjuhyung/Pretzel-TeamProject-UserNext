@@ -1,16 +1,24 @@
 // 마이페이지 - 중간에 들어가는 메뉴바
 "use client";
 
-const { SubNavContainer, Menus } = require("@/styles/park/myPage/subNavCSS");
+import { Menus, SubNavContainer } from "@/styles/park/myPage/subNavCSS";
+import { useState } from "react";
 
-const SubNav = () => {
+const SubNav = ({ onMenuClick }) => {
+    const [currentMenu, setCurrentMenu] = useState('watchHistory');
+
+    const handleMenuClick = (menu) => {
+        setCurrentMenu(menu);
+        onMenuClick(menu);
+    }
+
     return (
         <>
             <SubNavContainer>
-                <Menus>시청 내역</Menus>
-                <Menus>보고싶은 리스트</Menus>
-                <Menus>문의 내역</Menus>
-                <Menus>리뷰</Menus>
+                <Menus active={currentMenu === 'ViewingHistory'} onClick={() => handleMenuClick('ViewingHistory')}>시청 내역</Menus>
+                <Menus active={currentMenu === 'MovieWishList'} onClick={() => handleMenuClick('MovieWishList')}>보고싶은 리스트</Menus>
+                <Menus active={currentMenu === 'MyQnA'} onClick={() => handleMenuClick('MyQnA')}>문의 내역</Menus>
+                <Menus active={currentMenu === 'MyReview'} onClick={() => handleMenuClick('MyReview')}>리뷰</Menus>
             </SubNavContainer>
         </>
     )

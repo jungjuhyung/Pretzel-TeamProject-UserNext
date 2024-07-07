@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 
 import React from 'react';
-import { HeaderContainer, HeaderLeft, HeaderRight, LoginBtn, Menus, SignUpBtn, Title, Whitespace } from "@/styles/commons/headerCSS";
+import { HeaderContainer, HeaderLeft, HeaderRight, LoginBtn, Menus, SearchIcon, SignUpBtn, Title, Whitespace } from "@/styles/commons/headerCSS";
 import { Icon24px } from "@/styles/park/commons/commonsCSS";
 
 const Header = ({ isVideoHovered }) => {
@@ -27,7 +27,7 @@ const Header = ({ isVideoHovered }) => {
                     <Menus>리뷰</Menus>
                 </HeaderLeft>
                 <HeaderRight>
-                    <Icon24px src="/images/icons/search.png"></Icon24px>
+                    <SearchIcon src="/images/icons/search.png"></SearchIcon>
                     <LoginBtn onClick={goLogin}>로그인</LoginBtn>
                     <SignUpBtn onClick={goJoin}>회원가입</SignUpBtn>
                 </HeaderRight>
