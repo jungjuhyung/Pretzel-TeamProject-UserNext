@@ -31,10 +31,9 @@ const SearchPage = observer(() => {
     const [page, setPage] = useState(1); // 현재 페이지
     const perPage = 5; // 페이지당 결과 수
 
-    const handleAddKeyword = () => {
-        if (inputValue.trim() !== '') {
-            setKeywords([...keywords, inputValue]);
-            setInputValue('');
+    const handleAddKeyword = (value) => {
+        if (value.trim() !== '') {
+            setKeywords([...keywords, value]);
             setShowSuggestions(true); // 검색어 추가 시 모달 창 표시
             setPage(1); // 검색어 추가 시 페이지 초기화
         }
@@ -59,6 +58,8 @@ const SearchPage = observer(() => {
                 setResult(response.data.movie);
                 setShowSuggestions(true); // 검색 시 모달 창 표시
                 setPage(1); // 검색 시 페이지 초기화
+    
+                handleAddKeyword(inputValue); // Enter 키를 눌렀을 때 검색어 추가
             } else {
                 setShowSuggestions(false); // 검색어가 비어 있을 때 모달 창 숨기기
             }
