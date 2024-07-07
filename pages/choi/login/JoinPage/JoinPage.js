@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Global } from '@emotion/react';
 import DatePicker from 'react-datepicker';
 import axios from 'axios';
+import { useRouter } from "next/navigation";
 
 import {
   globalStyles, Background, JoinBox, Title, Name,
@@ -108,26 +109,34 @@ const JoinPage = () => {
         }
     }
 
-    async function handleEmailCheck(){
-        console.log('보내는 데이터 : ', uvo)
-        try {
-            // axios 서버로 정보 보내기
-            const response = 
-                await axios.post('/user/email_check', uvo);
-            console.log('결과 : ' , response.data)
-            if (response.data === 1) {
-                console.log('중복이메일 있음')
-                alert("중복이메일 있음");
-              }else {
-                console.log('사용가능')
-                alert("사용가능");
-            }
-        } catch (error) {
-            console.error('실패 : ', error)
+    const handleEmailCheck = async () => {
+      // 이메일 주소가 입력되었는지 확인
+      if (!emailId || domain === '이메일 선택') {
+        alert("이메일 주소를 선택해주세요.");
+        return;
+      }
+    
+      // 이메일 주소가 완성되면 서버로 전송
+      const fullEmail = `${emailId}@${domain}`;
+      console.log('보내는 데이터 : ', { email: fullEmail });
+    
+      try {
+        // axios 서버로 정보 보내기
+        const response = await axios.post('/user/email_check', { email: fullEmail });
+        console.log('결과 : ', response.data)
+        if (response.data === 1) {
+          console.log('중복이메일 있음');
+          alert("중복이메일 있음");
+        } else {
+          console.log('사용가능');
+          alert("사용가능");
         }
-    }
+      } catch (error) {
+        console.error('실패 : ', error)
+      }
+    };
 
-
+    const router = useRouter()
   const handleSubmit = async () => {
     const { name, user_id, pwd, email } = uvo;
     const allRequiredChecked = Object.values(requiredChecks).every(Boolean);
@@ -148,7 +157,7 @@ const JoinPage = () => {
           alert("회원가입이 완료되었습니다.");
 
           // 로그인 페이지로 가줘~
-          
+          router.push("/choi/login/loginPage/loginPage")
         }
       } catch (error) {
         console.log('error')
@@ -164,15 +173,15 @@ const JoinPage = () => {
         <JoinBox>
           <Wrapper_All>
             <Title>회원가입</Title>
-            <Name type='text' placeholder='이름' name='name'  onChange={handleInputChange} />
+            <Name type='text' placeholder='이름' name='name' onChange={handleInputChange} />
             <IdContainer>
-              <IdInput type='text' placeholder='아이디' name='user_id'  onChange={handleInputChange} />
+              <IdInput type='text' placeholder='아이디' name='user_id' onChange={handleInputChange} />
               <IdCheckButton type='button' onClick={handleIdCheck}>중복확인</IdCheckButton>
             </IdContainer>
             <IdCondition>영문 소문자 또는 영문 소문자 , 숫자 조합 6~12자리</IdCondition>
-            <PassWord type='password' placeholder='비밀번호' name='pwd'  onChange={handleInputChange} />
+            <PassWord type='password' placeholder='비밀번호' name='pwd' onChange={handleInputChange} />
             <PwCondition>영문 , 숫자 , 특수문자(~!@#$%^&*)조합 8~15자리 </PwCondition>
-            <Re_PassWord type='password' placeholder='비밀번호 재입력' name='repwd'  onChange={handleInputChange} />
+            <Re_PassWord type='password' placeholder='비밀번호 재입력' name='repwd' onChange={handleInputChange} />
             <Error>
               {uvo.pwd !== uvo.repwd && uvo.repwd && (
                 <>비밀번호 불일치!</>
@@ -182,17 +191,18 @@ const JoinPage = () => {
               )}
             </Error>
             <IdContainer>
-            <Email_Box>
-              <Email type='text' placeholder='이메일' name='email' onChange={handleEmailId} />
-              <Icon>@</Icon>
-              <Email_select onChange={handleDomain}>
-                <option>이메일 선택</option>
-                <option>naver.com</option>
-                <option>daum.net</option>
-                <option>gmail.com</option>
-              </Email_select>
-            </Email_Box>
-              <IdCheckButton type='button' onClick={handleEmailCheck}>중복확인</IdCheckButton>
+              <Email_Box>
+                <Email type='text' placeholder='이메일' name='email' onChange={handleEmailId} />
+                <Icon>@</Icon>
+                <Email_select onChange={handleDomain} defaultValue="">
+                  <option >이메일 선택</option>
+                  <option >naver.com</option>
+                  <option >daum.net</option>
+                  <option >gmail.com</option>
+                  <option >nate.com</option>            
+                </Email_select>
+                <IdCheckButton type='button' onClick={handleEmailCheck}>중복확인</IdCheckButton>
+              </Email_Box>
             </IdContainer>
             <BirthDay>
               <DatePicker

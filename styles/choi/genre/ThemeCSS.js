@@ -15,7 +15,7 @@ export const globalStyles = css`
 
 export const Background = styled.div`
   width: 100%;
-  height: 547px;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -30,20 +30,43 @@ export const Title = styled.div`
   height: 36px;
   font-size: 30px;
   color: #FFFFFF;
+  font-weight: bold;
+  font-size: 45px;
 `
 
 export const Genre_box = styled.div`
   width: 90%;
-  height: 310px;
+  height: auto;
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 10px; /* 필요에 따라 조정 가능 */
-  margin-top: 68px;
+  gap: 30px;
+  margin-top: 70px;
 `
 
 export const Contents_box = styled.div`
   width: 250px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+`
+
+export const Contetns_Poster = styled.img`
+  width: 250px;
   height: 375px;
-  border: 1px solid white;
+  margin-bottom: 1vh;
+
+`
+
+export const Contents_title = styled.div`
+  color: #FFFFFF;
+  font-size: 24px;
+  width: auto;
+  height: auto;
 `

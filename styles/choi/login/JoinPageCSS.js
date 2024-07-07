@@ -30,13 +30,13 @@ export const Wrapper_All = styled.div`
   align-items: center;
   border-radius: 5px;
   width: 450px;
-  height: 1124px;
+  height: auto;
   padding-left: 1vw;
 `
 
 export const JoinBox = styled.div`
   width: 450px;
-  height: 1124px;
+  height: auto;
   background-color: #252525;
   display: flex;
   flex-direction: column;
@@ -68,7 +68,7 @@ export const IdContainer = styled.div`
   height: 50px;
   display: flex;
   position: relative;
-  margin-top: 45px;
+  margin-top: 20px;
 `;
 
 export const IdInput = styled.input`
@@ -106,7 +106,7 @@ export const PassWord = styled.input`
   height: 50px;
   border-radius: 5px;
   padding: 15px 0px 15px 15px;
-  margin-top: 35px;
+  margin-top: 20px;
   border: none;
   outline: none;
 `;
@@ -124,7 +124,7 @@ export const Re_PassWord = styled.input`
   height: 50px;
   border-radius: 5px;
   padding: 15px 0px 15px 15px;
-  margin-top: 15px;
+  margin-top: 20px;
   border: none;
   outline: none;
 `;
@@ -145,12 +145,11 @@ export const Email_Box = styled.div`
   width: 300px;
   height: 50px;
   display: flex;
-  justify-content: center;
-  margin-top: 35px;
+  justify-content: flex-start;
 `;
 
 export const Email = styled.input`
-  width: 130px;
+  width: 110px;
   height: 50px;
   padding: 15px 0px 15px 15px;
   border-radius: 5px;
@@ -159,7 +158,7 @@ export const Email = styled.input`
 `;
 
 export const Icon = styled.div`
-  width: 40px;
+  width: 20px;
   height: 50px;
   display: flex;
   justify-content: center;
@@ -173,12 +172,13 @@ export const Email_select = styled.select`
   height: 50px;
   padding: 15px 0px 15px 15px;
   border-radius: 5px;
+  outline: none;
 `;
 
 export const BirthDay = styled.div`
   width: 300px;
   height: 50px;
-  margin-top: 45px;
+  margin-top: 20px;
   position: relative;
   border-radius: 5px;
   display: flex;
@@ -305,6 +305,7 @@ export const JoinButton = styled.input`
   margin-top: 45px;
   color: #FFFFFF;
   border: none;
+  margin-bottom: 65px;
 `;
 
 export const Button = styled.button`
@@ -316,4 +317,5 @@ export const Button = styled.button`
   display: inline-block;
   font-size: 16px;
   cursor: pointer;
+  
 `;

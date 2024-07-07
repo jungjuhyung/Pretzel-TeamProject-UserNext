@@ -9,8 +9,9 @@ import Layout from '@/pages/commons/Layout';
 import axios from 'axios';
 
 import {
-  globalStyles , Background , Title , Genre_box , Contents_box , Contetns_Poster
-} from '../../../styles/choi/genre/ActionCSS';
+  globalStyles , Background , Title , Genre_box , Contents_box , Contetns_Poster ,
+  Contents_title
+} from '../../../styles/choi/genre/ThemeCSS';
 const Action = () =>{
 
 
@@ -24,7 +25,6 @@ const Action = () =>{
         try {
             const response = await axios.get("/search/select_thema?thema=액션");
             setContent(response.data); 
-            console.log(response.data)
         } catch (error) {
             console.error('Error not Action list:', error);
         }
@@ -41,9 +41,10 @@ const Action = () =>{
         <Background>
           <Title>액션</Title>
           <Genre_box>
-            {content.map((item, index) => (
+            {content.map((item) => (
             <Contents_box key={item.movie_idx}>
-              <Contetns_Poster>{item.korea_title}</Contetns_Poster>
+              <Contetns_Poster src={`https://image.tmdb.org/t/p/w500/${item.poster_url}`} />
+              <Contents_title>{item.korea_title}</Contents_title>
             </Contents_box>
             ))} 
           </Genre_box>

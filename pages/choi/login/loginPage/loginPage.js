@@ -1,40 +1,44 @@
-// 로그인 페이지
-
 "use client";
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Global } from '@emotion/react';
+import { observer } from "mobx-react-lite";
+import { TokenContext } from '@/stores/StoreContext';
+
 import {
     globalStyles, Background, LoginBox, Title, SubTitle,
     BoxBottom, Id, PasswordInput, LoginButton, AccountOptions,
     SelectOption, Bar, BoxFooter, Move, SubText,
     Link, NaverLogin, KaKaoLogin, loginClick
 } from '../../../../styles/choi/login/loginPageCSS';
+
 import axios from 'axios';
 import Layout from '@/pages/commons/Layout';
 
-const LoginPage = () => {
 
+const LoginPage = observer(() => {
+    const tokenStore = useContext(TokenContext);
     const [showPassword, setShowPassword] = useState(false);
+    
 
     const togglePasswordVisibility = () => {
         setShowPassword(prevShowPassword => !prevShowPassword);
     };
 
-    const router = useRouter()
+    const router = useRouter();
 
     const goIdFind = () => {
-        router.push("/choi/login/IdFindPage/IdFindPage")
-    }
+        router.push("/choi/login/IdFindPage/IdFindPage");
+    };
 
-    const goPwFind = () =>{
-        router.push("/choi/login/PwFindPage/PwFindPage")
-    }
+    const goPwFind = () => {
+        router.push("/choi/login/PwFindPage/PwFindPage");
+    };
 
     const goJoin = () => {
-        router.push("/choi/login/JoinPage/JoinPage")
-    }
+        router.push("/choi/login/JoinPage/JoinPage");
+    };
 
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
@@ -48,23 +52,27 @@ const LoginPage = () => {
     };
 
 
-    const API_URL = '/user/login'
+    const API_URL = '/user/login';
 
     async function login(){
-        console.log('보내는 데이터 : ', id , password)
+        console.log('보내는 데이터 : ', id , password);
         try {
             // axios 서버로 정보 보내기
-            const response = 
-                await axios.post(API_URL, {
-                    user_id : id,
-                    pwd : password,
-                });
-            console.log('결과 : ' , response.data)
+            const response = await axios.post(API_URL, {
+                user_id : id,
+                pwd : password,
+            });
+            console.log('결과 : ' , response.data);
 
-            const token = response.data.token
+            const token = response.data.token;
+            tokenStore.setToken(response.data.token);
+
+
+            console.log(tokenStore.token)
+            router.push("/choi/profile/ProfileSelect");
 
         } catch (error) {
-            console.error('실패 : ', error)
+            console.error('실패 : ', error);
         }
     }
 
@@ -102,8 +110,7 @@ const LoginPage = () => {
             </Background>
         </Layout>
         </>
-
     );
-}
+});
 
 export default LoginPage;
