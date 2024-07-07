@@ -1,8 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Global } from '@emotion/react';
-import styled from '@emotion/styled';
 import axios from 'axios';
-import { useRouter } from "next/navigation";
 
 // Importing styled components from external file
 import {
@@ -11,10 +9,10 @@ import {
   PlayButton, Info_button, Week_Popular, Week_Title, Week_Poster_Box,
   Poster, PosterWrapper, PosterRank, PrevButton, NextButton , Contents,
   Contents_Title , Contents_Box , Contents_img , New_Contents
-} from '../../../styles/choi/main/MainHomeCSS';
-import Layout from '@/pages/commons/Layout';
+} from '@/styles/choi/main/MainHomeCSS';
+import { observer } from 'mobx-react-lite';
 
-const MainHome = () => {
+const Main =observer(() => {
   const [isHovered, setIsHovered] = useState(false);
   const [isMuted, setIsMuted] = useState(true); // Changed: Initially muted
   const [activePoster, setActivePoster] = useState(null);
@@ -89,16 +87,15 @@ const MainHome = () => {
 
   return (
     <>
-      <Layout>
         <Global styles={globalStyles} />
         <Background>
           <VideoContainer 
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            key={item.movie_idx}
+            key="36"
           >
             <Video
-            src={`https://www.youtube.com/watch?v=${item.trailer_url}`}
+            src="https://www.youtube.com/watch?v=MYruHOXRoZ8"
             title="YouTube video player"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
@@ -183,9 +180,8 @@ const MainHome = () => {
             </Contents>
           ))}
         </Background>
-      </Layout>
     </>
   );
-}
+})
 
-export default MainHome;
+export default Main;

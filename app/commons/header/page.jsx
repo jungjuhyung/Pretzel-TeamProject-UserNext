@@ -19,6 +19,9 @@ const Header = ({ isVideoHovered }) => {
     const goJoin = () => {
         router.push("/choi/login/JoinPage/JoinPage")
     }
+    const goSearch = () => {
+        router.push("/search")
+    }
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -38,7 +41,7 @@ const Header = ({ isVideoHovered }) => {
                     <Menus>리뷰</Menus>
                 </HeaderLeft>
                 <HeaderRight>
-                    <SearchIcon src="/images/icons/search.png"></SearchIcon>
+                    <SearchIcon src="/images/icons/search.png" onClick={goSearch}></SearchIcon>
                     <LoginBtn onClick={goLogin}>로그인</LoginBtn>
                     <SignUpBtn onClick={goJoin}>회원가입</SignUpBtn>
                 </HeaderRight>

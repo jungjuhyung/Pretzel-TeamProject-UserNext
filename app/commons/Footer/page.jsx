@@ -10,7 +10,7 @@ import {
   Bottom_Box, Bottom_Title , Bottom_information , Social_Background, Social,
   Youtube , Instagram , Twitter , FaceBook , Footer_Box,
   Footer_Title, Footer_information
-} from '../../styles/commons/FooterCSS';
+} from '../../../styles/commons/FooterCSS';
 
 
 const Footer = () =>{
