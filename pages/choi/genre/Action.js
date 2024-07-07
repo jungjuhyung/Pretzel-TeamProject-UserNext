@@ -1,33 +1,56 @@
 // 장르 페이지
 
 "use client";
-
-import React from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { Global } from '@emotion/react';
+// import { observer } from "mobx-react-lite";
+import { useRouter } from "next/navigation";
+import Layout from '@/pages/commons/Layout';
+import axios from 'axios';
 
 import {
-  globalStyles , Background , Title , Genre_box , Horror_box ,
-  Crime_box , Action_box , Romance_box , Comic_box , Animation_box 
+  globalStyles , Background , Title , Genre_box , Contents_box , Contetns_Poster
 } from '../../../styles/choi/genre/ActionCSS';
-
 const Action = () =>{
+
+
+  const router = useRouter();
+  
+  const [content, setContent] = useState([]);
+
+
+  useEffect(() => {
+    const ContentData = async () => {
+        try {
+            const response = await axios.get("/search/select_thema?thema=액션");
+            setContent(response.data); 
+            console.log(response.data)
+        } catch (error) {
+            console.error('Error not Action list:', error);
+        }
+    };
+
+    ContentData(); // 컴포넌트가 마운트될 때 데이터 가져오기
+
+}, []);
+  
   return(
     <>
+    <Layout>
       <Global styles={globalStyles} />
         <Background>
-          <Title>장르를 선택해주세요</Title>
+          <Title>액션</Title>
           <Genre_box>
-            <Horror_box>공포</Horror_box>
-            <Crime_box>범죄/스릴러</Crime_box>
-            <Action_box>액션</Action_box>
-            <Romance_box>로맨스</Romance_box>
-            <Comic_box>코믹</Comic_box>
-            <Animation_box>애니메이션</Animation_box>
+            {content.map((item, index) => (
+            <Contents_box key={item.movie_idx}>
+              <Contetns_Poster>{item.korea_title}</Contetns_Poster>
+            </Contents_box>
+            ))} 
           </Genre_box>
         </Background>
-        
+      </Layout>
     </>
   )
-}
+};
 
 export default Action;

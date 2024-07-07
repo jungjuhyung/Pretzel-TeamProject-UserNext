@@ -178,6 +178,12 @@ export const SuggBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 `
 
 // Firefox에서 스크롤바 숨기기 위한 스타일
@@ -197,8 +203,8 @@ export const SuggestionsBoxHeader = styled.div`
     position: sticky;
     top: 0;
     background-color: rgba(29, 29, 29, 0.9);
-    z-index: 1001; /* 모달 내부 콘텐츠보다 위에 표시되도록 설정 */
-    transition: background-color 0.3s ease; /* 배경 색상 전환 효과 추가 */
+    z-index: 1001; 
+    background-color: rgba(29, 29, 29, 0);
 `;
 
 // 스크롤 시 배경 색상을 투명하게 변경하는 스타일 추가
@@ -208,15 +214,15 @@ export const TransparentBackground = styled.div`
     }
 `;
 export const CloseIcon = styled.img`
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
     margin-right: 10px; /* 오른쪽 여백 추가 */
     align-self: center; /* 세로 중앙 정렬 */
 `;
 
 export const SuggestionsBoxContent = styled.div`
-    padding: 10px;
+    padding: 30px;
     width: auto;
     height: auto;
     display: grid;

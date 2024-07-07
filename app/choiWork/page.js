@@ -29,6 +29,12 @@ import ProfileDelete from '@/pages/choi/profile/ProfileDelete';
 
 // 장르
 import GenreSelect from '@/pages/choi/genre/GenreSelect';
+import Action from '@/pages/choi/genre/Action';
+import Animation from '@/pages/choi/genre/Animation';
+import Comic from '@/pages/choi/genre/Comic';
+import Crime from '@/pages/choi/genre/Crime';
+import Horror from '@/pages/choi/genre/Horror';
+import Romence from '@/pages/choi/genre/Romence';
 
 // 메인
 import MainHome from '@/pages/choi/main/MainHome';
@@ -42,6 +48,7 @@ import PaymentPage from '@/pages/choi/servicecenter/PaymentPage';
 
 // 검색
 import SearchPage from '@/pages/choi/search/SerchPage';
+
 
 
 export default function ChoiWork() {
@@ -74,6 +81,13 @@ export default function ChoiWork() {
 
             {/* 장르 선택 */}
             {/* <GenreSelect/> */}
+            <Action/>
+            {/* <Animation/> */}
+            {/* <Comic/> */}
+            {/* <Crime/> */}
+            {/* <Horror/> */}
+            {/* <Romence/> */}
+
 
             {/* 메인 */}
             {/* <MainHome/> */}
@@ -83,7 +97,7 @@ export default function ChoiWork() {
             {/* <ContactPage/> */}
             {/* <FAQPage/> */}
             {/* <PaymentPage/> */}
-            <SearchPage/>
+            {/* <SearchPage/> */}
             {/* <Footer /> */}
         </>
     )
