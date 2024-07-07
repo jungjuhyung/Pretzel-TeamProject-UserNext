@@ -54,25 +54,27 @@ const LoginPage = observer(() => {
 
     const API_URL = '/user/login';
 
-    async function login(){
-        console.log('보내는 데이터 : ', id , password);
+    async function login() {
+        console.log('보내는 데이터 : ', id, password);
         try {
-            // axios 서버로 정보 보내기
             const response = await axios.post(API_URL, {
-                user_id : id,
-                pwd : password,
+                user_id: id,
+                pwd: password,
             });
-            console.log('결과 : ' , response.data);
-
-            const token = response.data.token;
-            tokenStore.setToken(response.data.token);
-
-
-            console.log(tokenStore.token)
-            router.push("/choi/profile/ProfileSelect");
-
+            console.log('결과 : ', response.data);
+            
+            if (response.data.token) {
+                const token = response.data.token;
+                tokenStore.setToken(token);
+                console.log(tokenStore.token);
+                router.push("/choi/profile/ProfileSelect");
+            } else {
+                alert('아이디나 비밀번호를 다시 확인해주세요.');
+            }
+    
         } catch (error) {
             console.error('실패 : ', error);
+            alert('로그인 중 오류가 발생했습니다. 잠시 후 다시 시도해 주세요.');
         }
     }
 
