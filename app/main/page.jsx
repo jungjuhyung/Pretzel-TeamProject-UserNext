@@ -1,3 +1,4 @@
+"use client";
 import React, { useState, useRef, useEffect } from 'react';
 import { Global } from '@emotion/react';
 import axios from 'axios';
@@ -7,44 +8,34 @@ import {
   globalStyles, VideoContainer, Video, Overlay, Background,
   Option_Box, Title, Option_Box_Left, Option_Box_Right, Volume, AgeIcon,
   PlayButton, Info_button, Week_Popular, Week_Title, Week_Poster_Box,
-  Poster, PosterWrapper, PosterRank, PrevButton, NextButton , Contents,
-  Contents_Title , Contents_Box , Contents_img , New_Contents
+  Poster, PosterWrapper, Contents, Contents_Title , Contents_Box , New_Contents
 } from '@/styles/choi/main/MainHomeCSS';
 import { observer } from 'mobx-react-lite';
+import LoadingSpinner from '../commons/loadingSpinner/page';
 
-const Main =observer(() => {
+const Main = observer(() => {
   const [isHovered, setIsHovered] = useState(false);
   const [isMuted, setIsMuted] = useState(true); // Changed: Initially muted
   const [activePoster, setActivePoster] = useState(null);
   const videoRef = useRef(null);
   const [currentIndex, setCurrentIndex] = useState(0);
   const postersPerPage = 5;
-  const posters = [
-    '/images/Poster/Poster1.webp', '/images/Poster/Poster2.webp', '/images/Poster/Poster3.webp',
-    '/images/Poster/Poster4.webp', '/images/Poster/Poster5.webp', '/images/Poster/Poster6.webp',
-    '/images/Poster/Poster7.webp', '/images/Poster/Poster8.webp', '/images/Poster/Poster9.webp',
-    '/images/Poster/Poster10.webp'
-  ];
-  const [content , setContent] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  // 메인 리스트 들
+  const [main_movie, setMain_movie] = useState({});
+  const [day_list, setDay_list] = useState([]);
+  const [thema_list, setThema_list] = useState([]);
+  const [statistics_list, setStatistics_list] = useState([]);
+  const [recent_list, setRecent_list] = useState([]);
 
+  const API_URL = "/main/"
   useEffect(() => {
-    const ContentData = async () => {
-        try {
-            const response = await axios.post("/main/thema_list");
-            setContent(response.data); 
-            console.log(setContent);
-        } catch (error) {
-            console.error('Error fetching Main-thema list:', error);
-        }
-    };
-
-    ContentData(); // 컴포넌트가 마운트될 때 데이터 가져오기
-
+    chart_data()
   }, []);
 
   useEffect(() => {
     const videoElement = videoRef.current;
-  
+
     if (videoElement) {
       if (isHovered && !isMuted && videoElement.paused) {
         videoElement.play();
@@ -59,25 +50,7 @@ const Main =observer(() => {
     if (videoElement) {
       const newMutedState = !videoElement.muted;
       videoElement.muted = newMutedState;
-
-      // 비디오가 현재 재생 중이고, 음소거를 해제하면 재생
-      if (!videoElement.paused && !newMutedState) {
-        videoElement.play();
-      }
-
       setIsMuted(newMutedState);
-    }
-  };
-
-  const handlePrevClick = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(prevIndex => Math.max(prevIndex - postersPerPage, 0));
-    }
-  };
-
-  const handleNextClick = () => {
-    if (currentIndex + postersPerPage < posters.length) {
-      setCurrentIndex(prevIndex => prevIndex + postersPerPage);
     }
   };
 
@@ -85,101 +58,160 @@ const Main =observer(() => {
     setActivePoster(prevActive => (prevActive === index ? null : index));
   };
 
+
+  async function chart_data() {
+    setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
+    console.log(API_URL);
+    try {
+      const response = await axios.post(API_URL + "main_movie");
+      const response2 = await axios.post(API_URL + "day_list");
+      const response3 = await axios.post(API_URL + "thema_list");
+      const response4 = await axios.post(API_URL + "recent_list");
+      if (false) {
+        const response5 = await axios.post(API_URL + "statistics_list",
+          {
+            headers: {
+              Authorization: `Bearer ${adminStore.token}`
+            }
+          });
+      }
+      if (response.data && response2.data && response3.data && response4.data) {
+        console.log(response4.data)
+        setMain_movie(response.data);
+        setDay_list(response2.data);
+        setThema_list(response3.data);
+        setRecent_list(response4.data);
+        //setStatistics_list(response5.data);
+        console.log(recent_list);
+      }
+      console.log(recent_list);
+    } catch (error) {
+      console.error('상세 정보 가져오기 실패 : ', error)
+    } finally {
+      setIsLoading(false); // 데이터를 로드한 후 로딩 상태 해제
+    }
+  }
+  if (isLoading) {
+    return <LoadingSpinner />
+  }
+
   return (
     <>
-        <Global styles={globalStyles} />
-        <Background>
-          <VideoContainer 
-            onMouseEnter={() => setIsHovered(true)}
-            onMouseLeave={() => setIsHovered(false)}
-            key="36"
-          >
-            <Video
-            src="https://www.youtube.com/watch?v=MYruHOXRoZ8"
-            title="YouTube video player"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      <Global styles={globalStyles} />
+      {/* {content.map((item) => ( */}
+      <Background >
+        <VideoContainer
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+          key="36"
+        >
+          <Video
+            width="100%"
+            height="100vh"
+            src={`https://www.youtube.com/embed/${main_movie.trailer_url}?autohide=1&autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0&title=0&byline=0&portrait=0`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
             allowFullScreen
-            />
-            <Overlay />
-            <Option_Box>
-              <Option_Box_Left>
-                <Title>{content.title}</Title>
-              </Option_Box_Left>
-              <Option_Box_Right>
-                <Volume
-                  src={isMuted ? '/images/icons/VolumeOff.png' : '/images/icons/VolumeOn.png'}
-                  onClick={handleToggleMute}
-                />
-                <AgeIcon>{content.age}</AgeIcon>
-                <PlayButton type='button' value={"재생"} />
-                <Info_button type='button' value={"상세정보"} />
-              </Option_Box_Right>
-            </Option_Box>
-          </VideoContainer>
-          {/* 인기 순위 TOP 10 */}
-          <Week_Popular>
-            <Week_Title>이 주의 인기 순위 TOP 10</Week_Title>
-            <div style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-              {currentIndex > 0 && (
-                <PrevButton onClick={handlePrevClick} style={{ zIndex: 1 }}>
-                  Prev
-                </PrevButton>
-              )}
-              <div style={{ overflow: 'hidden', width: `${postersPerPage * (250 + 20)}px` }}>
-                <Week_Poster_Box
-                  style={{
-                    display: 'flex',
-                    transition: 'transform 0.3s ease',
-                    transform: `translateX(-${currentIndex * (250 + 20)}px)`,
-                  }}
-                >
-                  {posters.slice(currentIndex, currentIndex + postersPerPage).map((poster, index) => (
-                    <PosterWrapper
-                      key={index}
-                      onClick={() => handlePosterClick(currentIndex + index)}
-                      isActive={activePoster === currentIndex + index}
-                      className={activePoster === currentIndex + index ? 'active' : ''}
-                    >
-                      <Poster src={poster} />
-                      <PosterRank className={activePoster === currentIndex + index ? 'active' : ''}>{currentIndex + index + 1}</PosterRank>
-                    </PosterWrapper>
-                  ))}
-                </Week_Poster_Box>
-              </div>
-              {currentIndex + postersPerPage < posters.length && (
-                <NextButton onClick={handleNextClick} style={{ zIndex: 1 }}>
-                  Next
-                </NextButton>
-              )}
+          ></Video>
+          <Overlay />
+          <Option_Box>
+            <Option_Box_Left>
+              <Title>{main_movie.korea_title}</Title>
+            </Option_Box_Left>
+            <Option_Box_Right>
+              <Volume
+                src={isMuted ? '/images/icons/VolumeOff.png' : '/images/icons/VolumeOn.png'}
+                onClick={handleToggleMute}
+              />
+              <AgeIcon>{main_movie.movie_grade}</AgeIcon>
+              <PlayButton type='button' value={"재생"} />
+              <Info_button type='button' value={"상세정보"} />
+            </Option_Box_Right>
+          </Option_Box>
+        </VideoContainer>
+        {/* 인기 순위 TOP 10 */}
+        <Week_Popular>
+          <Week_Title>이 주의 인기 순위 TOP 5</Week_Title>
+          <div style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+            
+            <div style={{ overflow: 'hidden', width: 'auto' }}>
+              <Week_Poster_Box
+                style={{
+                  display: 'grid',
+                  gridTemplateColumns: `repeat(${postersPerPage}, 1fr)`,
+                  gap: '144px', 
+                  transition: 'transform 0.3s ease',
+                  transform: `translateX(-${currentIndex * (250 + 20)}px)`,
+                }}
+              >
+                {day_list.slice(currentIndex, currentIndex + postersPerPage).map((k, index) => (
+                  <PosterWrapper
+                    key={k.movie_idx}
+                    onClick={() => handlePosterClick(k.movie_idx)}
+                  >
+                    <div style={{ position: 'relative' }}>
+                      <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`}/>
+                      <div
+                        style={{
+                          position: 'absolute',
+                          top: '275px',
+                          left: '5px',
+                          backgroundColor: 'rgba(0, 0, 0, 1)',
+                          color: 'orange',
+                          fontSize: '40px',
+                          padding: '5px',
+                          borderRadius: '5px',
+                        }}
+                      >
+                        {currentIndex + index + 1}
+                      </div>
+                    </div>
+                  </PosterWrapper>
+                ))}
+              </Week_Poster_Box>
             </div>
-          </Week_Popular>
-          
-          {/* 새로 올라온 콘텐츠 */}
-          <New_Contents>
+            
+          </div>
+        </Week_Popular>
+
+        {/* 새로 올라온 콘텐츠 */}
+        <New_Contents>
+          <Contents_Title>
+            새로 올라온 콘텐츠
+          </Contents_Title>
+          <Contents_Box>
+            {recent_list.slice(0, postersPerPage).map((k) => (  // 첫 5개의 포스터만 렌더링
+              <PosterWrapper
+                key={k.movie_idx}
+                onClick={() => handlePosterClick(k.movie_idx)}
+              >
+                <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} />
+              </PosterWrapper>
+            ))}
+          </Contents_Box>
+        </New_Contents>
+
+        {/* 장르별 콘텐츠 */}
+        {['공포', '로맨스', '범죄/스릴러', '액션', '애니메이션'].map((genre, index) => (
+          <Contents key={index}>
             <Contents_Title>
-                새로 올라온 콘텐츠
+              {genre}
             </Contents_Title>
             <Contents_Box>
-              {Array.from({ length: 5 }).map((_, index) => (
-                <Contents_img key={index} src='/images/contents/content.jpeg'/>
+              {thema_list[genre].slice(0, postersPerPage).map((k) => (  // 첫 5개의 포스터만 렌더링
+                <PosterWrapper
+                  key={k.movie_idx}
+                  onClick={() => handlePosterClick(k.movie_idx)}
+                >
+                  <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} />
+                </PosterWrapper>
               ))}
             </Contents_Box>
-          </New_Contents>
-
-          {/* 장르별 콘텐츠 */}
-          {['공포', '로맨스', '범죄/스릴러', '액션', '애니메이션'].map((genre, index) => (
-            <Contents key={index}>
-              <Contents_Title>
-                {genre}
-              </Contents_Title>
-              <Contents_Box>
-                {Array.from({ length: 5 }).map((_, index) => (
-                  <Contents_img key={index} src='/images/contents/content.jpeg'/>
-                ))}
-              </Contents_Box>
-            </Contents>
-          ))}
-        </Background>
+          </Contents>
+        ))}
+      </Background>
+      {/* ))}  */}
     </>
   );
 })

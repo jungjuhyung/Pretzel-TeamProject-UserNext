@@ -15,7 +15,7 @@ export const globalStyles = css`
 
 export const Background = styled.div`
   width: 100%;
-  height: 1000px;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -41,8 +41,19 @@ export const Title = styled.div`
   font-weight: bold;
 `;
 
+export const Option = styled.select`
+  margin-top: 10px;
+  width: 430px;
+  height: 40px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  border: none;
+`
+
+
 export const Title_Input = styled.input`
-  margin-top: 31px;
+  margin-top: 10px;
   width: 430px;
   height: 40px;
   padding: 10px;

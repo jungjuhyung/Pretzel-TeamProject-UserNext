@@ -13,25 +13,24 @@ export const globalStyles = css`
   }
 `;
 
-// e6VTGJ9BH2XNAJUm
-
 // Styled Components
 export const Background = styled.div`
   width: 100%;
-  height: 320vh; /* 배경의 전체 높이 */
+  height: auto;
+  margin-bottom: 100px;
 `;
 
 export const VideoContainer = styled.div`
   width: 100%;
   position: relative;
   margin-top: -16px; 
-  height: 70vh;
+  height: 650px;
   pointer-events: auto; 
 `;
 
 export const Video = styled.iframe`
   width: 100%;
-  height: 70vh; 
+  height: 630px; 
   object-fit: cover; 
 `;
 
@@ -41,7 +40,7 @@ export const Overlay = styled.div`
   left: 0;
   width: 100%;
   height: 70vh;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent); /* 그라데이션 배경 */
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
   pointer-events: none; 
 `;
 
@@ -66,7 +65,7 @@ export const Option_Box_Right = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-end;
   padding-top: 6.7vh; 
 `;
 
@@ -90,6 +89,7 @@ export const AgeIcon = styled.div`
   font-size: 15px; 
   font-weight: bold; 
   border-radius: 50%; 
+  margin-left: 20px;
 `;
 
 export const PlayButton = styled.input`
@@ -107,6 +107,7 @@ export const PlayButton = styled.input`
   background-position: 15px center;
   background-size: 30px;
   border-radius: 5px; 
+  margin-left: 20px;
 `;
 
 export const Info_button = styled.input`
@@ -123,6 +124,8 @@ export const Info_button = styled.input`
   background-size: 25px; 
   background-color: #454342; 
   color: #FFFFFF; 
+  margin-left: 20px;
+  margin-right: 10px;
 `;
 
 export const Week_Popular = styled.div`
@@ -141,29 +144,31 @@ export const Week_Title = styled.div`
 
 export const Week_Poster_Box = styled.div`
   margin-top: 30px;
+  width: auto;
   height: 35vh;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  gap: 3.5vw;
-  transition: transform 0.3s ease; /* 이 부분이 필요합니다 */
+  gap: 20px; /* 포스터 간의 간격을 설정합니다 */
+  transition: transform 0.3s ease;
 `;
 
 export const PosterWrapper = styled.div`
+  width: auto;
   position: relative;
   cursor: pointer;
-  transform: scale(${props => props.isActive ? '1.1' : '1'}); /* 클릭 시 확대/축소 효과 */
-  transition: transform 0.3s ease; /* 부드러운 전환 효과 */
+  transform: scale(${props => props.isActive ? '1.1' : '1'});
+  transition: transform 0.3s ease;
 
   &:hover {
-    transform: scale(1.1); /* 마우스 호버 시 조금 더 확대 */
+    transform: scale(1.1);
   }
 `;
 
 export const Poster = styled.img`
-  width:15.3vw; 
-  height: 35vh;
-  object-fit: fill; 
+  width: 250px; /* 포스터의 너비를 250px로 설정합니다 */
+  height: 38vh;
+  object-fit: cover;
 `;
 
 export const PosterRank = styled.div`
@@ -206,27 +211,26 @@ export const NextButton = styled.button`
 `;
 
 export const Contents = styled.div`
-  margin-top: 10px;
+  margin-top: 200px;
   width: 100%;
   height: 262px;
   padding: 30px 40px 30px 40px;
-`
+`;
 
 export const New_Contents = styled.div`
   margin-top: 50px;
   width: 100%;
   height: 262px;
   padding: 30px 40px 30px 40px;
-`
-
-
+`;
 
 export const Contents_Title = styled.div`
   width: 222px;
   height: 36px;
   font-size: 29px;
   color: #FFFFFF;
-` 
+  margin-bottom: 100px;
+`; 
 
 export const Contents_Box = styled.div`
   width: 100%;
@@ -235,7 +239,8 @@ export const Contents_Box = styled.div`
   gap: 1vw;
   justify-content: space-between;
   align-items: center;
-`
+  margin-bottom: 100px;
+`;
 
 export const Contents_img = styled.img`
   width: 18vw;

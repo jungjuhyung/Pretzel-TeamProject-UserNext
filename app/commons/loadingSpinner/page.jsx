@@ -1,7 +1,7 @@
 "use client";
 
 import { Loading } from '@/styles/park/commons/commonsCSS';
-import '../../styles/commons/commons.css';
+import '@/styles/commons/commons.css';
 
 const LoadingSpinner = () => {
     return (

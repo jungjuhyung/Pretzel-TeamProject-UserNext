@@ -2,8 +2,9 @@ import { makeAutoObservable } from "mobx";
 
 class profileStore {
     // 관리자 정보
+    user_id=""
     profile_idx = '';
-
+    token=""
     constructor() {
         makeAutoObservable(this);
     }

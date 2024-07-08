@@ -30,15 +30,15 @@ export const Genre_box = styled.div`
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(2, 1fr);
-  gap: 10px;
+  gap: 30px;
   margin-top: 68px;
 `
 
 export const Title = styled.div`
   margin-top: 100px;
-  width: 241px;
-  height: 36px;
-  font-size: 30px;
+  width: auto;
+  height: auto;
+  font-size: 50px;
   color: #FFFFFF;
   text-align: center;
 `
@@ -49,10 +49,16 @@ export const Payment = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 40px;
+  font-weight: 600;
   color: #FFFFFF;
   background-color: #3d3d3d;
   border-radius: 5px;
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 `
 
 export const Error = styled.div`
@@ -61,10 +67,16 @@ export const Error = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 40px;
+  font-weight: 600;
   color: #FFFFFF;
   background-color: #3d3d3d;
   border-radius: 5px;
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 `
 
 export const Rate_Plan = styled.div`
@@ -73,10 +85,16 @@ export const Rate_Plan = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 40px;
+  font-weight: 600;
   color: #FFFFFF;
   background-color: #3d3d3d;
   border-radius: 5px;
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 `
 
 export const Inquiry = styled.div`
@@ -85,10 +103,16 @@ export const Inquiry = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
+  font-size: 40px;
+  font-weight: 600;
   color: #FFFFFF;
   background-color: #3d3d3d;
   border-radius: 5px;
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 `
 
 export const Inquiry_Button = styled.input`
