@@ -23,7 +23,7 @@ export const Background = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  border-radius : 5px;
+  
 `;
 
 export const FindSuccessBox = styled.div`
@@ -34,6 +34,7 @@ export const FindSuccessBox = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius : 5px;
 
 `
 export const IconBox = styled.div`

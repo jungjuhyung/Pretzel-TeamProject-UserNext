@@ -4,27 +4,32 @@
 
 import React from 'react';
 import { Global } from '@emotion/react';
+import { useRouter } from 'next/navigation';
 
 import {
   globalStyles , Background , FindFailBox, Icon, Title,
   CheckButton
 } from '../../../../styles/choi/login/IdFindFailPageCSS';
 
-import Layout from '@/pages/commons/Layout';
 
 const IdFindFailPage = () =>{
+
+  const router = useRouter();
+
+  const goBack = () =>{
+    router.push("/choi/login/idFindPage")
+  }
+
   return(
     <>
-    <Layout>
       <Global styles={globalStyles} />
         <Background>
           <FindFailBox>
           <Icon src='/images/icons/error.png' />
           <Title>일치하는 결과가 없습니다.</Title>
-          <CheckButton type='button' value={'확인'}/>
+          <CheckButton type='button' value={'확인'} onClick={goBack}/>
           </FindFailBox>
-        </Background>
-    </Layout>    
+        </Background>   
     </>
   )
 }

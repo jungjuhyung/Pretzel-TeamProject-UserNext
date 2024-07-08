@@ -128,4 +128,9 @@ export const Inquiry_Button = styled.input`
   font-weight: bold;
   border-radius: 50px;
   border: none;
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
 `
