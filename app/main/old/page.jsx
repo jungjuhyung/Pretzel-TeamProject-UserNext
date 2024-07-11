@@ -11,7 +11,7 @@ import {
   Poster, PosterWrapper, Contents, Contents_Title , Contents_Box , New_Contents
 } from '@/styles/choi/main/MainHomeCSS';
 import { observer } from 'mobx-react-lite';
-import LoadingSpinner from '../commons/loadingSpinner/page';
+import LoadingSpinner from '../../commons/loadingSpinner/page';
 
 const Main = observer(() => {
   const [isHovered, setIsHovered] = useState(false);
