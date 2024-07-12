@@ -53,6 +53,8 @@ const Trailer = observer(() => {
         imageSrc = '/images/movieGrade/grade_15.png';
     } else if (main_movie.movie_grade === `19`) {
         imageSrc = '/images/movieGrade/grade_19.png';
+    } else {
+        imageSrc = '/images/movieGrade/grade_15.png';
     }
 
     return (

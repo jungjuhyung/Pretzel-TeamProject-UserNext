@@ -1,10 +1,8 @@
 // 장르 페이지
 
 "use client";
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState , useEffect } from 'react';
 import { Global } from '@emotion/react';
-// import { observer } from "mobx-react-lite";
-import { useRouter } from "next/navigation";
 import axios from 'axios';
 
 import {
@@ -13,9 +11,6 @@ import {
 } from '../../../../styles/choi/genre/ThemeCSS';
 const Action = () =>{
 
-
-  const router = useRouter();
-  
   const [content, setContent] = useState([]);
 
 

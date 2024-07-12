@@ -4,7 +4,7 @@ import { observer } from 'mobx-react-lite';
 import LoadingSpinner from '../../commons/loadingSpinner/page';
 
 import {
-    Week_Popular , Week_Title , Week_Poster_Box , PosterWrapper , Poster
+    Week_Popular, Week_Title, Week_Poster_Box, PosterWrapper, Poster, RankNumber
 } from '@/styles/choi/main/mainWeekCSS';
 
 const WeekTop = observer(() => {
@@ -34,7 +34,7 @@ const WeekTop = observer(() => {
         }
     }
 
-    
+    // 나중에 디테일 페이지 갈때 들고갈 movie_idx
     const handlePosterClick = (movie_idx) => {
         console.log('Clicked poster index:', movie_idx);
     };
@@ -47,8 +47,10 @@ const WeekTop = observer(() => {
         <Week_Popular>
             <Week_Title>이 주의 인기 순위 TOP 5</Week_Title>
             <Week_Poster_Box>
-                {day_list.slice(postersPerPage).map((k) => (
+                {day_list.slice(0, postersPerPage).map((k, index) => (
                     <PosterWrapper key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>
+                        {/* 순위 */}
+                        <RankNumber>{index + 1}</RankNumber>
                         <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} />
                     </PosterWrapper>
                 ))}

@@ -7,11 +7,11 @@ import { observer } from 'mobx-react-lite';
 import LoadingSpinner from '../../commons/loadingSpinner/page';
 
 import {
-        New_Contents , Contents_Title , Contents_Box , PosterWrapper , Poster
-    } from '@/styles/choi/main/mainNewCotentCSS';
+        Contents , Contents_Title , Contents_Box , PosterWrapper , Poster
+    } from '@/styles/choi/main/mainThemaCSS';
 
-const NewContent = observer(() => {
-    const [recent_list, setRecent_list] = useState([]);
+const Horror = observer(() => {
+    const [thema_list, setThema_list] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // isLoading 상태 추가
     const postersPerPage = 5; // 페이지당 포스터 수
 
@@ -22,14 +22,14 @@ const NewContent = observer(() => {
     }, []);
 
 
-    // 새로 올라온 콘텐츠 리스트 가져오기
+    // 장르 리스트 가져오기
     async function chart_data() {
         setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
         console.log(API_URL);
         try {
-            const response = await axios.post(API_URL + "recent_list");
+            const response = await axios.post(API_URL + "thema_list");
             if (response.data) {
-                setRecent_list(response.data);
+                setThema_list(response.data);
             }
             } catch (error) {
             console.error('상세 정보 가져오기 실패 : ', error)
@@ -45,18 +45,23 @@ const NewContent = observer(() => {
 
     return (
         <>
-            <New_Contents>
-                <Contents_Title>새로 올라온 콘텐츠</Contents_Title>
+        {/* 공포 , 로맨스 , 범죄/스릴러 , 액션 , 애니메이션 순으로 장르 가져오기 */}
+        {['공포', '로맨스', '범죄/스릴러', '액션', '애니메이션'].map((genre, index) => (
+            <Contents key={index}>
+                <Contents_Title>
+                    {genre}
+                </Contents_Title>
                 <Contents_Box>
-                {recent_list.slice(0, postersPerPage).map((k) => (  // 첫 5개의 포스터만 렌더링
-                <PosterWrapper key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>
-                    <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} />
-                </PosterWrapper>
-                ))}
+                    {thema_list[genre].slice(0, postersPerPage).map((k) => (  // 장르 당 5개씩 가져오기
+                    <PosterWrapper key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>
+                        <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} />
+                    </PosterWrapper>
+                    ))}
                 </Contents_Box>
-            </New_Contents>
+            </Contents>
+            ))}
         </>
     );
 });
 
-export default NewContent;
+export default Horror;

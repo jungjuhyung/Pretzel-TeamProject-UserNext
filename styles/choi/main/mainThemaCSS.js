@@ -3,13 +3,13 @@ import styled from '@emotion/styled';
 import { style } from '@mui/system';
 
 
-export const New_Contents = styled.div`
-    margin-top: 50px;
+export const Contents = styled.div`
+    margin-top: 200px;
     width: 100%;
     height: 262px;
     padding: 30px 40px 30px 40px;
+    margin-bottom: 100px;
 `;
-
 
 export const Contents_Title = styled.div`
     width: 222px;

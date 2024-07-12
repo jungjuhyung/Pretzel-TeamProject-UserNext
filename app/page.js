@@ -1,9 +1,6 @@
 "use client"
-import New from './main/new/page';
-import Main from './main/old/page';
-
+import Main from './main/mainPage/page';
 
 export default function Home() {
-  // return <Main/>;
-  return <New/>
+  return <Main/>
 }
