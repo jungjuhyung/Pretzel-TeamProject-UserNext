@@ -5,7 +5,7 @@ import { Menus, SubNavContainer } from "@/styles/park/myPage/subNavCSS";
 import { useState } from "react";
 
 const SubNav = ({ onMenuClick }) => {
-    const [currentMenu, setCurrentMenu] = useState('watchHistory');
+    const [currentMenu, setCurrentMenu] = useState('ViewingHistory');
 
     const handleMenuClick = (menu) => {
         setCurrentMenu(menu);

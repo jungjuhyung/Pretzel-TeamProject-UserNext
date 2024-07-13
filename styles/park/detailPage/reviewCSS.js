@@ -62,6 +62,7 @@ export const StarRating = styled.p`
     font: 20px '116angduk_honesty15';
     color: #f29a2e;
     margin-right: 7px;
+    letter-spacing: 2px;
 `
 
 export const Vertical = styled.p`
@@ -83,10 +84,6 @@ export const Review_Content = styled.p`
     color: #868686;
     max-width: 1700px;
     width: 100%;
-`
-
-export const Inactive = styled.span`
-    color: #3d3d3d;
 `
 
 export const MoreBtn = styled.button`

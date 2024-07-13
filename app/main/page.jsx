@@ -8,7 +8,7 @@ import {
   globalStyles, VideoContainer, Video, Overlay, Background,
   Option_Box, Title, Option_Box_Left, Option_Box_Right, Volume, AgeIcon,
   PlayButton, Info_button, Week_Popular, Week_Title, Week_Poster_Box,
-  Poster, PosterWrapper, Contents, Contents_Title , Contents_Box , New_Contents
+  Poster, PosterWrapper, Contents, Contents_Title, Contents_Box, New_Contents
 } from '@/styles/choi/main/MainHomeCSS';
 import { observer } from 'mobx-react-lite';
 import LoadingSpinner from '../commons/loadingSpinner/page';
@@ -134,13 +134,13 @@ const Main = observer(() => {
         <Week_Popular>
           <Week_Title>이 주의 인기 순위 TOP 5</Week_Title>
           <div style={{ position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-            
+
             <div style={{ overflow: 'hidden', width: 'auto' }}>
               <Week_Poster_Box
                 style={{
                   display: 'grid',
                   gridTemplateColumns: `repeat(${postersPerPage}, 1fr)`,
-                  gap: '144px', 
+                  gap: '144px',
                   transition: 'transform 0.3s ease',
                   transform: `translateX(-${currentIndex * (250 + 20)}px)`,
                 }}
@@ -151,7 +151,7 @@ const Main = observer(() => {
                     onClick={() => handlePosterClick(k.movie_idx)}
                   >
                     <div style={{ position: 'relative' }}>
-                      <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`}/>
+                      <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} />
                       <div
                         style={{
                           position: 'absolute',
@@ -171,7 +171,7 @@ const Main = observer(() => {
                 ))}
               </Week_Poster_Box>
             </div>
-            
+
           </div>
         </Week_Popular>
 
