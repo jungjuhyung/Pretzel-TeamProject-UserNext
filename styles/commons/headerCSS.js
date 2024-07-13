@@ -16,14 +16,13 @@ export const HeaderContainer = styled.div`
 
 export const HeaderLeft = styled.ul`
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    min-width: 550px;
+    min-width: 500px;
 `;
 
 export const HeaderRight = styled.div`
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     min-width: 200px;
 `;
@@ -32,6 +31,7 @@ export const Title = styled.li`
     color: #f29a2e;
     font-family: rubik one;
     font-size: 35px;
+    margin-right: 50px;
 
     &:hover {
         color: #ad6e21;
@@ -42,6 +42,7 @@ export const Title = styled.li`
 export const Menus = styled.li`
     font-family: "Pretendard-Regular";
     color: #ffffff;
+    margin-right: 50px;
     
     &:hover {
         color: #868686;
@@ -58,6 +59,7 @@ export const LoginBtn = styled.button`
     width: 65px;
     height: 35px;
     font-size: 16px;
+    margin-right: 10px;
 
     &:hover {
         background-color: #1D1D1D;
@@ -83,6 +85,23 @@ export const SignUpBtn = styled.button`
     }
 `;
 
+export const LogoutBtn = styled.button`
+    font-family: "Pretendard-Regular";
+    background-color: #f29a2e;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    width: 90px;
+    height: 35px;
+    font-size: 16px;
+
+    &:hover {
+        background-color: #ad6e21;
+        color: #868686;
+        cursor: pointer;
+    }
+`;
+
 export const Whitespace = styled.div`
     width: 100%;
     height: 100px;
@@ -91,6 +110,7 @@ export const Whitespace = styled.div`
 export const SearchIcon = styled.img`
     width: 24px;
     height: 24px;
+    margin-right: 20px;
 
     &:hover {
         cursor: pointer;

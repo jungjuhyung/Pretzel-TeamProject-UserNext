@@ -18,9 +18,7 @@ export const MovieTitle = styled.h1`
 
 export const MovieInfo_Container = styled.div`
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    width: 220px;
     margin-bottom: 10px;
 `
 
@@ -28,21 +26,25 @@ export const MovieGrade = styled.img`
     width: 22px;
     height: 22px;
     line-height: 20px;
+    margin-right: 10px;
 `
 
 export const VerticalLine = styled.p`
     font: 20px "Pretendard-Regular";
     color: #ffffff;
+    margin-right: 10px;
 `
 
 export const ReleaseYear = styled.p`
     font: 20px "Pretendard-Regular";
     color: #ffffff;
+    margin-right: 10px;
 `
 
 export const RunTime = styled.p`
     font: 20px "Pretendard-Regular";
     color: #ffffff;
+    margin-right: 10px;
 `
 
 export const Genre = styled.p`

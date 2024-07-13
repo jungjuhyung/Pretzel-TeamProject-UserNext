@@ -1,13 +1,12 @@
 "use client"
 
-import Layout from "@/pages/commons/Layout"
-import MyProfile from "./myProfile";
-import SubNav from "./subNav";
 import { useState } from "react";
-import MovieWishList from "./movieWishList";
-import MyQnA from "./myQnA";
-import MyReview from "./myReview";
-import ViewingHistory from "./viewingHistory";
+import MovieWishList from "../movieWhishList/page";
+import MyQnA from "../myQnA/page";
+import MyReview from "../myReview/page";
+import ViewingHistory from "../viewingHistory/page";
+import MyProfile from "../myProfile/page";
+import SubNav from "../subNav/page";
 
 const MyPage = () => {
     const [selectedMenu, setSelectedMenu] = useState('watchHistory');
@@ -37,11 +36,9 @@ const MyPage = () => {
 
     return (
         <>
-            <Layout>
-                <MyProfile />
-                <SubNav onMenuClick={handleMenuClick} />
-                {content}
-            </Layout>
+            <MyProfile />
+            <SubNav onMenuClick={handleMenuClick} />
+            {content}
         </>
     )
 }
