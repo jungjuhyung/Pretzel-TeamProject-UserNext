@@ -68,7 +68,7 @@ export const Icon = styled.img`
 
 export const KeywordBox_Bottom = styled.div`
     width: 100%;
-    height: 90%;
+    height: 85%;
     padding-top: 50px;
     display: flex;
 `;
@@ -213,6 +213,7 @@ export const TransparentBackground = styled.div`
         background-color: rgba(29, 29, 29, 0); /* 스크롤 시 배경 투명하게 설정 */
     }
 `;
+
 export const CloseIcon = styled.img`
     width: 40px;
     height: 40px;
@@ -294,6 +295,6 @@ export const PaginationButton = styled.button`
 export const RealText = styled.div`
     width: auto;
     height: auto;
-    color: ${props => props.highlighted ? '#FFFF00' : '#FFFFFF'}; /* 조건에 따라 색상 변경 */
+    color: #ffffff;
     font-weight: 300;
 `

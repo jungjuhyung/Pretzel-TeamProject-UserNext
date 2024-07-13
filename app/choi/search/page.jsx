@@ -13,6 +13,7 @@ import {
 } from '../../../styles/choi/search/SearchPageCSS';
 
 import { SearchContext } from "@/stores/StoreContext";
+import { ColorOrange } from '@/styles/park/commons/commonsCSS';
 
 const searchIcon = '/images/icons/search.png';
 const deleteIcon = '/images/icons/delete.png';
@@ -152,9 +153,10 @@ const Search = observer(() => {
                             <RealTime_Keyword_Box>
                                 {realSearch.map((item, index) => (
                                     <RealTime_Keyword key={item.movie_idx}>
-                                        <RealText highlighted={index < 3}>{`${index + 1}. ${item.korea_title}`}</RealText>
+                                        <RealText><ColorOrange>{index + 1}</ColorOrange> &#160;&#160; {item.korea_title}</RealText>
                                     </RealTime_Keyword>
                                 ))}
+                                {/* 날짜 넣기 */}
                             </RealTime_Keyword_Box>
                         </Bottom_right>
                     </KeywordBox_Bottom>

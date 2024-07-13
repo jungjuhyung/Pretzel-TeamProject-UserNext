@@ -45,8 +45,8 @@ const Trailer = observer(() => {
     // 영화 등급 이미지 분류
     let imageSrc;
 
-    if (main_movie.movie_grade === 'All') {
-        imageSrc = '/images/movieGrade/grade_all.png';
+    if (main_movie.movie_grade === '' ) {
+        imageSrc = '/images/movieGrade/grade_none.png';
     } else if (main_movie.movie_grade === `12`) {
         imageSrc = '/images/movieGrade/grade_12.png';
     } else if (main_movie.movie_grade === `15`) {
@@ -54,7 +54,7 @@ const Trailer = observer(() => {
     } else if (main_movie.movie_grade === `19`) {
         imageSrc = '/images/movieGrade/grade_19.png';
     } else {
-        imageSrc = '/images/movieGrade/grade_15.png';
+        imageSrc = '/images/movieGrade/grade_all.png';
     }
 
     return (

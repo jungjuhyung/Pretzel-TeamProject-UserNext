@@ -23,7 +23,7 @@ export const Background = styled.div`
 `;
 
 export const Top_Line = styled.div`
-  width: 1800px;
+  width: 100%;
   height: 325px;
   border-top: 1px solid #3d3d3d;
   margin: 80px 60px 50px 60px;
@@ -80,7 +80,7 @@ export const TermsFour = styled.span`
 `
 export const Bar = styled.span`
   height: 24px;
-  color: #413939;
+  color: #3d3d3d;
   font-size: 17px;
   margin: 0px 8.5px;
   font-family: "Pretendard-Regular";
@@ -99,7 +99,6 @@ export const Bottom_Box = styled.div`
   height: 24px;
   display: flex;
 `
-
 
 export const Bottom_Title = styled.span`
   width: 180px;
@@ -158,7 +157,6 @@ export const Footer_Box = styled.div`
   height: 24px;
   display: flex;
 `
-
 
 export const Footer_Title = styled.span`
   width: 180px;

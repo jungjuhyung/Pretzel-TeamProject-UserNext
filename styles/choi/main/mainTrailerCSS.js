@@ -1,30 +1,28 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 
 export const Video = styled.iframe`
-    position: relative;
+    position: absolute;
     width: 100%;
-    height: 630px; 
-    object-fit: cover; 
+    height: 85vh; 
+    top: 0;
+    object-fit: contain; 
 `;
 
 export const Overlay = styled.div`
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 70vh;
+    height: 85vh;
+    top: 0;
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6), transparent);
     pointer-events: none; 
 `;
 
 export const Option_Box = styled.div`
     position: absolute;
-    bottom: 220px;
+    top: calc(85vh - 190px);
     width: 100%;
     height: 154px;
     display: flex;
-    
 `;
 
 export const Option_Box_Left = styled.div`
@@ -44,8 +42,10 @@ export const Option_Box_Right = styled.div`
 `;
 
 export const Title = styled.div`
-    font-size: 80px; 
-    color: #FFFFFF; 
+    font-size: 60px; 
+    color: #FFFFFF;
+    font-family: 'Freesentation-9Black';
+    margin-left: 30px;
 `;
 
 
@@ -57,16 +57,17 @@ export const AgeIcon = styled.img`
 export const PlayButton = styled.input`
     width: 100px; 
     height: 45px; 
-    background-color: #454342; 
+    background-color: rgba(255, 255, 255, 0.2);
     border: none; 
     border-radius: 5px; 
     color: #FFFFFF; 
     font-size: 20px; 
-    text-align: center; 
-    padding-left: 35px; 
+    text-align: center;
+    font-family: "Pretendard-Regular";
+    padding-left: 30px; 
     background-image: url('/images/icons/play.png'); 
     background-repeat: no-repeat; 
-    background-position: 15px center;
+    background-position: 10px center;
     background-size: 30px;
     border-radius: 5px; 
     margin-left: 20px;
@@ -79,13 +80,14 @@ export const Info_button = styled.input`
     border: none; 
     font-size: 20px; 
     text-align: center; 
-    padding-left: 40px; 
+    padding-left: 35px; 
+    font-family: "Pretendard-Regular";
     background-image: url('/images/icons/error.png'); 
     background-repeat: no-repeat; 
-    background-position: 15px center;
+    background-position: 12px center;
     background-size: 25px; 
-    background-color: #454342; 
+    background-color: rgba(255, 255, 255, 0.2);
     color: #FFFFFF; 
     margin-left: 20px;
-    margin-right: 10px;
+    margin-right: 30px;
 `;

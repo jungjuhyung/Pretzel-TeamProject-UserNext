@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 import { style } from '@mui/system';
 
 export const Week_Popular = styled.div`
-    margin-top: 3vh;
+    margin-top: 85vh;
     width: 100%;
     height: auto;
     display: flex;
