@@ -6,5 +6,4 @@ export const Video = styled.video`
 `
 
 export const Subtitle = styled.track`
-    
 `

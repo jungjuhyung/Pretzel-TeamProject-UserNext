@@ -1,6 +1,4 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { style } from '@mui/system';
 
 
 export const New_Contents = styled.div`
@@ -42,7 +40,8 @@ export const PosterWrapper = styled.div`
 `;
 
 export const Poster = styled.img`
-    width: 250px; /* 포스터의 너비를 250px로 설정합니다 */
-    height: 38vh;
+    width: 200px; /* 포스터의 너비를 250px로 설정합니다 */
+    height: 300px;
     object-fit: cover;
+    border-radius: 5px;
 `;

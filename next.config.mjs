@@ -39,6 +39,12 @@ const nextConfig = {
                 //  SpringBoot 의 /api/movie 으로 리 라이트 됩니다.
                 source: "/movie/:path*",
                 destination: "http://localhost:8080/movie/:path*",
+            },
+            {
+                //  /api/movie 으로 시작되는 모든 요청
+                //  SpringBoot 의 /api/movie 으로 리 라이트 됩니다.
+                source: "/moviedetail/:path*",
+                destination: "http://localhost:8080/moviedetail/:path*",
             }
         ];
     },

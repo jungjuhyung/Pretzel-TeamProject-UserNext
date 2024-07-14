@@ -141,7 +141,6 @@ export const RealTime_Keyword_Box = styled.div`
     width: 100%;
     display: flex;
     flex-direction: column;
-    
 `;
 
 export const RealTime_Keyword = styled.div`

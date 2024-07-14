@@ -18,10 +18,12 @@ const DetailInfo = () => {
 
     // 처음 렌더링 될 때 실행
     useEffect(() => {
-        movie_detail()
+        movie_detail(),
+        wish_check()
     }, []);
 
     const API_URL = "/movie/"
+    const API_URL_2 = "/moviedetail/"
 
     // 영화 상세 정보 가져오기
     async function movie_detail() {
@@ -43,6 +45,59 @@ const DetailInfo = () => {
         }
     }
 
+    // 위시리스트 여부 확인
+    async function wish_check() {
+        setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
+
+        try {
+            const response = await axios.post(API_URL_2 + "wish/wishChk", {
+                profile_idx: 32,
+                movie_idx: 22
+            });
+
+            // 1 =  위시리스트에 존재
+            if (response.data === '1') {
+                return (
+                    <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/check_orange.png" /> 보고싶어요</WishBtn>
+                )
+            } else {
+                return (
+                    <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/add_white.png" /> 보고싶어요</WishBtn>
+                )
+            }
+        } catch (error) {
+            console.error('정보 가져오기 실패 : ', error);
+        } finally {
+            setIsLoading(false); // 데이터를 로드한 후 로딩 상태 해제
+        }
+    }
+
+    // 위시리스트 추가하기
+    async function onClickWish() {
+        setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
+
+        try {
+            const response = await axios.post(API_URL_2 + "wish/add",
+                {
+                    profile_idx: 100
+                },
+                {
+                    params: {
+                        movie_idx: 22
+                    }
+                });
+            if (response.data === '1') {
+                alert("보고싶은 리스트에 추가가 완료되었습니다.")
+            } else {
+                alert("")
+            }
+        } catch (error) {
+            console.error('상세 정보 가져오기 실패 : ', error);
+        } finally {
+            setIsLoading(false); // 데이터를 로드한 후 로딩 상태 해제
+        }
+    }
+
     // 로딩중일 때
     if (isLoading) {
         return <LoadingSpinner />
@@ -51,10 +106,6 @@ const DetailInfo = () => {
     // 영화 재생 버튼 누르기
     const onClickPlay = () => {
         router.push("/park/detail/moviePlayPage")
-    }
-
-    // 위시리스트 추가
-    const onClickWish = () => {
     }
 
     return (
@@ -85,7 +136,7 @@ const DetailInfo = () => {
 
                     <Buttons_Container>
                         <PlayBtn onClick={onClickPlay}><Icon24px src="/images/icons/play.png" /> 재생</PlayBtn>
-                        <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/add_white.png" /> 보고싶어요</WishBtn>
+                        {wish_check()}
                     </Buttons_Container>
 
                     <MovieDiscription>
