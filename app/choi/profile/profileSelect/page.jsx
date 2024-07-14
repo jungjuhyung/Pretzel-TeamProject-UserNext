@@ -9,13 +9,11 @@ import {
   globalStyles , Background , Title ,Wrapper_box , Profile_All_Box , Profile_Box,
   Profile_Image, Profile_Name , New_Profile_Create , New_Profile_Info ,Plus , Management_Button
 } from '@/styles/choi/profile/ProfileSelectCSS';
-import { LoginContext, ProfileContext, TokenContext } from '@/stores/StoreContext';
-import profileStore from '@/stores/profileStore';
+import { useStores } from '@/stores/StoreContext';
 
 
 const ProfileSelect = observer(() => {
-  const loginStore = useContext(LoginContext);
-  const profileStore = useContext(ProfileContext);
+  const {loginStore} = useStores();
 
   const router = useRouter();
   const [profile_list, setProfile_list] = useState([])
@@ -24,15 +22,12 @@ const ProfileSelect = observer(() => {
   };
 
     useEffect(() => {
-
       // 서버 갈곳
       const API_URL = '/profile/profile_list'
       
       // 로그인 후 mobx 로 관리
     
-      const token = loginStore.token
-      console.log(token);
-      
+      console.log(loginStore.token);
       
       const ContentData = async () => {
 
@@ -40,7 +35,7 @@ const ProfileSelect = observer(() => {
 
             const response =
             await axios.post(API_URL, {}, {
-            headers : { Authorization : `Bearer ${token}`}
+            headers : { Authorization : `Bearer ${loginStore.token}`}
             });
             console.log('결과 : ' , response.data)
             setProfile_list(response.data)
@@ -59,7 +54,6 @@ const ProfileSelect = observer(() => {
 
   const onClickProfile = (k) =>{
     console.log("test");
-    loginStore.setToken(loginStore.token, k.profile_idx, k.name, k.img_name, k.regdate, k.user_id, k.like_thema, k.gender, k.birth)
     router.push("/")
   }
 
