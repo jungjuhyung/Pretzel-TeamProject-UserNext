@@ -121,6 +121,11 @@ export const Profile_Img = styled.img`
     width: 40px;
     height: 40px;
     margin-right: 10px;
-    border-radius: 50%;
-    
+    border-radius: 50%;    
+`
+
+export const UserName = styled.p`
+    font-family: "Pretendard-Regular";
+    color: #ffffff;
+    margin-right: 20px;
 `

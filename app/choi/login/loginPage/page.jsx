@@ -72,26 +72,6 @@ const LoginPage = observer(() => {
         }
     }
 
-    useEffect(() => {
-        // URL에서 토큰 가져오기
-        const urlParams = new URLSearchParams(window.location.search);
-        const token = urlParams.get('token');
-        
-        console.log("sns 로그인 토큰 : ", token);
-        
-        if (token) {
-            console.log("정상계정")
-            // 토큰을 MobX store에 저장
-
-            // 프로필 리스트 페이지로
-
-        }else {
-            console.log("탈퇴 및 정지계정")
-            // 다시 로그인 페이지 => 경고창
-        }
-
-    }, []);
-
     return (
         <>
        

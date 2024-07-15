@@ -1,12 +1,15 @@
 "use client";
 
 import LoadingSpinner from "@/app/commons/loadingSpinner/page";
+import { useStores } from "@/stores/StoreContext";
 import { HorizenLine } from "@/styles/park/commons/commonsCSS";
 import { All_Container, PersonInfo_Container, Person_Container, Person_Name, Person_Role, Proifle_Img, Subtitle } from "@/styles/park/detailPage/staffAndCastCSS";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Cast = () => {
+    const { loginStore, movieDetailStore } = useStores();
+
     // 영화 출연진 정보
     const [cast, setCast] = useState([]);
 
@@ -27,7 +30,7 @@ const Cast = () => {
         try {
             const response = await axios.get(API_URL + "cast_list", {
                 params: {
-                    movie_idx: 22
+                    movie_idx: movieDetailStore.movie_idx
                 }
             });
             if (response.data) {
@@ -52,7 +55,7 @@ const Cast = () => {
             <All_Container>
                 {cast.map((k) => (
                     <Person_Container key={k.cast_idx}>
-                        <Proifle_Img src={`https://image.tmdb.org/t/p/w185/${k.cast_img}`} />
+                        <Proifle_Img src={!k.cast_img ? "/images/samples/default_profile.png" : `https://image.tmdb.org/t/p/w185/${k.cast_img}`} />
                         <PersonInfo_Container>
                             <Person_Name>{k.cast_name}</Person_Name>
                             <Person_Role>{k.role}</Person_Role>

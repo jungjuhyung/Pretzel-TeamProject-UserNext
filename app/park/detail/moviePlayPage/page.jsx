@@ -8,10 +8,13 @@ import { Subtitle, Video } from "@/styles/park/moviePlayPageCSS";
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '@/app/commons/loadingSpinner/page';
+import { useStores } from '@/stores/StoreContext';
 
 const MoviePlayPage = () => {
-    // 영화 상세 정보
-    const [movieDetail, setMovieDetail] = useState({});
+    const { loginStore, movieDetailStore, profileStore } = useStores();
+
+    // 영화 재생 정보
+    const [moviePlay, setMoviePlay] = useState({});
 
     // 로딩 상태
     const [isLoading, setIsLoading] = useState(true);
@@ -22,6 +25,7 @@ const MoviePlayPage = () => {
     }, []);
 
     const API_URL = "/movie/"
+    const API_URL_2 = "/profile/"
 
     // 영화 재생 정보 가져오기
     async function movie_detail() {
@@ -30,20 +34,40 @@ const MoviePlayPage = () => {
         try {
             const response = await axios.get(API_URL + "movie_detail", {
                 params: {
-                    movie_idx: 22
+                    movie_idx: movieDetailStore.movie_idx
                 }
             });
-            // 영화 시청자 데이터
-            const response2 = await axios.get(API_URL + "watch_movie", {
-                params: {
-                    gender: '0',
-                    age: 22,
-                    movie_idx: 22
-                }
-            });
+
             if (response.data) {
-                setMovieDetail(response.data);
+                setMoviePlay(response.data);
             }
+
+            // 영화 시청자 프로필 가져오기
+            const response2 = await axios.post(API_URL_2 + "profile_detail",
+                {
+                    profile_idx: loginStore.profile_idx
+                },
+                {
+                    header: {
+                        Authorization: loginStore.token
+                    }
+                }
+            );
+
+            if (response2.data) {
+                profileStore.setProfileDetail.gender(response2.data.gender)
+                profileStore.setProfileDetail.age(response2.data.age)
+                profileStore.setProfileDetail.movie_idx(response2.data.movie_idx)
+            }
+
+            // 영화 시청자 데이터
+            const response3 = await axios.get(API_URL + "watch_movie", {
+                params: {
+                    gender: profileStore.profileDetail.gender,
+                    age: profileStore.profileDetail.age,
+                    movie_idx: profileStore.profileDetail.movie_idx
+                }
+            });
         } catch (error) {
             console.error('상세 정보 가져오기 실패 : ', error);
         } finally {
@@ -59,7 +83,7 @@ const MoviePlayPage = () => {
     return (
         <>
             <Video
-                src={`https://storage.googleapis.com/pretzel-movie/${movieDetail.movie_url}`}
+                src={`https://storage.googleapis.com/pretzel-movie/${moviePlay.movie_url}`}
                 controls
                 autoPlay
                 muted>

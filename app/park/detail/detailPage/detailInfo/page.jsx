@@ -1,6 +1,7 @@
 "use client";
 
 import LoadingSpinner from "@/app/commons/loadingSpinner/page";
+import { useStores } from "@/stores/StoreContext";
 import { Icon24px } from "@/styles/park/commons/commonsCSS";
 import { Backdrop, Buttons_Container, Genre, MovieContainer, MovieDetail_Container, MovieDiscription, MovieGrade, MovieInfo_Container, MoviePoster, MovieTitle, PlayBtn, ReleaseYear, RunTime, VerticalLine, WishBtn } from "@/styles/park/detailPage/detailInfoCSS";
 import axios from "axios";
@@ -9,6 +10,7 @@ import { useEffect, useState } from "react";
 
 const DetailInfo = () => {
     const router = useRouter();
+    const { loginStore, movieDetailStore } = useStores();
 
     // 영화 상세 정보
     const [movieDetail, setMovieDetail] = useState({});
@@ -36,7 +38,7 @@ const DetailInfo = () => {
         try {
             const response = await axios.get(API_URL + "movie_detail", {
                 params: {
-                    movie_idx: "22"
+                    movie_idx: movieDetailStore.movie_idx
                 }
             });
             if (response.data) {
@@ -53,8 +55,8 @@ const DetailInfo = () => {
     async function wish_check() {
         try {
             const response = await axios.post(API_URL_2 + "wish/wishChk", {
-                profile_idx: "32",
-                movie_idx: "22"
+                profile_idx: loginStore.profile_idx,
+                movie_idx: movieDetailStore.movie_idx
             });
 
             // 1 =  위시리스트에 존재
@@ -73,11 +75,11 @@ const DetailInfo = () => {
         try {
             const response = await axios.post(API_URL_2 + "wish/add",
                 {
-                    profile_idx: 100
+                    profile_idx: loginStore.profile_idx
                 },
                 {
                     params: {
-                        movie_idx: 22
+                        movie_idx: movieDetailStore.movie_idx
                     }
                 });
             if (response.data === '1') {
@@ -109,10 +111,22 @@ const DetailInfo = () => {
                 <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/check_orange.png" /> 보고싶어요</WishBtn>
             )
         } else {
-            return (
-                <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/add_white.png" /> 보고싶어요</WishBtn>
-            )
+            // 로그인 여부에 따라서 alert창 띄우기
+            if (loginStore.profile_idx) {
+                return (
+                    <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/add_white.png" /> 보고싶어요</WishBtn>
+                )
+            } else {
+                return (
+                    <WishBtn onClick={onClickWish_notLogin}><Icon24px src="/images/icons/add_white.png" /> 보고싶어요</WishBtn>
+                )
+            }
         }
+    }
+
+    const onClickWish_notLogin = () => {
+        alert("로그인 후 이용 가능합니다.")
+        router.push("/choi/login/loginPage")
     }
 
     return (
@@ -124,13 +138,13 @@ const DetailInfo = () => {
 
                     <MovieInfo_Container>
                         <MovieGrade
-                            src={movieDetail.grade === '18'
-                                ? '/images/movieGrade/grade_12.png'
-                                : movieDetail.grade === '15'
+                            src={movieDetail.movie_grade === '18'
+                                ? '/images/movieGrade/grade_18.png'
+                                : movieDetail.movie_grade === '15'
                                     ? '/images/movieGrade/grade_15.png'
-                                    : movieDetail.grade === '12'
-                                        ? '/images/movieGrade/grade_18.png'
-                                        : movieDetail.grade === ''
+                                    : movieDetail.movie_grade === '12'
+                                        ? '/images/movieGrade/grade_12.png'
+                                        : movieDetail.movie_grade === ''
                                             ? '/images/movieGrade/grade_none.png'
                                             : '/images/movieGrade/grade_all.png'} />
                         <VerticalLine>|</VerticalLine>

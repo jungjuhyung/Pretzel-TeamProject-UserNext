@@ -1,15 +1,16 @@
 "use client";
 
 import LoadingSpinner from "@/app/commons/loadingSpinner/page";
+import { useStores } from "@/stores/StoreContext";
 import { ColorOrange, HorizenLine } from "@/styles/park/commons/commonsCSS";
-import { Inactive, Profile_Image, Report_Btn, ReviewContent_Container, ReviewWriteBtn, Review_Container, Review_Content, Review_TopContent, StarAvg, StarRating, Subtitle, User_Name, Vertical } from "@/styles/park/detailPage/reviewCSS";
+import { Profile_Image, Report_Btn, ReviewContent_Container, ReviewWriteBtn, Review_Container, Review_Content, Review_TopContent, StarAvg, StarRating, Subtitle, User_Name, Vertical } from "@/styles/park/detailPage/reviewCSS";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import ReportWrite from "../reportWrite/page";
 
 const Review = () => {
     const router = useRouter();
+    const { loginStore, movieDetailStore } = useStores();
 
     // 영화 상세 정보
     const [movieReview, setMovieReview] = useState({ result: [], average: 0 });
@@ -31,7 +32,7 @@ const Review = () => {
         try {
             const response = await axios.get(API_URL + "movie_review_list", {
                 params: {
-                    movie_idx: 22
+                    movie_idx: movieDetailStore.movie_idx
                 }
             });
             if (response.data) {
@@ -71,11 +72,11 @@ const Review = () => {
         <>
             <HorizenLine />
             <Subtitle>리뷰 ({movieReview.result.length})</Subtitle>
-            <StarAvg>평균 별점 : <ColorOrange>{movieReview.average}</ColorOrange> <ReviewWriteBtn>리뷰 작성</ReviewWriteBtn></StarAvg>
+            <StarAvg>평균 별점 : &#160;<ColorOrange>{movieReview.average}</ColorOrange><ReviewWriteBtn>리뷰 작성</ReviewWriteBtn></StarAvg>
             {movieReview.result.map((k) => (
                 <Review_Container key={k.review_idx}>
                     {/* 이미지 경로 변경하기 */}
-                    <Profile_Image src={`https://image.tmdb.org/t/p/w185/${k.img_name}`} />
+                    <Profile_Image src={`http://localhost:8080/common/image?imageName=${k.img_name}`} />
                     <ReviewContent_Container>
                         <Review_TopContent>
                             <User_Name>{k.name}</User_Name>

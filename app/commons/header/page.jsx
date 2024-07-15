@@ -2,14 +2,18 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { HeaderContainer, HeaderLeft, HeaderRight, LoginBtn, LogoutBtn, Menus, SearchIcon, SignUpBtn, Title, Whitespace , Profile_Img } from "@/styles/commons/headerCSS";
+import { HeaderContainer, HeaderLeft, HeaderRight, LoginBtn, LogoutBtn, Menus, SearchIcon, SignUpBtn, Title, Whitespace , Profile_Img, UserName } from "@/styles/commons/headerCSS";
 import { useStores } from '@/stores/StoreContext';
+import { ColorOrange } from '@/styles/park/commons/commonsCSS';
+import axios from 'axios';
 
-const Header = observer(({ isVideoHovered }) => {
+const Header = observer(() => {
     const [scrollY, setScrollY] = useState(0);
-    const [isMounted, setIsMounted] = useState(false);
     const { loginStore } = useStores();
     const router = useRouter();
+
+    // 프로필 정보
+    const [myProfile, setMyProfile] = useState({});
 
     const handleScroll = () => {
         setScrollY(window.scrollY);
@@ -39,45 +43,56 @@ const Header = observer(({ isVideoHovered }) => {
         router.push("/choi/servicecenter/faqPage");
     };
 
-    const test = () => {
-        router.push("/park/detail/detailPage");
-    };
-
     const goMyPage = () => {
         router.push("/park/myPage/myPage");
     };
 
     const goLogout = () => {
-        console.log("로그아웃 누름");
-        loginStore.deleteLocal();
+        if (confirm("로그아웃 하시겠습니까?")) {
+            loginStore.deleteLocal();
+            alert("로그아웃이 완료되었습니다.")
+            router.push("/main")
+        } else {
+            alert("로그아웃이 취소되었습니다.")
+        }
     };
 
     const goProfile = () => {
         router.push("/choi/profile/profileSelect");
     }
 
-
     useEffect(() => {
+        if (loginStore.isLogin) {
+            profile_detail();
+        }
         window.addEventListener('scroll', handleScroll);
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    }, []);
+    },[loginStore.isLogin, loginStore.profile_idx]);
 
-    useEffect(() => {
-        console.log("token : ", loginStore.token);
-    }, [loginStore.token]);
+    const API_URL = "/profile/"
 
-    useEffect(() => {
-        setIsMounted(true);
-    }, []);
+    // 프로필 정보 가져오기
+    async function profile_detail() {
+        try {
+            const response = await axios.post(API_URL + "profile_detail",
+                {
+                    profile_idx: loginStore.profile_idx
+                },
+                {
+                    header: {
+                        Authorization: loginStore.token
+                    }
+                }
+            );
 
-    useEffect(() => {
-        console.log("loginStore.profile", loginStore.profile);
-    }, [loginStore.profile]);
-
-    if (!isMounted) {
-        return null; // 초기 렌더링 동안 아무것도 렌더링하지 않음
+            if (response.data) {
+                setMyProfile(response.data)
+            }
+        } catch (error) {
+            console.error('프로필 정보 가져오기 실패 : ', error);
+        }
     }
 
     function login_state() {
@@ -86,7 +101,7 @@ const Header = observer(({ isVideoHovered }) => {
                 <>
                     <HeaderContainer scrollY={scrollY}>
                         <HeaderLeft>
-                            <Title onClick={test}>pretzel</Title>
+                            <Title onClick={goHome}>pretzel</Title>
                             <Menus onClick={goHome}>홈</Menus>
                             <Menus onClick={goThema}>영화</Menus>
                             <Menus onClick={goMyPage}>마이페이지</Menus>
@@ -97,6 +112,7 @@ const Header = observer(({ isVideoHovered }) => {
                             {loginStore.profile && (
                                 <Profile_Img src={`http://localhost:8080/common/image?imageName=${loginStore.profile}`} alt="Profile" onClick={goProfile}/>
                             )}
+                            <UserName><ColorOrange>{myProfile.name}</ColorOrange> 님</UserName>
                             <LogoutBtn onClick={goLogout}>로그아웃</LogoutBtn>
                         </HeaderRight>
                     </HeaderContainer>
@@ -108,7 +124,7 @@ const Header = observer(({ isVideoHovered }) => {
                 <>
                     <HeaderContainer scrollY={scrollY}>
                         <HeaderLeft>
-                            <Title onClick={test}>pretzel</Title>
+                            <Title onClick={goHome}>pretzel</Title>
                             <Menus onClick={goHome}>홈</Menus>
                             <Menus onClick={goThema}>영화</Menus>
                             <Menus onClick={goService}>고객센터</Menus>

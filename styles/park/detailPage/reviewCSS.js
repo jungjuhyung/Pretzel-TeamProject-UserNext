@@ -38,6 +38,7 @@ export const Profile_Image = styled.img`
     width: 100px;
     height: 100px;
     border-radius: 50%;
+    object-fit: cover;
 `
 
 export const ReviewContent_Container = styled.div`

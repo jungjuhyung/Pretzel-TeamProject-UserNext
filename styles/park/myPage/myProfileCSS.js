@@ -14,6 +14,7 @@ export const ProfileImg = styled.img`
     height: 170px;
     border-radius: 50%;
     margin: 40px 0 40px 42px;
+    object-fit: cover;
 `;
 
 export const UserInfoContainer = styled.div`

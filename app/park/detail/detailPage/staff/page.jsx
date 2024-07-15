@@ -1,12 +1,15 @@
 "use client";
 
 import LoadingSpinner from "@/app/commons/loadingSpinner/page";
+import { useStores } from "@/stores/StoreContext";
 import { HorizenLine } from "@/styles/park/commons/commonsCSS";
 import { All_Container, PersonInfo_Container, Person_Container, Person_Name, Person_Role, Proifle_Img, Subtitle } from "@/styles/park/detailPage/staffAndCastCSS";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
 const Staff = () => {
+    const { loginStore, movieDetailStore } = useStores();
+
     // 영화 스태프 정보
     const [staff, setStaff] = useState([]);
 
@@ -27,7 +30,7 @@ const Staff = () => {
         try {
             const response = await axios.get(API_URL + "crew_list", {
                 params: {
-                    movie_idx: 22
+                    movie_idx: movieDetailStore.movie_idx
                 }
             });
             if (response.data) {
@@ -52,7 +55,7 @@ const Staff = () => {
             <All_Container>
                 {staff.map((k) => (
                     <Person_Container key={k.crew_idx}>
-                        <Proifle_Img src={`https://image.tmdb.org/t/p/w185/${k.crew_img}`} />
+                        <Proifle_Img src={!k.crew_img ? "/images/samples/default_profile.png" : `https://image.tmdb.org/t/p/w185/${k.crew_img}`} />
                         <PersonInfo_Container>
                             <Person_Name>{k.crew_name}</Person_Name>
                             <Person_Role>{k.job === 'Director' ? '감독' : '프로듀서'}</Person_Role>
