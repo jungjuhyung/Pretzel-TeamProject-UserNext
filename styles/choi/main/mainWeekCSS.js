@@ -41,7 +41,7 @@ export const PosterWrapper = styled.div`
 `;
 
 export const Poster = styled.img`
-    width: 250px; /* 포스터의 너비를 250px로 설정합니다 */
+    width: 280px; /* 포스터의 너비를 250px로 설정합니다 */
     height: 38vh;
     object-fit: cover;
 `;

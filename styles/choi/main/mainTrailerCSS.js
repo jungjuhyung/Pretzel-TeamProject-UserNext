@@ -6,6 +6,7 @@ export const Video = styled.iframe`
     height: 85vh; 
     top: 0;
     object-fit: contain; 
+    pointer-events: none; /* Prevent the video from reacting to clicks */
 `;
 
 export const Overlay = styled.div`
