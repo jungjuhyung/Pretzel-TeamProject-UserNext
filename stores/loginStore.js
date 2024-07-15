@@ -5,13 +5,18 @@ class LoginStore {
     token = "";
     profile_idx = "";
     isLogin = false;
+    profile = "";
 
     constructor() {
         makeAutoObservable(this);
-        this.loadLocal()
+        this.loadLocal();
     }
 
-    // 토큰 설정 
+    setProfile(value) {
+        this.profile = value;
+        this.saveLocal();
+    }
+
     setToken(token) {
         this.token = token;
         this.saveLocal();
@@ -27,7 +32,8 @@ class LoginStore {
         saveState('loginStore', {
             token: this.token,
             profile_idx: this.profile_idx,
-            isLogin: this.isLogin
+            isLogin: this.isLogin,
+            profile: this.profile
         });
     }
 
@@ -38,11 +44,24 @@ class LoginStore {
     loadLocal() {
         const savedState = loadState("loginStore");
         if (savedState) {
-          this.token = savedState.token || "";
-          this.profile_idx = savedState.profile_idx || "";
-          this.isLogin = savedState.isLogin || false;
+            this.token = savedState.token || "";
+            this.profile_idx = savedState.profile_idx || "";
+            this.isLogin = savedState.isLogin || false;
+            this.profile = savedState.profile || "";
         }
-      }
+    }
+
+    isToken() {
+        return this.token !== "";
+    }
+
+    logout() {
+        this.token = "";
+        this.profile_idx = "";
+        this.isLogin = false;
+        this.profile = "";
+        this.deleteLocal();
+    }
 }
 
 export default new LoginStore();

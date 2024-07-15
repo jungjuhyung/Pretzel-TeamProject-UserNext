@@ -7,11 +7,11 @@ import { observer } from 'mobx-react-lite';
 import LoadingSpinner from '../../commons/loadingSpinner/page';
 
 import {
-    Week_Popular, Week_Title, Week_Poster_Box, PosterWrapper, Poster, RankNumber
-} from '@/styles/choi/main/mainWeekCSS';
+    User_Popular, User_Title, User_Poster_Box, PosterWrapper, Poster, RankNumber
+} from '@/styles/choi/main/mainUserContent';
 
-const WeekTop = observer(() => {
-    const [day_list, setDay_list] = useState([]);
+const userContent = observer(() => {
+    const [user_list, setUser_list] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // 데이터 로딩 상태 추가
     const postersPerPage = 5; // 페이지당 포스터 수
 
@@ -25,9 +25,9 @@ const WeekTop = observer(() => {
     async function chart_data() {
         setIsLoading(true); // 데이터 로딩 상태로 설정
         try {
-            const response = await axios.post(API_URL + "day_list");
+            const response = await axios.post(API_URL + "user_list");
             if (response.data) {
-                setDay_list(response.data);
+                setUser_list(response.data);
                 console.log("Top5", response.data);
             }
         } catch (error) {
@@ -47,19 +47,19 @@ const WeekTop = observer(() => {
     }
 
     return (
-        <Week_Popular>
-            <Week_Title>이 주의 인기 순위 TOP 5</Week_Title>
-            <Week_Poster_Box>
-                {day_list.slice(0, postersPerPage).map((k, index) => (
+        <User_Popular>
+            <User_Title>유저 추천 리스트</User_Title>
+            <User_Poster_Box>
+                {user_list.slice(0, postersPerPage).map((k, index) => (
                     <PosterWrapper key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>
                         {/* 순위 */}
                         <RankNumber>{index + 1}</RankNumber>
                         <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} />
                     </PosterWrapper>
                 ))}
-            </Week_Poster_Box>
-        </Week_Popular>
+            </User_Poster_Box>
+        </User_Popular>
     );
 });
 
-export default WeekTop;
+export default userContent;

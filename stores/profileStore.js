@@ -9,7 +9,7 @@ class profileStore {
         user_id: "",
         subs: "",
         birth: "",
-        gender: "",
+        gender: null,
         age: 0,
         like_thema: []
     }

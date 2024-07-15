@@ -99,6 +99,7 @@ export const IdCondition = styled.span`
   font-size: 13px;
   color: #929292;
   margin-top: 5px;
+  margin-left: -15px;
 `;
 
 export const PassWord = styled.input`

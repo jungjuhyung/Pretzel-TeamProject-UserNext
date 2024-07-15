@@ -10,7 +10,7 @@ import {
         Contents , Contents_Title , Contents_Box , PosterWrapper , Poster
     } from '@/styles/choi/main/mainThemaCSS';
 
-const Horror = observer(() => {
+const ThemaList = observer(() => {
     const [thema_list, setThema_list] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // isLoading 상태 추가
     const postersPerPage = 5; // 페이지당 포스터 수
@@ -64,4 +64,4 @@ const Horror = observer(() => {
     );
 });
 
-export default Horror;
+export default ThemaList;

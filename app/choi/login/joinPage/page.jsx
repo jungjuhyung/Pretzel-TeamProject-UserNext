@@ -90,25 +90,33 @@ const JoinPage = () => {
         email: `${emailId}@${domain}`,
       }));
     }, [emailId, domain]);
-
-    async function handleIdCheck(){
-        console.log('보내는 데이터 : ', uvo)
+  
+    async function handleIdCheck() {
+      const idPattern = /^[a-z0-9]{6,12}$/;
+      if (!idPattern.test(uvo.user_id)) {
+        alert('아이디는 영문 소문자와 숫자의 조합으로 6~12자리여야 합니다.');
+        return;
+      } else {
+        console.log('보내는 데이터 : ', uvo);
         try {
-            // axios 서버로 정보 보내기
-            const response = 
-                await axios.post('/user/id_check', uvo);
-            console.log('결과 : ' , response.data)
-            if (response.data === 1) {
-                console.log('중복아이디 있음')
-                alert("중복아이디 있음");
-              }else {
-                console.log('사용가능')
-                alert("사용가능");
-            }
+          const response = await axios.post('/user/id_check', { user_id: uvo.user_id });
+          console.log('결과 : ', response.data);
+          if (response.data === 1) {
+            console.log('중복아이디 있음');
+            alert("중복아이디 있음");
+          } else {
+            console.log('사용가능');
+            alert("사용가능");
+          }
         } catch (error) {
-            console.error('실패 : ', error)
+          console.error('실패 : ', error);
         }
+      }
     }
+    ;
+  
+        
+    
 
     const handleEmailCheck = async () => {
       // 이메일 주소가 입력되었는지 확인
@@ -178,7 +186,7 @@ const JoinPage = () => {
               <IdInput type='text' placeholder='아이디' name='user_id' onChange={handleInputChange} />
               <IdCheckButton type='button' onClick={handleIdCheck}>중복확인</IdCheckButton>
             </IdContainer>
-            <IdCondition>영문 소문자 또는 영문 소문자 , 숫자 조합 6~12자리</IdCondition>
+            <IdCondition>영문 소문자 ,숫자 조합 6~12자리</IdCondition>
             <PassWord type='password' placeholder='비밀번호' name='pwd' onChange={handleInputChange} />
             <PwCondition>영문 , 숫자 , 특수문자(~!@#$%^&*)조합 8~15자리 </PwCondition>
             <Re_PassWord type='password' placeholder='비밀번호 재입력' name='repwd' onChange={handleInputChange} />
@@ -204,14 +212,6 @@ const JoinPage = () => {
                 <IdCheckButton type='button' onClick={handleEmailCheck}>중복확인</IdCheckButton>
               </Email_Box>
             </IdContainer>
-            <BirthDay>
-              <DatePicker
-                selected={startDate}
-                onChange={date => setStartDate(date)}
-                dateFormat="yyyy-MM-dd"
-                placeholderText="생년월일"
-              />
-            </BirthDay>
             <NoticeAllBox>
 
               <NoticeBox_first>
