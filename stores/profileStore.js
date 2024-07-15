@@ -1,16 +1,25 @@
 import { makeAutoObservable } from "mobx";
 
 class profileStore {
-    // 관리자 정보
-    user_id=""
-    profile_idx = '';
-    token=""
+    profileDetail={
+        profile_idx: "",
+        name: "",
+        img_name: "",
+        regdate: "",
+        user_id: "",
+        subs: "",
+        birth: "",
+        gender: "",
+        age: 0,
+        like_thema: []
+    }
+    
     constructor() {
         makeAutoObservable(this);
     }
     
-    setProfile_idx(profile_idx){
-        this.profile_idx = profile_idx;
+    setProfileDetail(profileDetail) {
+        this.profileDetail = profileDetail;
     }
 }
 

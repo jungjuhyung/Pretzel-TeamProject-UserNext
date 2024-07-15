@@ -66,7 +66,7 @@ const Header = ({ isVideoHovered }) => {
 
     function login_state() {
 
-        if (localStorage.getItem("profile_idx")) {
+        if (true) {
             return (
                 <>
                     <HeaderContainer scrollY={scrollY}>
