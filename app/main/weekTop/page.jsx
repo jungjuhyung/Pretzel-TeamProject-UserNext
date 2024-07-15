@@ -1,6 +1,4 @@
 "use client";
-
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { observer } from 'mobx-react-lite';
@@ -9,11 +7,15 @@ import LoadingSpinner from '../../commons/loadingSpinner/page';
 import {
     Week_Popular, Week_Title, Week_Poster_Box, PosterWrapper, Poster, RankNumber
 } from '@/styles/choi/main/mainWeekCSS';
+import { useStores } from '@/stores/StoreContext';
+import { useRouter } from 'next/navigation';
 
 const WeekTop = observer(() => {
     const [day_list, setDay_list] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // 데이터 로딩 상태 추가
+    const { movieDetailStore } = useStores();
     const postersPerPage = 5; // 페이지당 포스터 수
+    const router = useRouter()
 
     const API_URL = "/main/";
 
@@ -39,7 +41,8 @@ const WeekTop = observer(() => {
 
     // 나중에 디테일 페이지 갈때 들고갈 movie_idx
     const handlePosterClick = (movie_idx) => {
-        console.log('Clicked poster index:', movie_idx);
+        movieDetailStore.setMoiveIdx(movie_idx)
+        router.push("/park/detail/detailPage")
     };
 
     if (isLoading) {
