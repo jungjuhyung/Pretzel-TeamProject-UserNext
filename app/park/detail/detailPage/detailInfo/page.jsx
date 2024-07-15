@@ -16,11 +16,15 @@ const DetailInfo = () => {
     // 로딩 상태
     const [isLoading, setIsLoading] = useState(true);
 
+    // 위시리스트 여부
+    const [isAdd, setIsAdd] = useState(0);
+
     // 처음 렌더링 될 때 실행
     useEffect(() => {
-        movie_detail(),
-        wish_check()
+        movie_detail();
+        wish_check();
     }, []);
+
 
     const API_URL = "/movie/"
     const API_URL_2 = "/moviedetail/"
@@ -32,7 +36,7 @@ const DetailInfo = () => {
         try {
             const response = await axios.get(API_URL + "movie_detail", {
                 params: {
-                    movie_idx: 22
+                    movie_idx: "22"
                 }
             });
             if (response.data) {
@@ -47,28 +51,18 @@ const DetailInfo = () => {
 
     // 위시리스트 여부 확인
     async function wish_check() {
-        setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
-
         try {
             const response = await axios.post(API_URL_2 + "wish/wishChk", {
-                profile_idx: 32,
-                movie_idx: 22
+                profile_idx: "32",
+                movie_idx: "22"
             });
 
             // 1 =  위시리스트에 존재
-            if (response.data === '1') {
-                return (
-                    <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/check_orange.png" /> 보고싶어요</WishBtn>
-                )
-            } else {
-                return (
-                    <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/add_white.png" /> 보고싶어요</WishBtn>
-                )
+            if (response.data === 1) {
+                setIsAdd(1)
             }
         } catch (error) {
             console.error('정보 가져오기 실패 : ', error);
-        } finally {
-            setIsLoading(false); // 데이터를 로드한 후 로딩 상태 해제
         }
     }
 
@@ -108,6 +102,19 @@ const DetailInfo = () => {
         router.push("/park/detail/moviePlayPage")
     }
 
+    // 위시리스트 여부 확인에 따른 버튼
+    const wish_state = () => {
+        if (isAdd === 1) {
+            return (
+                <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/check_orange.png" /> 보고싶어요</WishBtn>
+            )
+        } else {
+            return (
+                <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/add_white.png" /> 보고싶어요</WishBtn>
+            )
+        }
+    }
+
     return (
         <>
             <Backdrop src={`https://image.tmdb.org/t/p/w1280/${movieDetail.backdrop_url}`} />
@@ -136,7 +143,7 @@ const DetailInfo = () => {
 
                     <Buttons_Container>
                         <PlayBtn onClick={onClickPlay}><Icon24px src="/images/icons/play.png" /> 재생</PlayBtn>
-                        {wish_check()}
+                        {wish_state()}
                     </Buttons_Container>
 
                     <MovieDiscription>
