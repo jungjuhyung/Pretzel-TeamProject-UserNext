@@ -63,12 +63,13 @@ const Trailer = observer(() => {
             <Video
                 width="100%"
                 height="100vh"
-                src={`https://www.youtube.com/embed/${main_movie.trailer_url}?autohide=1&autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0&title=0&byline=0&portrait=0`}
+                src={`https://www.youtube.com/embed/${main_movie.trailer_url}?autohide=1&autoplay=1&mute=1&controls=0&modestbranding=1&showinfo=0&rel=0&title=0&byline=0&portrait=0&loop=1&playlist=${main_movie.trailer_url}`}
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 referrerPolicy="strict-origin-when-cross-origin"
                 allowFullScreen
             />
+
 
             {/* 화면 명암 */}
             <Overlay />
