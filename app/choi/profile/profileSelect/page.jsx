@@ -33,9 +33,12 @@ const ProfileSelect = observer(() => {
         console.error('Error fetching profile list:', error);
       }
     };
-
-    ContentData(); // 컴포넌트가 마운트될 때 데이터 가져오기
-  }, [loginStore.token]);
+    if (loginStore.token != "") {
+      ContentData(); // 컴포넌트가 마운트될 때 데이터 가져오기
+    }else{
+      router.push("/choi/login/loginPage")
+    }
+  }, []);
 
   const goManagement = () => {
     router.push("/choi/profile/profileManagement");
@@ -44,7 +47,6 @@ const ProfileSelect = observer(() => {
   const onClickProfile = (profile) => {
     console.log("test");
     loginStore.setProfile_idx(profile.profile_idx); // loginStore에 profile_idx 설정
-    loginStore.setProfile(profile.img_name)
     router.push("/");
   };
 

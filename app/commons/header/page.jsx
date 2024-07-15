@@ -49,7 +49,7 @@ const Header = observer(({ isVideoHovered }) => {
 
     const goLogout = () => {
         console.log("로그아웃 누름");
-        loginStore.logout();
+        loginStore.deleteLocal();
     };
 
     const goProfile = () => {
@@ -81,7 +81,7 @@ const Header = observer(({ isVideoHovered }) => {
     }
 
     function login_state() {
-        if (loginStore.isToken()) {
+        if (loginStore.isLogin) {
             return (
                 <>
                     <HeaderContainer scrollY={scrollY}>
