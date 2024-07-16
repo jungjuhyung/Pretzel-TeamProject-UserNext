@@ -60,6 +60,7 @@ export const Name = styled.input`
   margin-top: 58px;
   border: none;
   outline: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;
 
 export const IdContainer = styled.div`
@@ -78,6 +79,7 @@ export const IdInput = styled.input`
   border: none;
   box-sizing: border-box;
   outline: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;
 
 export const IdCheckButton = styled.button`
@@ -90,6 +92,7 @@ export const IdCheckButton = styled.button`
   border: none;
   cursor: pointer;
   padding: 0 10px;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;
 
 export const IdCondition = styled.span`
@@ -109,6 +112,7 @@ export const PassWord = styled.input`
   margin-top: 20px;
   border: none;
   outline: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;
 
 export const PwCondition = styled.div`
@@ -127,6 +131,7 @@ export const Re_PassWord = styled.input`
   margin-top: 20px;
   border: none;
   outline: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;
 
 export const Error = styled.div`
@@ -155,6 +160,7 @@ export const Email = styled.input`
   border-radius: 5px;
   border: none;
   outline: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;
 
 export const Icon = styled.div`
@@ -173,6 +179,7 @@ export const Email_select = styled.select`
   padding: 15px 0px 15px 15px;
   border-radius: 5px;
   outline: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;
 
 export const BirthDay = styled.div`
@@ -306,6 +313,7 @@ export const JoinButton = styled.input`
   color: #FFFFFF;
   border: none;
   margin-bottom: 65px;
+  font-family: 'Pretendard-Regular', sans-serif;
 `;
 
 export const Button = styled.button`

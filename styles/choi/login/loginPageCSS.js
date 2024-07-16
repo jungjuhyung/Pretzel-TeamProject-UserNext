@@ -40,7 +40,7 @@ export const Title = styled.div`
   height: 36px;
   color: #ffffff;
   font-size: 30px;
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard-Regular', sans-serif;
   font-weight: 600;
   display: flex;
   justify-content: center;
@@ -53,7 +53,7 @@ export const SubTitle = styled.div`
   height: 18px;
   color: #ffffff;
   font-size: 15px;
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard-Regular', sans-serif;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -71,6 +71,7 @@ export const Id = styled.input`
   height: 50px;
   border-radius: 5px;
   padding: 15px 0px 15px 15px;
+  font-family: 'Pretendard-Regular', sans-serif;
   font-size: 17px;
   border: none;
 `;
@@ -87,6 +88,7 @@ const PasswordField = styled.input`
   height: 100%;
   border-radius: 5px;
   padding: 15px 15px 15px 15px; /* Adjusted padding for icon space */
+  font-family: 'Pretendard-Regular', sans-serif;
   font-size: 17px;
   border: none;
 `;
@@ -121,7 +123,7 @@ export const LoginButton = styled.input`
   background-color: #f29a2e;
   margin-top: 20px;
   font-size: 20px;
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard-Regular', sans-serif;
   font-weight: 400;
   color: #ffffff;
   text-align: center;
@@ -137,7 +139,7 @@ export const AccountOptions = styled.div`
 
 export const SelectOption = styled.span`
   font-size: 12px;
-  font-family: 'Pretendard-Regular';
+  font-family: 'Pretendard-Regular', sans-serif;
   font-weight: lighter;
   color: #ffffff;
 `;

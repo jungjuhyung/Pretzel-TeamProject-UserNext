@@ -10,7 +10,7 @@ import UserContent from './userContent/page';
 
 const Main = observer(() => {
     const { loginStore } = useStores();
-    const { profileStore } = useStores([]);
+    // const { profileStore } = useStores([]);
 
 
     useEffect(() => {

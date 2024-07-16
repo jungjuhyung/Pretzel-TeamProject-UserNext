@@ -43,6 +43,7 @@ export const Title = styled.div`
   font-weight: 600;
   display: flex;
   justify-content: center;
+  font-family: 'Pretendard-Regular', sans-serif;
   align-items: center;
   margin: 65px 186px 0px 186px;
 `;
@@ -59,6 +60,7 @@ export const Id = styled.input`
   border-radius: 5px;
   padding: 15px 0px 15px 15px;
   font-size: 17px;
+  font-family: 'Pretendard-Regular', sans-serif;
   border: none;
 `;
 
@@ -75,6 +77,7 @@ const PasswordField = styled.input`
   height: 100%;
   border-radius: 5px;
   padding: 15px 15px 15px 15px; /* Adjusted padding for icon space */
+  font-family: 'Pretendard-Regular', sans-serif;
   font-size: 17px;
   border: none;
 `;
@@ -109,6 +112,7 @@ export const LoginButton = styled.input`
   background-color: #f29a2e;
   margin-top: 20px;
   font-size: 20px;
+  font-family: 'Pretendard-Regular', sans-serif;
   font-weight: 400;
   color: #ffffff;
   text-align: center;

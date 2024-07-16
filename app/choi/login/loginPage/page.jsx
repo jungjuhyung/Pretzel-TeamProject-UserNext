@@ -56,11 +56,12 @@ const LoginPage = observer(() => {
                 user_id: id,
                 pwd: password,
             });
-            console.log('결과 : ', response.data);
+            console.log('*** 결과 : ', response.data);
             
             if (response.data.token) {
                 const token = response.data.token;
                 loginStore.setToken(token)
+                loginStore.setUser_id(id)
                 console.log(loginStore.token)
                 router.push("/choi/profile/profileSelect");
             } else {

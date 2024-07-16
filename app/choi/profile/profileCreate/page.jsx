@@ -1,11 +1,10 @@
-// 프로필 생성 페이지
-
 "use client";
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Global } from '@emotion/react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
 import { observer } from 'mobx-react-lite';
+import { useStores } from '@/stores/StoreContext';
 
 import {
   globalStyles, Background, Title, Profile_Box, Profile_Box_left,
@@ -17,6 +16,7 @@ import {
 } from '../../../../styles/choi/profile/ProfileCreateCSS';
 
 const ProfileCreate = observer(() => {
+  const { loginStore } = useStores();
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
   const [pvo, setPvo] = useState({
@@ -26,17 +26,21 @@ const ProfileCreate = observer(() => {
     gender: '',
     img_file: null,
     like_thema: [],
-    user_id: ''
+    user_id: loginStore.user_id
   });
 
   const router = useRouter();
-
-
   const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNDE5NzgyMjI2IiwiaWF0IjoxNzIwMDYxMjEzLCJleHAiOjE3MjAwNjQ4MTN9._mvXP_XKlUvzwT4jSz_-oPRHcReJObkSkQSPSgl_x-w';
+
+  useEffect(() => {
+    setPvo(prevPvo => ({
+      ...prevPvo,
+      user_id: loginStore.user_id
+    }));
+  }, [loginStore.user_id]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    console.log(file)
     setPvo(prevPvo => ({
       ...prevPvo,
       img_file: file,
@@ -60,42 +64,39 @@ const ProfileCreate = observer(() => {
   };
 
   const handleCheckboxChange = (genre) => {
-    console.log(genre)
     setSelectedGenres(prevSelectedGenres => {
       if (prevSelectedGenres.includes(genre)) {
-          console.log(prevSelectedGenres)
-          return prevSelectedGenres.filter(g => g !== genre);
-        } else {
-        console.log(prevSelectedGenres)
+        return prevSelectedGenres.filter(g => g !== genre);
+      } else {
         return [...prevSelectedGenres, genre];
       }
     });
   };
 
-  async function handleFormSubmit() {
+  const handleFormSubmit = async () => {
     try {
       let response;
-      if (pvo.img_file == null) {
-        console.log("전송 데이터:", pvo);
-        response = await axios.post('/profile/profile_insert2', pvo, {
+      const updatedPvo = {
+        ...pvo,
+        user_id: loginStore.user_id,
+        like_thema: selectedGenres,
+      };
+
+      if (updatedPvo.img_file == null) {
+        response = await axios.post('/profile/profile_insert2', updatedPvo, {
           headers: {
             Authorization: `Bearer ${token}`,
           }
         });
       } else {
         const formData = new FormData();
-        console.log("test",pvo.name)
-        console.log("test",pvo.birth)
-        console.log("test", pvo.gender)
-        console.log("test",pvo.img_file)
-        console.log("test", selectedGenres)
-        formData.append('name', pvo.name);
-        formData.append('birth', pvo.birth);
-        formData.append('gender', pvo.gender);
-        formData.append('img_file', pvo.img_file);
+        formData.append('name', updatedPvo.name);
+        formData.append('birth', updatedPvo.birth);
+        formData.append('gender', updatedPvo.gender);
+        formData.append('img_file', updatedPvo.img_file);
         formData.append('like_thema', selectedGenres);
+        formData.append('user_id', updatedPvo.user_id);
 
-        console.log("전송 데이터:", formData);
         response = await axios.post('/profile/profile_insert', formData, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -104,11 +105,7 @@ const ProfileCreate = observer(() => {
         });
       }
 
-      console.log(response.data);
-
       if (response.data === 1) {
-        console.log('프로필 추가 성공');
-        // 성공적인 응답 처리 (성공 시 프로필 리스트 페이지로 이동)
         router.push("/choi/profile/profileSelect");
       } else {
         console.log('프로필 추가 실패');
@@ -116,7 +113,7 @@ const ProfileCreate = observer(() => {
     } catch (error) {
       console.error('오류:', error);
     }
-  }
+  };
 
   const genres = ["공포", "로맨스", "코믹", "범죄", "액션", "애니"];
 

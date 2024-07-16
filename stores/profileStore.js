@@ -1,7 +1,7 @@
 import { makeAutoObservable } from "mobx";
 
-class profileStore {
-    profileDetail={
+class ProfileStore {
+    profileDetail = {
         profile_idx: "",
         name: "",
         img_name: "",
@@ -12,7 +12,7 @@ class profileStore {
         gender: null,
         age: 0,
         like_thema: []
-    }
+    };
     
     constructor() {
         makeAutoObservable(this);
@@ -23,4 +23,4 @@ class profileStore {
     }
 }
 
-export default new profileStore();
+export default new ProfileStore();

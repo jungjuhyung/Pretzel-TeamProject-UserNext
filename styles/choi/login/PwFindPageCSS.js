@@ -41,6 +41,7 @@ export const Title = styled.div`
   color : #FFFFFF;
   text-align : center;
   margin-top : 74px;
+  
 `
 
 export const SubTitle = styled.div`
@@ -61,6 +62,7 @@ export const Id = styled.input`
   margin-top : 15px;
   font-size : 17px;
   border: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 
 `
 
@@ -74,4 +76,5 @@ export const OkButton = styled.input`
   text-align : center;
   margin-top : 30px;
   border: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 `

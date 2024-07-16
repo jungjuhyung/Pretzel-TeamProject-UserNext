@@ -3,6 +3,7 @@ import { deleteState, loadState, saveState } from "./localStorage";
 
 class LoginStore {
     token = "";
+    user_id = "";
     profile_idx = "";
     isLogin = false;
 
@@ -13,6 +14,10 @@ class LoginStore {
 
     setToken(token) {
         this.token = token;
+    }
+
+    setUser_id(user_id) {
+        this.user_id = user_id;
     }
 
     setProfile_idx(profile_idx) {
