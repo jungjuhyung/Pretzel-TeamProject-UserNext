@@ -13,7 +13,7 @@ const UserContent = observer(() => {
     const [user_list, setUser_list] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // 데이터 로딩 상태 추가
     const postersPerPage = 5; // 페이지당 포스터 수
-    const { profileStore } = useStores([]);
+    const { loginStore, profileStore } = useStores([]);
 
     const API_URL = "/main/";
 
@@ -28,9 +28,17 @@ const UserContent = observer(() => {
         console.log("프로필 선호 장르 : " + profileStore.profileDetail.like_thema);
         setIsLoading(true); // 데이터 로딩 상태로 설정
         try {
-            const response = await axios.post(API_URL + "user_list");
+            const profileInfo = await axios.post("/profile/profile_detail",{
+                "profile_idx":loginStore.profile_idx
+            });
+            const response = await axios.post("/main/statistics_list",{
+                "age":profileInfo.data.age,
+                "gender":profileInfo.data.gender,
+                "like_thema":profileInfo.data.like_thema
+            });
+
             if (response.data) {
-                setUser_list(response.data);
+                setUser_list(response.data.movie_result);
                 console.log("Top5", response.data);
             }
         } catch (error) {
