@@ -12,6 +12,7 @@ export const globalStyles = css`
     margin: 0;
     padding: 0;
     font-family: 'Pretendard-Regular', sans-serif;
+    background-color: #0d0d0d;
   }
 `;
 
@@ -22,7 +23,6 @@ export const Background = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  background-color: black;
 `;
 
 export const LoginBox = styled.div`

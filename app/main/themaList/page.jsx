@@ -13,6 +13,7 @@ import {
 const ThemaList = observer(() => {
     const [thema_list, setThema_list] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // isLoading 상태 추가
+    
     const postersPerPage = 5; // 페이지당 포스터 수
 
     const API_URL = "/main/";
@@ -42,6 +43,12 @@ const ThemaList = observer(() => {
         if (isLoading) {
             return <LoadingSpinner />
         }
+
+        const handlePosterClick = (movie_idx) => {
+            console.log(movie_idx)
+            movieDetailStore.setMoiveIdx(movie_idx)
+            router.push("/park/detail/detailPage")
+        };
 
     return (
         <>

@@ -21,7 +21,6 @@ export const Background = styled.div`
   justify-content: center;
   align-items: center;
   box-sizing: border-box;
-  background-color: black;
 `;
 
 export const PwFindBox = styled.div`
