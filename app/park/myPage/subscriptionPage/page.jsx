@@ -1,31 +1,30 @@
 "use client";
 
 // 공통 css 적용
-import '../../../styles/commons/reset.css'
-import '../../../styles/commons/font.css'
-import '../../../styles/commons/commons.css'
+import '@/styles/commons/reset.css'
+import '@/styles/commons/font.css'
+import '@/styles/commons/commons.css'
 
 import { Icon30px } from "@/styles/park/commons/commonsCSS";
 import { Check_Icon, Checkbox_Container, Container, Icon_Container, PlanContent_Container, Plan_Container, Plan_Content, Plan_Name, Plan_Price, Subscription_Btn, Subscription_Container, Subscription_Title } from "@/styles/park/myPage/subscriptionPageCSS";
-import Footer from '@/pages/commons/Footer';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { MyPageContext } from '@/stores/StoreContext';
 import { useRouter } from 'next/navigation';
+import { useStores } from '@/stores/StoreContext';
 
 const SubscriptionPage = observer(() => {
-    const myPageStore = useContext(MyPageContext);
     const router = useRouter();
+    const { paymentStore } = useStores();
 
     const [selectedPlan, setSelectedPlan] = useState(null);
 
     const handlePlanSelection = (plan) => {
         setSelectedPlan(plan);
-        myPageStore.setOrderName(plan);
+        paymentStore.setOrderName(plan);
         if (plan === '베이직') {
-            myPageStore.setPrice("3000");
+            paymentStore.setPrice("3000");
         } else if (plan === '프리미엄') {
-            myPageStore.setPrice("6000");
+            paymentStore.setPrice("6000");
         }
     };
 
@@ -75,7 +74,6 @@ const SubscriptionPage = observer(() => {
                 </Subscription_Container>
                 <Subscription_Btn onClick={onClickSub}>구독 시작하기</Subscription_Btn>
             </Container>
-            <Footer />
         </>
     );
 });

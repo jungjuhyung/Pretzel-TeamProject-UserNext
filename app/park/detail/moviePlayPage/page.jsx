@@ -54,18 +54,12 @@ const MoviePlayPage = () => {
                 }
             );
 
-            if (response2.data) {
-                profileStore.setProfileDetail.gender(response2.data.gender)
-                profileStore.setProfileDetail.age(response2.data.age)
-                profileStore.setProfileDetail.movie_idx(response2.data.movie_idx)
-            }
-
             // 영화 시청자 데이터
             const response3 = await axios.get(API_URL + "watch_movie", {
                 params: {
-                    gender: profileStore.profileDetail.gender,
-                    age: profileStore.profileDetail.age,
-                    movie_idx: profileStore.profileDetail.movie_idx
+                    gender: response2.data.gender,
+                    age: response2.data.age,
+                    movie_idx: movieDetailStore.movie_idx
                 }
             });
         } catch (error) {
@@ -87,7 +81,7 @@ const MoviePlayPage = () => {
                 controls
                 autoPlay
                 muted>
-                <Subtitle kind="subtitles" src="/vtt/pretzel-ani_모노노케-히메.vtt" srclang="ko" label="한국어" default></Subtitle>
+                <Subtitle kind="subtitles" src="/vtt/스물.vtt" srclang="ko" label="한국어" default></Subtitle>
             </Video>
         </>
     )

@@ -1,0 +1,78 @@
+.authorization_box {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    height: calc(100vh - 150px);
+    box-sizing: border-box;
+}
+
+.authorization_title {
+    color: #ffffff;
+    font: 600 20px "Pretendard-Regular";
+    text-align: center;
+}
+
+.authorization_button {
+    width: 120px;
+    height: 50px;
+    background-color: #f29a2e;
+    color: #ffffff;
+    border-radius: 50px;
+    margin: 30px auto;
+    border: none;
+    font: 600 18px "Pretendard-Regular";
+    cursor: pointer;
+}
+
+.authorization_button:hover {
+    background-color: #ad6e21;
+    color: #868686;
+}
+
+.sucess_box {
+    height: calc(100vh - 150px);
+    color: #ffffff;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font: 15px "Pretendard-Regular";
+    box-sizing: border-box;
+}
+
+.sucess_box_inner {
+    background-color: #1d1d1d;
+    border-radius: 5px;
+    width: 350px;
+    height: 150px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.success_title {
+    font: 600 20px "Pretendard-Regular";
+    padding-bottom: 20px;
+}
+
+.sucess_content {
+    padding-bottom: 10px;
+}
+
+.confirm_button {
+    width: 120px;
+    height: 50px;
+    background-color: #f29a2e;
+    color: #ffffff;
+    border-radius: 50px;
+    margin: 30px auto 0 auto;
+    border: none;
+    font: 600 18px "Pretendard-Regular";
+    cursor: pointer;
+}
+
+.confirm_button:hover {
+    background-color: #ad6e21;
+    color: #868686;
+}

@@ -48,8 +48,10 @@ const nextConfig = {
             }
         ];
     },
+    transpilePackages: ['@mui/x-charts'],
+    env: {
+        GOOGLE_APPLICATION_CREDENTIALS: process.env.GOOGLE_APPLICATION_CREDENTIALS,
+    },
 };
-
-nextConfig.transpilePackages = ['@mui/x-charts'];
 
 export default nextConfig;

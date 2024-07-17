@@ -1,9 +1,12 @@
 // 마이페이지 - 시청 내역
 "use client";
 
+import { useStores } from "@/stores/StoreContext";
 import { MovieThumbnail, MovieTitle, OneMovieContainer, ViewingDate, ViewingHistoryContainer } from "@/styles/park/myPage/viewingHistoryCSS";
 
 const ViewingHistory = () => {
+    const { loginStore } = useStores();
+
     return (
         <ViewingHistoryContainer>
             <OneMovieContainer>

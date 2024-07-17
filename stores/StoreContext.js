@@ -4,8 +4,8 @@ import passwordStore from "./passwordStore";
 import profileStore from "./profileStore";
 import SearchStore from "./SearchStore";
 import tokenStore from "./TokenStore";
-import myPageStore from "./park/myPageStore";
 import movieDetailStore from "./movieDetailStore";
+import paymentStore from "./paymentStore";
 
 const stores = {
   loginStore,
@@ -13,8 +13,8 @@ const stores = {
   profileStore,
   SearchStore,
   tokenStore,
-  myPageStore,
-  movieDetailStore
+  movieDetailStore,
+  paymentStore,
 };
 
 const StoresContext = createContext(stores);
