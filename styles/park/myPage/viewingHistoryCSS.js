@@ -10,6 +10,12 @@ export const ViewingHistoryContainer = styled.div`
 export const OneMovieContainer = styled.div`
     display: flex;
     flex-direction: column;
+
+    &:hover {
+        filter: brightness(60%);
+        transition: filter ease 0.5s;
+        cursor: pointer;
+    }
 `
 
 export const MovieThumbnail = styled.img`

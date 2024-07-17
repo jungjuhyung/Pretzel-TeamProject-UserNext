@@ -8,7 +8,7 @@ export const Subtitle = styled.h2`
 
 export const All_Container = styled.div`
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(5, 18%);
     grid-gap: 30px 30px;
     width: 90%;
     margin: 0 auto 50px auto;
@@ -28,15 +28,22 @@ export const Proifle_Img = styled.img`
 
 export const PersonInfo_Container = styled.div`
     margin-left: 25px;
+    max-width: calc(100% - 125px);
 `
 
 export const Person_Name = styled.p`
     color: #ffffff;
     font: 16px "Pretendard-Regular";
     margin-bottom: 5px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `
 
 export const Person_Role = styled.p`
     color: #868686;
     font: 16px "Pretendard-Regular";
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `

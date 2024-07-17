@@ -49,7 +49,7 @@ const MoviePlayPage = () => {
                 },
                 {
                     headers: {
-                        Authorization: loginStore.token
+                        Authorization: `Bearer ${loginStore.token}`
                     }
                 }
             );
@@ -59,7 +59,8 @@ const MoviePlayPage = () => {
                 params: {
                     gender: response2.data.gender,
                     age: response2.data.age,
-                    movie_idx: movieDetailStore.movie_idx
+                    movie_idx: movieDetailStore.movie_idx,
+                    profile_idx: loginStore.profile_idx
                 }
             });
         } catch (error) {

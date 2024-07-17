@@ -1,8 +1,38 @@
+import LoadingSpinner from "@/app/commons/loadingSpinner/page";
 import { HorizenLine } from "@/styles/park/commons/commonsCSS";
 import { Chart_Container, Subtitle } from "@/styles/park/detailPage/chartCSS";
 import { PieChart, pieArcLabelClasses } from "@mui/x-charts";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 const Chart = () => {
+    // 로딩 상태
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        chart_data();
+    }, []);
+
+    // 차트 정보 가져오기
+    async function chart_data() {
+        setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
+
+        try {
+            const response = await axios.get(
+                "https://storage.googleapis.com/pretzel-movie/pretzel-emotionCountAI/탑건_%20매버릭_emotion_count.json");
+            console.log(response.data)
+        } catch (error) {
+            console.error('차트 실패 : ', error);
+        } finally {
+            setIsLoading(false); // 데이터를 로드한 후 로딩 상태 해제
+        }
+    }
+
+    // 로딩중일 때
+    if (isLoading) {
+        return <LoadingSpinner />
+    }
+
     return (
         <>
             <HorizenLine />

@@ -91,6 +91,7 @@ export const Plan_Price = styled.span`
 
 export const Container = styled.div`
     width: 100%;
+    height: calc(100vh - 150px);
     display: flex;
     flex-direction: column;
     align-items: center;

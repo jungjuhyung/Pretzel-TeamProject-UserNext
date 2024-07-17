@@ -82,7 +82,7 @@ const Header = observer(() => {
                 },
                 {
                     headers: {
-                        Authorization: loginStore.token
+                        Authorization: `Bearer ${loginStore.token}`
                     }
                 }
             );
