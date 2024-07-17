@@ -127,5 +127,13 @@ export const Profile_Img = styled.img`
 export const UserName = styled.p`
     font-family: "Pretendard-Regular";
     color: #ffffff;
+    margin-right: 10px;
+`
+
+export const UserImage = styled.img`
+    width: 40px;
+    height: 40px;
     margin-right: 20px;
+    border-radius: 50%;
+    object-fit: cover;
 `

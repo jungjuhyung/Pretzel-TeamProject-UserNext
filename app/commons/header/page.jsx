@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { HeaderContainer, HeaderLeft, HeaderRight, LoginBtn, LogoutBtn, Menus, SearchIcon, SignUpBtn, Title, Whitespace , Profile_Img, UserName } from "@/styles/commons/headerCSS";
+import { HeaderContainer, HeaderLeft, HeaderRight, LoginBtn, LogoutBtn, Menus, SearchIcon, SignUpBtn, Title, Whitespace , Profile_Img, UserName, UserImage } from "@/styles/commons/headerCSS";
 import { useStores } from '@/stores/StoreContext';
 import { ColorOrange } from '@/styles/park/commons/commonsCSS';
 import axios from 'axios';
@@ -81,7 +81,7 @@ const Header = observer(() => {
                     profile_idx: loginStore.profile_idx
                 },
                 {
-                    header: {
+                    headers: {
                         Authorization: loginStore.token
                     }
                 }
@@ -109,10 +109,8 @@ const Header = observer(() => {
                         </HeaderLeft>
                         <HeaderRight>
                             <SearchIcon src="/images/icons/search.png" onClick={goSearch}></SearchIcon>
-                            {loginStore.profile && (
-                                <Profile_Img src={`http://localhost:8080/common/image?imageName=${loginStore.profile}`} alt="Profile" onClick={goProfile}/>
-                            )}
                             <UserName><ColorOrange>{myProfile.name}</ColorOrange> 님</UserName>
+                            <UserImage src={`http://localhost:8080/common/image?imageName=${myProfile.img_name}`} />
                             <LogoutBtn onClick={goLogout}>로그아웃</LogoutBtn>
                         </HeaderRight>
                     </HeaderContainer>

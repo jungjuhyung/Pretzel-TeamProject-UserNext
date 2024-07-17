@@ -48,7 +48,7 @@ const MoviePlayPage = () => {
                     profile_idx: loginStore.profile_idx
                 },
                 {
-                    header: {
+                    headers: {
                         Authorization: loginStore.token
                     }
                 }

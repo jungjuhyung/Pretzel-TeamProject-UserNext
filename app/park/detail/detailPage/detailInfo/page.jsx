@@ -59,8 +59,10 @@ const DetailInfo = () => {
                 movie_idx: movieDetailStore.movie_idx
             });
 
-            // 1 =  위시리스트에 존재
-            if (response.data === 1) {
+            // 1 = 위시리스트에 존재
+            if (response.data === 0) {
+                setIsAdd(0)
+            } else {
                 setIsAdd(1)
             }
         } catch (error) {
@@ -70,8 +72,6 @@ const DetailInfo = () => {
 
     // 위시리스트 추가하기
     async function onClickWish() {
-        setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
-
         try {
             const response = await axios.post(API_URL_2 + "wish/add",
                 {
@@ -82,15 +82,39 @@ const DetailInfo = () => {
                         movie_idx: movieDetailStore.movie_idx
                     }
                 });
-            if (response.data === '1') {
+            console.log(response.data)
+            if (response.data === 1) {
                 alert("보고싶은 리스트에 추가가 완료되었습니다.")
+                setIsAdd(1);
             } else {
-                alert("")
+                alert("리스트 추가에 실패했습니다..\n다시 시도해 주세요.")
             }
         } catch (error) {
-            console.error('상세 정보 가져오기 실패 : ', error);
-        } finally {
-            setIsLoading(false); // 데이터를 로드한 후 로딩 상태 해제
+            console.error('리스트 추가 실패 : ', error);
+        }
+    }
+
+    // 위시리스트 삭제하기
+    async function onClickDeleteWish() {
+        try {
+            const response = await axios.post(API_URL_2 + "wish/delete",
+                {
+                    profile_idx: loginStore.profile_idx
+                },
+                {
+                    params: {
+                        movie_idx: movieDetailStore.movie_idx
+                    }
+                });
+            console.log(response.data)
+            if (response.data === 1) {
+                alert("보고싶은 리스트에서 제거되었습니다.")
+                setIsAdd(0);
+            } else {
+                alert("리스트 삭제에 실패했습니다.\n다시 시도해 주세요.")
+            }
+        } catch (error) {
+            console.error('리스트 삭제 실패 : ', error);
         }
     }
 
@@ -108,11 +132,11 @@ const DetailInfo = () => {
     const wish_state = () => {
         if (isAdd === 1) {
             return (
-                <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/check_orange.png" /> 보고싶어요</WishBtn>
+                <WishBtn onClick={onClickDeleteWish}><Icon24px src="/images/icons/check_orange.png" /> 보고싶어요</WishBtn>
             )
         } else {
             // 로그인 여부에 따라서 alert창 띄우기
-            if (loginStore.profile_idx) {
+            if (loginStore.isLogin) {
                 return (
                     <WishBtn onClick={onClickWish}><Icon24px src="/images/icons/add_white.png" /> 보고싶어요</WishBtn>
                 )
