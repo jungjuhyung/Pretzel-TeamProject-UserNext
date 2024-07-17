@@ -75,7 +75,7 @@ const LoginPage = observer(() => {
 
     return (
         <>
-       
+    
             <Global styles={globalStyles} />
             <Background>
                 <LoginBox>

@@ -10,11 +10,15 @@ import {
         Contents , Contents_Title , Contents_Box , PosterWrapper , Poster
     } from '@/styles/choi/main/mainThemaCSS';
 
+import { useStores } from '@/stores/StoreContext';
+import { useRouter } from 'next/navigation';
+
 const ThemaList = observer(() => {
     const [thema_list, setThema_list] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // isLoading 상태 추가
-    
+    const { movieDetailStore } = useStores();
     const postersPerPage = 5; // 페이지당 포스터 수
+    const router = useRouter()
 
     const API_URL = "/main/";
 

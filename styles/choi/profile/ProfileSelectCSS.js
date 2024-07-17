@@ -65,6 +65,11 @@ export const Profile_Image = styled.img`
   width: 250px;
   height: 250px;
   border-radius: 50%;
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(0.8);
+    }
 `
 
 export const Profile_Name = styled.span`
@@ -73,7 +78,7 @@ export const Profile_Name = styled.span`
   font-size: 30px;
   color: #FFFFFF;
   text-align: center;
-  margin-top: 10px;
+  margin-top: 30px;
 `
 
 export const New_Profile_Create = styled.div`
@@ -84,6 +89,11 @@ export const New_Profile_Create = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(0.8);
+    }
 `
 
 export const Plus = styled.img`
@@ -92,8 +102,12 @@ export const Plus = styled.img`
 
 
 export const New_Profile_Info = styled.div`
-  width: 190px;
+  width: auto;
   height: 36px;
+  font-size: 30px;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 30px;
 `
 
 export const Management_Button = styled.input`

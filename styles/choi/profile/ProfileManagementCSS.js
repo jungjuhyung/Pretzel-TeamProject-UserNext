@@ -58,18 +58,38 @@ export const Profile_Box = styled.div`
   width: 250px;
   height: 336px;
   align-items: center;
-`
+  position: relative; /* 가상 요소를 포함하기 위해 위치 설정 추가 */
+`;
 
-export const Profile_Image = styled.img`
+export const Profile_Image = styled.div`
   width: 250px;
   height: 250px;
   border-radius: 50%;
-  margin-bottom: 10px;
+  background-image: url(${props => props.imageUrl});
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
   transition: all 0.3s ease; /* hover 효과를 부드럽게 만들기 위한 transition */
+  position: relative; /* 가상 요소를 포함하기 위해 위치 설정 추가 */
 
   &:hover {
     filter: brightness(50%); /* 이미지를 어둡게 만드는 효과 */
+    transform: scale(0.8);
+  }
 
+  &:hover::after {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 100px;
+    background-image: url('/images/icons/update.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 `;
 
@@ -79,7 +99,8 @@ export const Profile_Name = styled.span`
   font-size: 30px;
   text-align: center;
   color: #FFFFFF;
-`
+  margin-top: 30px;
+`;
 
 export const New_Profile_Create = styled.div`
   width: 250px;
@@ -89,6 +110,11 @@ export const New_Profile_Create = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(0.8);
+    }
 `
 
 export const Plus = styled.img`
@@ -97,8 +123,12 @@ export const Plus = styled.img`
 
 
 export const New_Profile_Info = styled.div`
-  width: 190px;
+  width: auto;
   height: 36px;
+  font-size: 30px;
+  color: #FFFFFF;
+  text-align: center;
+  margin-top: 30px;
 `
 
 export const Ok_Button = styled.input`
@@ -108,6 +138,7 @@ export const Ok_Button = styled.input`
   background-color: #F29A2E;
   border-radius: 50px;
   font-size: 20px;
+  margin-top: 60px;
   
 `
 

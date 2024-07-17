@@ -15,6 +15,7 @@ export const Week_Title = styled.div`
     width: auto;
     height: auto;
     font-size: 30px;
+    font-family: 'Pretendard-Regular', sans-serif;
     font-weight: 600;
     color: #FFFFFF;
     margin-bottom: 3vh;

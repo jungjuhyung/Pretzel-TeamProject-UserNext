@@ -25,7 +25,7 @@ export const Background = styled.div`
 `;
 
 export const Title = styled.div`
-  width: 241px;
+  width: auto;
   height: 36px;
   font-size: 30px;
   color: #FFFFFF;
@@ -49,6 +49,7 @@ export const Horror_box = styled.div`
   justify-content: center;
 
   font-size: 60px;
+  
   background-color: #3d3d3d;
   color: #FFFFFF;
   transition: transform 0.3s ease;
