@@ -10,9 +10,10 @@ export const New_Contents = styled.div`
 
 
 export const Contents_Title = styled.div`
-    width: 222px;
+    width: auto;
     height: 36px;
     font-size: 29px;
+    font-family: 'Pretendard-Regular', sans-serif;
     color: #FFFFFF;
     margin-bottom: 100px;
 `; 

@@ -15,9 +15,16 @@ const ProfileSelect = observer(() => {
   const { loginStore } = useStores();
   const router = useRouter();
   const [profile_list, setProfile_list] = useState([]);
-
-  const goCreateProfile = () => {
-    router.push("/choi/profile/profileCreate");
+  
+  async function goCreateProfile() {
+    const token = loginStore.token; // loginStore에서 토큰을 가져옵니다.
+    console.log(loginStore.token);
+    if (token) {
+      router.push("/choi/profile/profileCreate", { token }); // '/choi/profile/profileCreate' 경로로 토큰과 함께 이동합니다.
+    } else {
+      console.error('Token not found');
+      
+    }
   };
 
   useEffect(() => {
@@ -59,7 +66,7 @@ const ProfileSelect = observer(() => {
       <Global styles={globalStyles} />
       <Background>
         <Wrapper_box>
-          <Title>pretzel을 시청할 프로필을 선택하세요{loginStore.user_id}</Title>
+          <Title>pretzel을 시청할 프로필을 선택하세요</Title>
           <Profile_All_Box>
             {profile_list.map((item, index) => (
               <Profile_Box key={item.profile_idx} onClick={() => onClickProfile(item)}>
@@ -73,7 +80,7 @@ const ProfileSelect = observer(() => {
                 <New_Profile_Create>
                   <Plus src='/images/icons/Plus.png' onClick={goCreateProfile} />
                 </New_Profile_Create>
-                <New_Profile_Info></New_Profile_Info>
+                <New_Profile_Info>프로필 추가하기</New_Profile_Info>
               </Profile_Box>
             )}
           </Profile_All_Box>

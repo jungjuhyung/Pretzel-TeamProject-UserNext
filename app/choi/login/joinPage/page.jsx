@@ -16,9 +16,7 @@ import {
   IdCheckButton
 } from '../../../../styles/choi/login/JoinPageCSS';
 
-
 const JoinPage = () => {
-  const [startDate, setStartDate] = useState(null);
   const [allChecked, setAllChecked] = useState(false);
   const [requiredChecks, setRequiredChecks] = useState({
     age: false,
@@ -38,10 +36,20 @@ const JoinPage = () => {
   })
 
   function handleInputChange(e){
+    const { name, value } = e.target;
+    
+    if (name === 'name') {
+      const koreanOnly = /^[^a-zA-Z]*$/;
+      if (!koreanOnly.test(value)) {
+        alert('이름은 한글만 입력 가능합니다.');
+        return;
+      }
+    }
+    
     setUvo({
         // 기존 uvo 복사
         ...uvo,
-        [e.target.name] : e.target.value
+        [name]: value
     })
   }
 
@@ -150,7 +158,7 @@ const JoinPage = () => {
     const { name, user_id, pwd, email } = uvo;
     const allRequiredChecked = Object.values(requiredChecks).every(Boolean);
 
-    if (!name || !user_id || !pwd || !email || !startDate) {
+    if (!name || !user_id || !pwd || !email ) {
       alert("모든 칸을 작성해주세요.");
     } else if (!allRequiredChecked) {
       alert("모든 필수 항목에 동의해야 합니다.");
@@ -164,7 +172,6 @@ const JoinPage = () => {
         // 결과 1 이면 성공 => 로그인 페이지로 
         if (response.data === 1) {
           alert("회원가입이 완료되었습니다.");
-
           // 로그인 페이지로 가줘~
           router.push("/choi/login/loginPage")
         }

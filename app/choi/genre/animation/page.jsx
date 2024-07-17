@@ -11,11 +11,11 @@ import {
   globalStyles , Background , Title , Genre_box , Contents_box , Contetns_Poster ,
   Contents_title
 } from '../../../../styles/choi/genre/ThemeCSS';
+import { useStores } from '@/stores/StoreContext';
+
 const Animation = () =>{
-
-
+  const { movieDetailStore } = useStores();
   const router = useRouter();
-  
   const [content, setContent] = useState([]);
 
 
@@ -32,6 +32,11 @@ const Animation = () =>{
     ContentData(); // 컴포넌트가 마운트될 때 데이터 가져오기
 
 }, []);
+
+  const handlePosterClick = (movie_idx) => {
+    movieDetailStore.setMoiveIdx(movie_idx);
+    router.push("/park/detail/detailPage");
+  };
   
   return(
     <>
@@ -39,12 +44,12 @@ const Animation = () =>{
         <Background>
           <Title>애니메이션</Title>
           <Genre_box>
-            {content.map((item) => (
-            <Contents_box key={item.movie_idx}>
-              <Contetns_Poster src={`https://image.tmdb.org/t/p/w500/${item.poster_url}`} />
-              <Contents_title>{item.korea_title}</Contents_title>
+          {content.map((k, index) => (
+            <Contents_box key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>
+              <Contetns_Poster src={`https://image.tmdb.org/t/p/w500/${k.poster_url}`} />
+              <Contents_title>{k.korea_title}</Contents_title>
             </Contents_box>
-            ))} 
+          ))}
           </Genre_box>
         </Background>
     </>

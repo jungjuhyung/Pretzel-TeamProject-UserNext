@@ -19,6 +19,7 @@ const ProfileCreate = observer(() => {
   const { loginStore } = useStores();
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
+  const [fileName, setFileName] = useState(''); // State to store the file name
   const [pvo, setPvo] = useState({
     profile_idx: '',
     name: '',
@@ -30,7 +31,7 @@ const ProfileCreate = observer(() => {
   });
 
   const router = useRouter();
-  const token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIzNDE5NzgyMjI2IiwiaWF0IjoxNzIwMDYxMjEzLCJleHAiOjE3MjAwNjQ4MTN9._mvXP_XKlUvzwT4jSz_-oPRHcReJObkSkQSPSgl_x-w';
+  const token = loginStore.token;
 
   useEffect(() => {
     setPvo(prevPvo => ({
@@ -41,10 +42,12 @@ const ProfileCreate = observer(() => {
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    setProfileImage(file);
     setPvo(prevPvo => ({
       ...prevPvo,
       img_file: file,
     }));
+    setFileName(file.name); // Set the file name
   };
 
   const handleGenderChange = (e) => {
@@ -65,10 +68,10 @@ const ProfileCreate = observer(() => {
 
   const handleCheckboxChange = (genre) => {
     setSelectedGenres(prevSelectedGenres => {
-      if (prevSelectedGenres.includes(genre)) {
-        return prevSelectedGenres.filter(g => g !== genre);
+      if (prevSelectedGenres.includes(genre.value)) {
+        return prevSelectedGenres.filter(g => g !== genre.value);
       } else {
-        return [...prevSelectedGenres, genre];
+        return [...prevSelectedGenres, genre.value];
       }
     });
   };
@@ -82,6 +85,7 @@ const ProfileCreate = observer(() => {
         like_thema: selectedGenres,
       };
 
+      // Use formData if img_file is not null
       if (updatedPvo.img_file == null) {
         response = await axios.post('/profile/profile_insert2', updatedPvo, {
           headers: {
@@ -94,7 +98,7 @@ const ProfileCreate = observer(() => {
         formData.append('birth', updatedPvo.birth);
         formData.append('gender', updatedPvo.gender);
         formData.append('img_file', updatedPvo.img_file);
-        formData.append('like_thema', selectedGenres);
+        formData.append('like_thema', JSON.stringify(selectedGenres)); // Convert array to JSON string
         formData.append('user_id', updatedPvo.user_id);
 
         response = await axios.post('/profile/profile_insert', formData, {
@@ -115,7 +119,14 @@ const ProfileCreate = observer(() => {
     }
   };
 
-  const genres = ["공포", "로맨스", "코믹", "범죄", "액션", "애니"];
+  const genres = [
+    { display: "공포", value: "공포" },
+    { display: "로맨스", value: "로맨스" },
+    { display: "코믹", value: "코믹" },
+    { display: "범죄", value: "범죄" },
+    { display: "액션", value: "액션" },
+    { display: "애니", value: "애니메이션" } // Display as 애니 but value is 애니메이션
+  ];
 
   return (
     <>
@@ -133,9 +144,9 @@ const ProfileCreate = observer(() => {
             <Profile_image_title>프로필 사진</Profile_image_title>
 
             <Profile_image_Upload id="file-upload" name='img_file' type='file' onChange={handleFileChange} />
-
             <CustomUploadButton htmlFor="file-upload">
               <img src='/images/icons/file.png' alt="Upload file" />
+              {fileName ? <span>{fileName}</span> : <span>파일 선택</span>}
             </CustomUploadButton>
             <OptionBox>
               <GenderSelect>
@@ -155,15 +166,15 @@ const ProfileCreate = observer(() => {
               <Genre_Title>선호 장르</Genre_Title>
               <Genre_Box>
                 {genres.map(genre => (
-                  <GenreCheckbox key={genre}>
+                  <GenreCheckbox key={genre.value}>
                     <input
                       type="checkbox"
-                      id={genre}
-                      value={genre}
-                      checked={selectedGenres.includes(genre)}
+                      id={genre.value}
+                      value={genre.value}
+                      checked={selectedGenres.includes(genre.value)}
                       onChange={() => handleCheckboxChange(genre)}
                     />
-                    <label htmlFor={genre}>{genre}</label>
+                    <label htmlFor={genre.value}>{genre.display}</label>
                   </GenreCheckbox>
                 ))}
               </Genre_Box>
