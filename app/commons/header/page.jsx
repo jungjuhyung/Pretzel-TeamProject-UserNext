@@ -44,7 +44,7 @@ const Header = observer(() => {
     };
 
     const goMyPage = () => {
-        router.push("/park/myPage/myPage");
+        router.push("/park/myPage");
     };
 
     const goLogout = () => {

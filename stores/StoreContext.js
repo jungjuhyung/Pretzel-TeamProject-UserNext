@@ -6,6 +6,7 @@ import SearchStore from "./SearchStore";
 import tokenStore from "./TokenStore";
 import movieDetailStore from "./movieDetailStore";
 import paymentStore from "./paymentStore";
+import subNavStore from "./subNavStore";
 
 const stores = {
   loginStore,
@@ -15,6 +16,7 @@ const stores = {
   tokenStore,
   movieDetailStore,
   paymentStore,
+  subNavStore,
 };
 
 const StoresContext = createContext(stores);

@@ -5,31 +5,41 @@ export const MyReviewContainer = styled.div`
     grid-template-columns: repeat(7, 1fr);
     grid-gap: 30px 20px;
     margin: 0 5%;
+    position: relative;
 `
 
 export const Cards = styled.div`
-    overflow: hidden; 
-    transform: scale(1.0); 
-    transition: transform .5s;
+    position: relative;
+`
 
-    &:hover {
-        transform: scale(1.3);
-        transition: transform .5s ease;
-        z-index: 2;
-    }
+export const ReviewContent = styled.p`
+    font: 13px "Pretendard-Regular";
+    color: #ffffff;
+    z-index: 2;
+    position: absolute;
+    top: 35px;
+    left: 20px;
+    right: 20px;
+    bottom: 35px;
+    line-height: 1.5;
+    max-width: 180px;
+    height: 230px;
+    word-break: break-all;
+    display: -webkit-box;
+    -webkit-line-clamp: 12; /* 최대 줄 수를 설정 */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 `
 
 export const Background = styled.img` 
     max-width: 200px;
     width: 100%;
-    max-height: 300px;
-    height: 100%;
+    height: 300px;
     border-radius: 5px;
-
-    &:hover {
-        filter: brightness(30%);
-        transition: filter .5s;
-    }
+    object-fit: cover;
+    z-index: 1;
+    filter: brightness(40%);
 `
 
 export const MovieTitle = styled.p`
@@ -44,8 +54,5 @@ export const StarRating = styled.div`
     font-size: 20px;
     color: #f29a2e;
     margin-bottom: 10px;
-`
-
-export const Inactive = styled.span`
-    color: #3d3d3d;
+    letter-spacing: 2px;
 `

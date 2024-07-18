@@ -24,6 +24,7 @@ export const MovieThumbnail = styled.img`
     max-height: 197px;
     height: 100%;
     border-radius: 5px;
+    object-fit: cover;
 `
 
 export const MovieTitle = styled.h1`
