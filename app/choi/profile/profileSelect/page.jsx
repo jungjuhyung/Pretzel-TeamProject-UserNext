@@ -20,7 +20,7 @@ const ProfileSelect = observer(() => {
     const token = loginStore.token; // loginStore에서 토큰을 가져옵니다.
     console.log(loginStore.token);
     if (token) {
-      router.push("/choi/profile/profileCreate", { token }); // '/choi/profile/profileCreate' 경로로 토큰과 함께 이동합니다.
+      router.push("/choi/profile/profileCreate", { token }); 
     } else {
       console.error('Token not found');
       
@@ -84,7 +84,7 @@ const ProfileSelect = observer(() => {
               </Profile_Box>
             )}
           </Profile_All_Box>
-          <Management_Button type='button' value={"프로필 관리"} onClick={goManagement} />
+          {/* <Management_Button type='button' value={"프로필 관리"} onClick={goManagement} /> */}
         </Wrapper_box>
       </Background>
     </>

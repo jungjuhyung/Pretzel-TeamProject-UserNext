@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Global } from '@emotion/react';
-import axios from 'axios';
+import { useRouter } from 'next/navigation';
 import { observer } from 'mobx-react-lite';
-import { useRouter } from 'next/navigation'; // useRouter를 이 곳으로 이동
+import { useStores } from '@/stores/StoreContext';
+import axios from 'axios';
 
 import {
   globalStyles, Background, Title, Profile_Box, Profile_Box_left,
@@ -15,8 +16,11 @@ import {
 } from '../../../../styles/choi/profile/ProfileUpdateCSS';
 
 const ProfileUpdate = observer(() => {
+  const { loginStore } = useStores();
+  const { profileStore } = useStores();
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
+  const [fileName, setFileName] = useState(''); 
   const [pvo, setPvo] = useState({
     profile_idx: '',
     name: '',
@@ -24,59 +28,64 @@ const ProfileUpdate = observer(() => {
     gender: '',
     img_file: null,
     like_thema: [],
-    user_id: ''
+    user_id: loginStore.user_id
   });
 
-  const router = useRouter(); // 이제 이 곳에서 useRouter()를 사용
+  const router = useRouter();
+  const token = loginStore.token;
+  const profileDetail = profileStore.profileDetail;
 
+  // loginStore.user_id가 변경될 때 pvo의 user_id 업데이트
   useEffect(() => {
-    const fetchProfile = async () => {
-      const { profile_idx } = router.query; // URL 쿼리 매개변수에서 profile_idx 가져오기
-      try {
-        const response = await axios.get(`/profile/profile_detail/${profile_idx}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          }
-        });
-        const profileData = response.data;
-        setPvo({
-          profile_idx: profileData.profile_idx,
-          name: profileData.name,
-          birth: profileData.birth,
-          gender: profileData.gender,
-          like_thema: profileData.like_thema,
-          user_id: profileData.user_id
-        });
-        // 이미지 처리를 위해 profileData에서 필요한 필드를 설정
-        // setProfileImage(...);
-      } catch (error) {
-        console.error('프로필 정보 불러오기 에러:', error);
+    setPvo(prevPvo => ({
+      ...prevPvo,
+      user_id: loginStore.user_id
+    }));
+  }, [loginStore.user_id]);
+
+  // profileDetail이 변경될 때 pvo 업데이트
+  useEffect(() => {
+    if (profileDetail) {
+      setPvo(prevPvo => ({
+        ...prevPvo,
+        name: profileDetail.name || '',
+        birth: profileDetail.birth || '',
+        gender: profileDetail.gender || '', 
+        like_thema: profileDetail.like_thema && (Array.isArray(profileDetail.like_thema) ? profileDetail.like_thema : profileDetail.like_thema.split(',')),
+      }));
+
+      // profileDetail.like_thema를 기반으로 선택된 장르 처리
+      if (profileDetail.like_thema && Array.isArray(profileDetail.like_thema)) {
+        setSelectedGenres(profileDetail.like_thema);
+      } else if (profileDetail.like_thema && typeof profileDetail.like_thema === 'string') {
+        setSelectedGenres(profileDetail.like_thema.split(','));
       }
-    };
 
-    if (typeof window !== 'undefined') {
-      fetchProfile(); // 클라이언트 사이드에서만 프로필 정보 가져오기
+      setFileName(profileDetail.img_name); // 프로필 이미지 파일 이름 설정
     }
-  }, [router.query]); // router.query가 변경될 때마다 호출되도록 설정
+  }, [profileDetail]);
 
+  // 파일 변경 시 처리 및 pvo의 img_file 업데이트
   const handleFileChange = (e) => {
     const file = e.target.files[0];
+    setProfileImage(file);
     setPvo(prevPvo => ({
       ...prevPvo,
       img_file: file,
     }));
-    // 프로필 이미지를 미리보기로 설정하기 위한 코드
-    setProfileImage(file);
+    setFileName(file.name); // 파일 이름 설정
   };
 
+  // 성별 변경 시 처리 및 pvo의 gender 업데이트
   const handleGenderChange = (e) => {
-    const genderValue = e.target.value === '남자' ? 1 : 0;
+    const genderValue = e.target.value;
     setPvo(prevPvo => ({
       ...prevPvo,
       gender: genderValue
     }));
   };
 
+  // 생년월일 변경 시 처리 및 pvo의 birth 업데이트
   const handleBirthChange = (e) => {
     const { name, value } = e.target;
     setPvo(prevPvo => ({
@@ -85,49 +94,65 @@ const ProfileUpdate = observer(() => {
     }));
   };
 
+  // 장르 체크박스 변경 시 처리
   const handleCheckboxChange = (genre) => {
     setSelectedGenres(prevSelectedGenres => {
-      if (prevSelectedGenres.includes(genre)) {
-        return prevSelectedGenres.filter(g => g !== genre);
+      if (prevSelectedGenres.includes(genre.value)) {
+        return prevSelectedGenres.filter(g => g !== genre.value);
       } else {
-        return [...prevSelectedGenres, genre];
+        return [...prevSelectedGenres, genre.value];
       }
     });
   };
 
+  // 폼 제출 처리
   const handleFormSubmit = async () => {
     try {
-      const formData = new FormData();
-      formData.append('name', pvo.name);
-      formData.append('birth', pvo.birth);
-      formData.append('gender', pvo.gender);
-      formData.append('like_thema', pvo.like_thema);
-      formData.append('profile_idx', pvo.profile_idx);
-      if (pvo.img_file) {
-        formData.append('img_file', pvo.img_file);
-      }
+      let response;
+      const updatedPvo = {
+        ...pvo,
+        user_id: loginStore.user_id,
+        like_thema: selectedGenres.join(','), // 배열을 쉼표로 구분된 문자열로 변환
+      };
 
-      const response = await axios.post('/profile/profile_update', formData, {
+      // 제출할 FormData 준비
+      
+      const formData = new FormData();
+      formData.append('name', updatedPvo.name);
+      formData.append('img_file', updatedPvo.img_file);
+      formData.append('birth', updatedPvo.birth);
+      formData.append('gender', updatedPvo.gender);
+      formData.append('like_thema', updatedPvo.like_thema);
+      formData.append('user_id', updatedPvo.user_id);
+      formData.append('profile_idx', updatedPvo.profile_idx);
+
+      // 서버에 POST 요청 전송
+      response = await axios.post('/profile/profile_update', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         }
       });
 
-      console.log(response.data);
-
       if (response.data === 1) {
-        console.log('프로필 수정 성공');
-        router.push("/choi/profile/profileManagement");
+        router.push("/choi/profile/profileSelect");
       } else {
         console.log('프로필 수정 실패');
       }
     } catch (error) {
-      console.error('프로필 수정 오류:', error);
+      console.error('오류:', error);
     }
   };
 
-  const genres = ["공포", "로맨스", "코믹", "범죄", "액션", "애니"];
+  // 장르 리스트 정의
+  const genres = [
+    { display: "공포", value: "공포" },
+    { display: "로맨스", value: "로맨스" },
+    { display: "코믹", value: "코믹" },
+    { display: "범죄", value: "범죄" },
+    { display: "액션", value: "액션" },
+    { display: "애니", value: "애니메이션" }
+  ];
 
   return (
     <>
@@ -141,49 +166,60 @@ const ProfileUpdate = observer(() => {
 
           <Profile_Box_Right>
             <NickName>닉네임</NickName>
-            <NickName_Input type='text' name='name' value={pvo.name} onChange={(e) => setPvo({ ...pvo, name: e.target.value })} />
+            <NickName_Input
+              type='text'
+              name='name'
+              placeholder={profileDetail ? profileDetail.name : ''}
+              value={pvo.name}
+              onChange={(e) => setPvo({ ...pvo, name: e.target.value })}
+            />
+
             <Profile_image_title>프로필 사진</Profile_image_title>
-
             <Profile_image_Upload id="file-upload" name='img_file' type='file' onChange={handleFileChange} />
-
             <CustomUploadButton htmlFor="file-upload">
               <img src='/images/icons/file.png' alt="Upload file" />
+              {fileName ? <span>{fileName}</span> : <span>파일 선택</span>}
             </CustomUploadButton>
+
             <OptionBox>
               <GenderSelect>
                 <Gender_Title>성별</Gender_Title>
-                <Gender value={pvo.gender === 1 ? '남자' : '여자'} onChange={handleGenderChange}>
+                <Gender value={pvo.gender} onChange={handleGenderChange}>
+                  <option value="">성별 선택</option>
                   <option value="남자">남성</option>
                   <option value="여자">여성</option>
                 </Gender>
               </GenderSelect>
+
               <BirthSelect>
                 <Birth_Title>생년월일</Birth_Title>
                 <Birth type='date' name='birth' value={pvo.birth} onChange={handleBirthChange} />
               </BirthSelect>
             </OptionBox>
+
             <GenreSelect>
               <Genre_Title>선호 장르</Genre_Title>
               <Genre_Box>
                 {genres.map(genre => (
-                  <GenreCheckbox key={genre}>
+                  <GenreCheckbox key={genre.value}>
                     <input
                       type="checkbox"
-                      id={genre}
-                      value={genre}
-                      checked={selectedGenres.includes(genre)}
+                      id={genre.value}
+                      value={genre.value}
+                      checked={selectedGenres.includes(genre.value)}
                       onChange={() => handleCheckboxChange(genre)}
                     />
-                    <label htmlFor={genre}>{genre}</label>
+                    <label htmlFor={genre.value}>{genre.display}</label>
                   </GenreCheckbox>
                 ))}
               </Genre_Box>
             </GenreSelect>
           </Profile_Box_Right>
         </Profile_Box>
+
         <Button_box>
           <OkButton type='button' value={'완료'} disabled={selectedGenres.length === 0} onClick={handleFormSubmit} />
-          <CancelButton type='button' value={'취소'} onClick={() => router.push("/choi/profile/profileManagement")} />
+          <CancelButton type='button' value={'취소'} />
         </Button_box>
       </Background>
     </>

@@ -138,7 +138,13 @@ export const Ok_Button = styled.input`
   background-color: #F29A2E;
   border-radius: 50px;
   font-size: 20px;
-  margin-top: 60px;
+  font-weight: bold;
+  margin-top: 40px;
+  transition: transform 0.3s ease;
+  &:hover {
+        transform: scale(1.1);
+    }
+  cursor: pointer;
   
 `
 

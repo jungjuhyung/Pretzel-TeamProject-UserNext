@@ -70,6 +70,7 @@ export const Profile_Image = styled.img`
     &:hover {
         transform: scale(0.8);
     }
+    cursor: pointer;
 `
 
 export const Profile_Name = styled.span`
@@ -94,6 +95,7 @@ export const New_Profile_Create = styled.div`
     &:hover {
         transform: scale(0.8);
     }
+    cursor: pointer;
 `
 
 export const Plus = styled.img`
@@ -117,8 +119,14 @@ export const Management_Button = styled.input`
   background-color: #F29A2E;
   border-radius: 50px;
   font-size: 20px;
+  font-weight: bold;
   margin-top: 60px;
-  
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+  cursor: pointer;
 `
 
 
