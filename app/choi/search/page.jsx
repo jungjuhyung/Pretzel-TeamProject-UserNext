@@ -12,7 +12,7 @@ import {
     SearchNone, RealText, SuggestionsBoxHeader, CloseIcon , KeywordBox_Bottom ,SuggestionsBoxContent , SuggBox,SearchTitle
 } from '../../../styles/choi/search/SearchPageCSS';
 
-import { SearchContext } from "@/stores/StoreContext";
+import { SearchContext, useStores } from "@/stores/StoreContext";
 import { ColorOrange } from '@/styles/park/commons/commonsCSS';
 
 const searchIcon = '/images/icons/search.png';
@@ -20,7 +20,7 @@ const deleteIcon = '/images/icons/delete.png';
 
 const Search = observer(() => {
     const router = useRouter();
-    const SearchStore = useContext(SearchContext)
+    const {SearchStore} = useStores()
 
     const [keywords, setKeywords] = useState([]);
     const [inputValue, setInputValue] = useState('');

@@ -51,7 +51,7 @@ const WeekTop = observer(() => {
 
     return (
         <Week_Popular>
-            <Week_Title>이 주의 인기 순위 TOP 5</Week_Title>
+            <Week_Title>오늘의 인기 순위 TOP 5</Week_Title>
             <Week_Poster_Box>
                 {day_list.slice(0, postersPerPage).map((k, index) => (
                     <PosterWrapper key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>
