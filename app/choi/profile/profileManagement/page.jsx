@@ -32,8 +32,8 @@ const ProfileManagement = observer(() => {
     fetchData();
   }, [loginStore.token]); // 의존성 배열 추가
 
-  const updateProfile = (item) => {
-    router.push(`/choi/profile/profileUpdate?profile_idx=${item.profile_idx}`);
+  const updateProfile = () => {
+    router.push(`/choi/profile/profileUpdate`);
   };
 
   return (

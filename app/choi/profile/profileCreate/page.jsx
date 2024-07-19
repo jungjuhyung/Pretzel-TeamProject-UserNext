@@ -82,7 +82,7 @@ const ProfileCreate = observer(() => {
       const updatedPvo = {
         ...pvo,
         user_id: loginStore.user_id,
-        like_thema: selectedGenres,
+        like_thema: selectedGenres.join(','), // Convert array to comma-separated string
       };
 
       // Use formData if img_file is not null
@@ -98,7 +98,7 @@ const ProfileCreate = observer(() => {
         formData.append('birth', updatedPvo.birth);
         formData.append('gender', updatedPvo.gender);
         formData.append('img_file', updatedPvo.img_file);
-        formData.append('like_thema', JSON.stringify(selectedGenres)); // Convert array to JSON string
+        formData.append('like_thema', updatedPvo.like_thema); // Already a comma-separated string
         formData.append('user_id', updatedPvo.user_id);
 
         response = await axios.post('/profile/profile_insert', formData, {

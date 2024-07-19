@@ -111,6 +111,12 @@ export const CustomUploadButton = styled.label`
     width: 24px;
     height: 24px;
   }
+
+  span {
+    font-size: 16px;
+    color: white;
+    margin-left: 10px;
+  }
 `;
 
 export const Button_box = styled.div`

@@ -62,7 +62,7 @@ const MyProfile = () => {
     }
 
     const onClickManageBtn = () => {
-        router.push("/choi/profile/profileSelect")
+        router.push("/choi/profile/profileManagement")
     }
 
     return (
