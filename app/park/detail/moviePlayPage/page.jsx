@@ -82,7 +82,7 @@ const MoviePlayPage = () => {
                 controls
                 autoPlay
                 muted>
-                <Subtitle kind="subtitles" src="/vtt/스물.vtt" srclang="ko" label="한국어" default></Subtitle>
+                <Subtitle kind="subtitles" src={`https://storage.googleapis.com/pretzel-movie/${moviePlay.subtitle_url}`} srclang="ko" label="한국어" default></Subtitle>
             </Video>
         </>
     )

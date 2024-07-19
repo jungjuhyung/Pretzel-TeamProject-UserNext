@@ -2,7 +2,7 @@
 import { useRouter } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import { observer } from 'mobx-react-lite';
-import { HeaderContainer, HeaderLeft, HeaderRight, LoginBtn, LogoutBtn, Menus, SearchIcon, SignUpBtn, Title, Whitespace , Profile_Img, UserName, UserImage } from "@/styles/commons/headerCSS";
+import { HeaderContainer, HeaderLeft, HeaderRight, LoginBtn, LogoutBtn, Menus, SearchIcon, SignUpBtn, Title, Whitespace, Profile_Img, UserName, UserImage, UserName_Box } from "@/styles/commons/headerCSS";
 import { useStores } from '@/stores/StoreContext';
 import { ColorOrange } from '@/styles/park/commons/commonsCSS';
 import axios from 'axios';
@@ -57,8 +57,8 @@ const Header = observer(() => {
         }
     };
 
-    const goProfile = () => {
-        router.push("/choi/profile/profileSelect");
+    const goProfileSelect = () => {
+        router.push("/choi/profile/profileSelect")
     }
 
     useEffect(() => {
@@ -69,7 +69,7 @@ const Header = observer(() => {
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
-    },[loginStore.isLogin, loginStore.profile_idx]);
+    }, [loginStore.isLogin, loginStore.profile_idx]);
 
     const API_URL = "/profile/"
 
@@ -109,7 +109,9 @@ const Header = observer(() => {
                         </HeaderLeft>
                         <HeaderRight>
                             <SearchIcon src="/images/icons/search.png" onClick={goSearch}></SearchIcon>
-                            <UserName><ColorOrange>{myProfile.name}</ColorOrange> 님</UserName>
+                            <UserName_Box>
+                                <UserName onClick={goProfileSelect}><ColorOrange>{myProfile.name}</ColorOrange> 님</UserName>
+                            </UserName_Box>
                             <UserImage src={`http://localhost:8080/common/image?imageName=${myProfile.img_name}`} />
                             <LogoutBtn onClick={goLogout}>로그아웃</LogoutBtn>
                         </HeaderRight>

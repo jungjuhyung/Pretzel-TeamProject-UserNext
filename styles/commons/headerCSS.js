@@ -128,6 +128,13 @@ export const UserName = styled.p`
     font-family: "Pretendard-Regular";
     color: #ffffff;
     margin-right: 10px;
+    cursor: pointer;
+`
+
+export const UserName_Box = styled.div`
+    &:hover {
+        filter: brightness(50%);
+    }
 `
 
 export const UserImage = styled.img`
