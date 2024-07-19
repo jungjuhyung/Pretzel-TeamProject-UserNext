@@ -7,6 +7,7 @@ import { Backdrop, Buttons_Container, Genre, MovieContainer, MovieDetail_Contain
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ReviewWrite from "../reviewWrite/page";
 
 const DetailInfo = () => {
     const router = useRouter();
@@ -162,8 +163,8 @@ const DetailInfo = () => {
 
                     <MovieInfo_Container>
                         <MovieGrade
-                            src={movieDetail.movie_grade === '18'
-                                ? '/images/movieGrade/grade_18.png'
+                            src={movieDetail.movie_grade === '18' || movieDetail.movie_grade === '19'
+                                ? '/images/movieGrade/grade_19.png'
                                 : movieDetail.movie_grade === '15'
                                     ? '/images/movieGrade/grade_15.png'
                                     : movieDetail.movie_grade === '12'

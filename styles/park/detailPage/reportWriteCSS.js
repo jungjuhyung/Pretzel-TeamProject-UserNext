@@ -5,7 +5,7 @@ export const Background_layout = styled.div`
     width: 100%;
     height: 100vh;
     position: fixed;
-    display: ${({ reportView }) => (reportView ? 'block' : 'none')};
+    top: 0;
 `;
 
 export const ReportBox = styled.div`
@@ -15,7 +15,7 @@ export const ReportBox = styled.div`
     position: fixed;
     border-radius: 5px;
     left: 50%;
-    top: 25%;
+    top: calc(50% - 200px);
     z-index: 99;
     transform: translateX(-50%);
     display: flex;

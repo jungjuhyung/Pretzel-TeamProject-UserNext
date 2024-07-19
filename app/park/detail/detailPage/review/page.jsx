@@ -7,16 +7,31 @@ import { Profile_Image, Report_Btn, ReviewContent_Container, ReviewWriteBtn, Rev
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import ReviewWrite from "../reviewWrite/page";
+import ReportWrite from "../reportWrite/page";
 
 const Review = () => {
     const router = useRouter();
-    const { loginStore, movieDetailStore } = useStores();
+    const { movieDetailStore } = useStores();
+
 
     // 영화 상세 정보
     const [movieReview, setMovieReview] = useState({ result: [], average: 0 });
 
     // 로딩 상태
     const [isLoading, setIsLoading] = useState(true);
+
+    // 리뷰 모달
+    const [review, setReview] = useState(false);
+
+    // 신고 모달
+    const [report, setReport] = useState(false);
+
+    // review_idx
+    const [reviewIdx, setReviewIdx] = useState("");
+
+    // 신고 당한 사람의 profile_idx
+    const [rProfileIdx, setRProfileIdx] = useState("");
 
     // 처음 렌더링 될 때 실행
     useEffect(() => {
@@ -55,24 +70,30 @@ const Review = () => {
         return <span style={{ color: '#3d3d3d' }}>{children}</span>;
     };
 
-    /* // 신고 모달 보이는 여부
-    const [reportView, setReportView] = useState(); */
-
     // 신고 버튼 누르면
-    const onClickReport = (review_idx) => {
-        /* setReportView(!reportView);
-        return (
-            <>
-                <ReportWrite reportView={!reportView} />
-            </>
-        ) */
+    const onClickReport = (review_idx, r_profile_idx) => {
+        setReport(!report);
+        setReviewIdx(review_idx)
+        setRProfileIdx(r_profile_idx)
     }
+
+    // 리뷰 작성 버튼 누르면
+    const onClickReview = () => {
+        setReview(!review);
+    }
+
+    // 리뷰를 추가한 후 리뷰 목록을 갱신하는 함수
+    const handleAddReview = async () => {
+        await movie_review_list();
+    };
 
     return (
         <>
+            {review ? <ReviewWrite setReview={setReview} handleAddReview={handleAddReview} /> : <></>}
+            {report ? <ReportWrite setReport={setReport} reviewIdx={reviewIdx} rProfileIdx={rProfileIdx} /> : <></>}
             <HorizenLine />
             <Subtitle>리뷰 ({movieReview.result.length})</Subtitle>
-            <StarAvg>평균 별점 : &#160;<ColorOrange>{movieReview.average}</ColorOrange><ReviewWriteBtn>리뷰 작성</ReviewWriteBtn></StarAvg>
+            <StarAvg>평균 별점 : &#160;<ColorOrange>{movieReview.average.toFixed(1)}</ColorOrange><ReviewWriteBtn onClick={onClickReview}>리뷰 작성</ReviewWriteBtn></StarAvg>
             {movieReview.result.map((k) => (
                 <Review_Container key={k.review_idx}>
                     {/* 이미지 경로 변경하기 */}
@@ -102,7 +123,7 @@ const Review = () => {
                                 )}
                             </StarRating>
                             <Vertical>|</Vertical>
-                            <Report_Btn onClick={() => onClickReport(k.review_idx)}>신고하기</Report_Btn>
+                            <Report_Btn onClick={() => onClickReport(k.review_idx, k.profile_idx)}>신고하기</Report_Btn>
                         </Review_TopContent>
                         <Review_Content>{k.content}</Review_Content>
                     </ReviewContent_Container>

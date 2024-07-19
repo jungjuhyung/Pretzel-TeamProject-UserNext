@@ -4,8 +4,9 @@ export const Background_layout = styled.div`
     background-color: rgba(0, 0, 0, 0.3);
     width: 100%;
     height: 100vh;
+    z-index: 99;
     position: fixed;
-    display: none; /* 처음에는 숨겨두기 */
+    top: 0px;
 `;
 
 export const ReviewBox = styled.div`
@@ -15,8 +16,7 @@ export const ReviewBox = styled.div`
     position: fixed;
     border-radius: 5px;
     left: 50%;
-    top: 25%;
-    z-index: 99;
+    top: calc(50% - 230px);
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
@@ -56,7 +56,7 @@ export const Star = styled.span`
 `;
 
 export const Review_Content = styled.textarea`
-    font: 17px "Pretendard-Regular";
+    font: 15px "Pretendard-Regular";
     margin-top: 7px;
     width: 400px;
     height: 170px;
