@@ -22,9 +22,6 @@ const ContactPage = () => {
 
   const router = useRouter();
 
-  // 일단 임시로 가져온 토큰값
-  const token = "eyJhbGciOiJIUzI1NiJ9.eyJwcm9maWxlX2lkeCI6IjEyIiwic3ViIjoia28iLCJpYXQiOjE3MTkwNjY4NjYsImV4cCI6MTcxOTA3MDQ2Nn0.PbZ6E9gKNmEWgIhzvu0GxeYOWscFL7Dc3NSZvEG8ZRM";
-
   const test = async () => {
     if (questionTitle.trim() !== '' && questionContent.trim() !== '') {
       try {

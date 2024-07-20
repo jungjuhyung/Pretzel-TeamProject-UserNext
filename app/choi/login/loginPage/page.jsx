@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { Global } from '@emotion/react';
 import { observer } from "mobx-react-lite";
-import { LoginContext, useStores } from '@/stores/StoreContext';
+import { useStores } from '@/stores/StoreContext';
 
 import {
     globalStyles, Background, LoginBox, Title, SubTitle,
@@ -16,9 +16,9 @@ import {
 import axios from 'axios';
 
 const LoginPage = observer(() => {
-    const{loginStore} = useStores();
+    const { loginStore } = useStores();
     const [showPassword, setShowPassword] = useState(false);
-    
+
     const togglePasswordVisibility = () => {
         setShowPassword(prevShowPassword => !prevShowPassword);
     };
@@ -57,7 +57,7 @@ const LoginPage = observer(() => {
                 pwd: password,
             });
             console.log('*** 결과 : ', response.data);
-            
+
             if (response.data.token) {
                 const token = response.data.token;
                 loginStore.setToken(token)
@@ -75,7 +75,7 @@ const LoginPage = observer(() => {
 
     return (
         <>
-    
+
             <Global styles={globalStyles} />
             <Background>
                 <LoginBox>
@@ -100,14 +100,14 @@ const LoginPage = observer(() => {
                         <SubText>다른 방법으로 로그인하기</SubText>
                         <Link>
                             <Move href='http://localhost:8080/oauth2/authorization/naver'>
-                            <NaverLogin src='/images/icons/NaverLogin.png'/></Move>
+                                <NaverLogin src='/images/icons/NaverLogin.png' /></Move>
                             <Move href='http://localhost:8080/oauth2/authorization/kakao'>
-                            <KaKaoLogin src='/images/icons/KakaoLogin.png'/></Move>
+                                <KaKaoLogin src='/images/icons/KakaoLogin.png' /></Move>
                         </Link>
                     </BoxFooter>
                 </LoginBox>
             </Background>
-        
+
         </>
     );
 });

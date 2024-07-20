@@ -1,11 +1,11 @@
 "use client";
 
 import { useState } from "react";
-import { Background_layout, ReviewTitle, StarTitle, StarRating, Star, ReviewBox, Review_Content, SubmitBtn } from "@/styles/park/detailPage/reviewWriteCSS";
+import { Background_layout, ReviewTitle, StarTitle, StarRating, Star, ReviewBox, Review_Content, SubmitBtn, Textlength } from "@/styles/park/detailPage/reviewWriteCSS";
 import { useStores } from "@/stores/StoreContext";
 import axios from "axios";
 
-const ReviewWrite = ({ setReview, handleAddReview}) => {
+const ReviewWrite = ({ setReview, handleAddReview }) => {
     const { loginStore, movieDetailStore } = useStores();
 
     // 리뷰 내용
@@ -25,6 +25,14 @@ const ReviewWrite = ({ setReview, handleAddReview}) => {
     // 리뷰 내용 작성 onChange
     const onChangeContent = (e) => {
         setReviewContent(e.target.value)
+        const textCount = e.target.value.length;
+        document.getElementById('target').innerText = textCount;
+
+        if (textCount > 200) {
+            alert("200자 이상 작성이 불가능합니다.");
+            setQuestionContent(e.target.value.substring(0, 200));
+            document.getElementById('target').innerText = 200;
+        }
     }
 
     const API_URL = "/moviedetail/"
@@ -86,7 +94,11 @@ const ReviewWrite = ({ setReview, handleAddReview}) => {
                     </StarRating>
                     <Review_Content
                         placeholder="리뷰 내용을 입력해 주세요."
-                        onChange={onChangeContent} />
+                        onChange={onChangeContent}
+                        maxLength={200} />
+                    <Textlength>
+                        <span id='target'>0</span>/200
+                    </Textlength>
                     <SubmitBtn onClick={review_add}>등록</SubmitBtn>
                 </ReviewBox>
             </Background_layout>

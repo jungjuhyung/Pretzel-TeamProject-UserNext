@@ -12,11 +12,11 @@ export const Background_layout = styled.div`
 export const ReviewBox = styled.div`
     background-color: #252525;
     width: 500px;
-    height: 460px;
+    height: 480px;
     position: fixed;
     border-radius: 5px;
     left: 50%;
-    top: calc(50% - 230px);
+    top: calc(50% - 240px);
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
@@ -66,7 +66,7 @@ export const Review_Content = styled.textarea`
 `
 
 export const SubmitBtn = styled.button`
-    margin-top: 20px;
+    margin-top: 10px;
     font: 600 18px "Pretendard-Regular";
     width: 130px;
     height: 50px;
@@ -79,4 +79,13 @@ export const SubmitBtn = styled.button`
         background-color: #ad6e21;
         color: #868686;
     }
+`
+
+export const Textlength = styled.p`
+  width: 400px;
+  height: 15px;
+  color: #929292;
+  margin-top: 10px;
+  font: 400 15px "Pretendard-Regular";
+  text-align: right;
 `

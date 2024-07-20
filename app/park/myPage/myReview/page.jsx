@@ -21,7 +21,6 @@ const MyReview = () => {
 
     // 처음 렌더링 될 때 실행
     useEffect(() => {
-        subNavStore.setCurrentMenu("MyReview")
         reviewlist()
     }, []);
 

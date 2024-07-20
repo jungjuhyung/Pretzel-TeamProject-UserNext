@@ -9,6 +9,9 @@ const Chart = () => {
     // 로딩 상태
     const [isLoading, setIsLoading] = useState(true);
 
+    // 차트 데이터
+    const [chartData, setChartData] = useState({})
+
     useEffect(() => {
         chart_data();
     }, []);
@@ -20,7 +23,9 @@ const Chart = () => {
         try {
             const response = await axios.get(
                 "/storage/pretzel-emotionCountAI/탑건_ 매버릭_emotion_count.json");
-            console.log(response.data)
+            if (response.data) {
+                setChartData(response.data)
+            }
         } catch (error) {
             console.error('차트 실패 : ', error);
         } finally {
@@ -45,10 +50,10 @@ const Chart = () => {
                             arcLabel: (item) => `${item.label}`,
                             arcLabelMinAngle: 45,
                             data: [
-                                { id: 0, value: 1, label: '기쁨', color: '#FFE674' },
-                                { id: 1, value: 2, label: '슬픔', color: '#84D5F5' },
-                                { id: 2, value: 3, label: '분노', color: '#F56C6E' },
-                                { id: 3, value: 3, label: '공포', color: '#AF6EF5' },
+                                { id: 0, value: chartData.hap, label: '기쁨', color: '#FFE674' },
+                                { id: 1, value: chartData.sad, label: '슬픔', color: '#84D5F5' },
+                                { id: 2, value: chartData.ang, label: '분노', color: '#F56C6E' },
+                                { id: 3, value: chartData.anx, label: '공포', color: '#AF6EF5' },
                             ],
                         },
                     ]}
