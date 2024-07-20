@@ -78,8 +78,8 @@ const MoviePlayPage = () => {
                     profile_idx: loginStore.profile_idx
                 }
             });
-            console.log("tsts",response.data.storage_name);
-            checkSubtitles(response.data.storage_name)
+            console.log("tsts",response.data.movie_url);
+            checkSubtitles(response.data.movie_url)
         } catch (error) {
             console.error('상세 정보 가져오기 실패 : ', error);
         } finally {
@@ -109,23 +109,22 @@ const MoviePlayPage = () => {
     return (
         <>
             <Video
-                src={`/storage/${moviePlay.movie_url}`}
+                src={`/storage/${moviePlay.movie_url}.mp4`}
                 controls
                 autoPlay
                 muted
                 controlsList="nodownload"
                 >
                 {canSubtitles.map((k) => (
-                    <track
+                    <Subtitle
                       key={k}
                       kind="subtitles"
-                      src={`/storage/${moviePlay.storage_name}_${k}.vtt`}
+                      src={`/storage/${moviePlay.movie_url}_${k}.vtt`}
                       srcLang={k}
                       label={labels[k] || k}
                       default={k === "ko"}
-                      crossOrigin="anonymous"
                     />
-                  ))
+                ))
                 }
             </Video>
         </>
