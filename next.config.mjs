@@ -51,6 +51,10 @@ const nextConfig = {
                 //  SpringBoot 의 /api/mypage 으로 리 라이트 됩니다.
                 source: "/mypage/:path*",
                 destination: "http://localhost:8080/mypage/:path*",
+            },
+            {
+                source: '/storage/:path*',
+                destination: 'https://storage.googleapis.com/pretzel-movie/:path*'
             }
         ];
     },

@@ -19,7 +19,7 @@ const Chart = () => {
 
         try {
             const response = await axios.get(
-                "https://storage.googleapis.com/pretzel-movie/pretzel-emotionCountAI/탑건_%20매버릭_emotion_count.json");
+                "/storage/pretzel-emotionCountAI/탑건_ 매버릭_emotion_count.json");
             console.log(response.data)
         } catch (error) {
             console.error('차트 실패 : ', error);

@@ -12,7 +12,22 @@ import { useStores } from '@/stores/StoreContext';
 
 const MoviePlayPage = () => {
     const { loginStore, movieDetailStore, profileStore } = useStores();
-
+    const [canSubtitles, setCanSubtitles] = useState([]);
+    const country = ["ko", "ja", "zh", "en", "fr", "de", "es", "it", "pt", "ru", "hi"];
+    const labels = {
+        ko: "한국어",
+        ja: "日本語",
+        zh: "中文",
+        en: "English",
+        fr: "Français",
+        de: "Deutsch",
+        es: "Español",
+        it: "Italiano",
+        pt: "Português",
+        ru: "Русский",
+        hi: "हिन्दी"
+      };
+    
     // 영화 재생 정보
     const [moviePlay, setMoviePlay] = useState({});
 
@@ -63,6 +78,8 @@ const MoviePlayPage = () => {
                     profile_idx: loginStore.profile_idx
                 }
             });
+            console.log("tsts",response.data.storage_name);
+            checkSubtitles(response.data.storage_name)
         } catch (error) {
             console.error('상세 정보 가져오기 실패 : ', error);
         } finally {
@@ -75,14 +92,41 @@ const MoviePlayPage = () => {
         return <LoadingSpinner />
     }
 
+    async function checkSubtitles(name){
+        const chk = [];
+        for (const k of country) {
+          try {
+            const response = await axios.head(`/storage/${name}_${k}.vtt`);
+            if (response.status === 200) {
+                console.log("in",k);
+                chk.push(k);
+            }
+        } catch (error) {
+        }
+        }
+        setCanSubtitles(chk);
+    };
     return (
         <>
             <Video
-                src={`https://storage.googleapis.com/pretzel-movie/${moviePlay.movie_url}`}
+                src={`/storage/${moviePlay.movie_url}`}
                 controls
                 autoPlay
-                muted>
-                <Subtitle kind="subtitles" src={`https://storage.googleapis.com/pretzel-movie/${moviePlay.subtitle_url}`} srclang="ko" label="한국어" default></Subtitle>
+                muted
+                controlsList="nodownload"
+                >
+                {canSubtitles.map((k) => (
+                    <track
+                      key={k}
+                      kind="subtitles"
+                      src={`/storage/${moviePlay.storage_name}_${k}.vtt`}
+                      srcLang={k}
+                      label={labels[k] || k}
+                      default={k === "ko"}
+                      crossOrigin="anonymous"
+                    />
+                  ))
+                }
             </Video>
         </>
     )
