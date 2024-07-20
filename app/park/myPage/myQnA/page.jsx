@@ -9,7 +9,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 const MyQnA = () => {
-    const { loginStore, subNavStore } = useStores();
+    const { loginStore } = useStores();
 
     // 문의 내역
     const [question, seQquestion] = useState([]);

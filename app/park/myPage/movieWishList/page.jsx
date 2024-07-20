@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const MovieWishList = () => {
-    const { loginStore, movieDetailStore, subNavStore } = useStores();
+    const { loginStore, movieDetailStore } = useStores();
     const router = useRouter();
 
     // 영화 위시리스트

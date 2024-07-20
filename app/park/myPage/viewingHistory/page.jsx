@@ -9,7 +9,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const ViewingHistory = () => {
-    const { loginStore, movieDetailStore, subNavStore } = useStores();
+    const { loginStore, movieDetailStore } = useStores();
     const router = useRouter();
 
     // 영화 시청 내역

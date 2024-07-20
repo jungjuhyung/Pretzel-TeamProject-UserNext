@@ -1,5 +1,8 @@
 export const loadState = (key) => {
   try {
+    if (typeof window === "undefined") {
+      return undefined;
+    }
     const jsonOfState = localStorage.getItem(key);
     if (jsonOfState === null) {
       return undefined;

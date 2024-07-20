@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const MyReview = () => {
-    const { loginStore, movieDetailStore, subNavStore } = useStores();
+    const { loginStore, movieDetailStore } = useStores();
     const router = useRouter();
 
     // 영화 리뷰 내역
