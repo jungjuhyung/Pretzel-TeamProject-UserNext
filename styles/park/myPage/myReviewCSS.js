@@ -22,7 +22,7 @@ export const ReviewContent = styled.p`
     right: 20px;
     bottom: 35px;
     line-height: 1.5;
-    max-width: 180px;
+    max-width: 160px;
     height: 230px;
     word-break: break-all;
     display: -webkit-box;
