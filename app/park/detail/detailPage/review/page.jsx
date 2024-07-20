@@ -9,11 +9,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import ReviewWrite from "../reviewWrite/page";
 import ReportWrite from "../reportWrite/page";
+import loginStore from "@/stores/loginStore";
 
 const Review = () => {
     const router = useRouter();
     const { movieDetailStore } = useStores();
-
 
     // 영화 상세 정보
     const [movieReview, setMovieReview] = useState({ result: [], average: 0 });
@@ -29,9 +29,6 @@ const Review = () => {
 
     // review_idx
     const [reviewIdx, setReviewIdx] = useState("");
-
-    // 신고 당한 사람의 profile_idx
-    const [rProfileIdx, setRProfileIdx] = useState("");
 
     // 처음 렌더링 될 때 실행
     useEffect(() => {
@@ -72,9 +69,12 @@ const Review = () => {
 
     // 신고 버튼 누르면
     const onClickReport = (review_idx, r_profile_idx) => {
-        setReport(!report);
-        setReviewIdx(review_idx)
-        setRProfileIdx(r_profile_idx)
+        if (r_profile_idx === loginStore.profile_idx) {
+            alert("자신의 리뷰는 신고할 수 없습니다.")
+        } else {
+            setReport(!report);
+            setReviewIdx(review_idx)
+        }
     }
 
     // 리뷰 작성 버튼 누르면
@@ -90,7 +90,7 @@ const Review = () => {
     return (
         <>
             {review ? <ReviewWrite setReview={setReview} handleAddReview={handleAddReview} /> : <></>}
-            {report ? <ReportWrite setReport={setReport} reviewIdx={reviewIdx} rProfileIdx={rProfileIdx} /> : <></>}
+            {report ? <ReportWrite setReport={setReport} reviewIdx={reviewIdx} /> : <></>}
             <HorizenLine />
             <Subtitle>리뷰 ({movieReview.result.length})</Subtitle>
             <StarAvg>평균 별점 : &#160;<ColorOrange>{movieReview.average.toFixed(1)}</ColorOrange><ReviewWriteBtn onClick={onClickReview}>리뷰 작성</ReviewWriteBtn></StarAvg>

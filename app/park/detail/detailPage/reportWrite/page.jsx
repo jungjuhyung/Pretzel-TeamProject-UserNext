@@ -3,7 +3,7 @@ import { Background_layout, ConfirmBtn, RadioBox, ReportBox, ReportSubTitle, Rep
 import axios from "axios";
 import { useState } from "react";
 
-const ReportWrite = ({ setReport, reviewIdx, rProfileIdx }) => {
+const ReportWrite = ({ setReport, reviewIdx }) => {
     const { loginStore } = useStores();
 
     // 신고 유형
@@ -24,25 +24,21 @@ const ReportWrite = ({ setReport, reviewIdx, rProfileIdx }) => {
 
     // 리뷰 추가하기
     async function report_add() {
-        if (rProfileIdx === loginStore.profile_idx) {
-            alert("자기 자신의 리뷰는 신고할 수 없습니다.")
-        } else {
-            try {
-                const response = await axios.post(API_URL + "report/add",
-                    {
-                        profile_idx: loginStore.profile_idx,
-                        review_idx: reviewIdx,
-                        type: reportType
-                    });
-                if (response.data === 1) {
-                    alert("신고가 완료되었습니다.")
-                    setReport(false);
-                } else {
-                    alert("신고에 실패했습니다.\n다시 시도해 주세요.")
-                }
-            } catch (error) {
-                console.error('신고 작성 실패 : ', error);
+        try {
+            const response = await axios.post(API_URL + "report/add",
+                {
+                    profile_idx: loginStore.profile_idx,
+                    review_idx: reviewIdx,
+                    type: reportType
+                });
+            if (response.data === 1) {
+                alert("신고가 완료되었습니다.")
+                setReport(false);
+            } else {
+                alert("신고에 실패했습니다.\n다시 시도해 주세요.")
             }
+        } catch (error) {
+            console.error('신고 작성 실패 : ', error);
         }
     }
 

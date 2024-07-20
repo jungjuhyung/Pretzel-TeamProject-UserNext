@@ -126,7 +126,12 @@ const DetailInfo = () => {
 
     // 영화 재생 버튼 누르기
     const onClickPlay = () => {
-        router.push("/park/detail/moviePlayPage")
+        if (loginStore.isLogin) {
+            router.push("/park/detail/moviePlayPage")
+        } else {
+            alert("로그인 후 이용 가능합니다.")
+            router.push("/choi/login/loginPage")
+        }
     }
 
     // 위시리스트 여부 확인에 따른 버튼

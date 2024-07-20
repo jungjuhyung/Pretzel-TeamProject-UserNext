@@ -6,8 +6,7 @@ import '@/styles/commons/commons.css'
 
 import Header from './commons/header/page';
 import Footer from './commons/Footer/page';
-import { LoginContext, StoresProvider } from '@/stores/StoreContext';
-import { useContext, useEffect } from 'react';
+import { StoresProvider } from '@/stores/StoreContext';
 import { usePathname } from 'next/navigation';
 
 export default function RootLayout({ children }) {
@@ -36,7 +35,7 @@ export default function RootLayout({ children }) {
   return (
     <StoresProvider>
       <html lang="ko">
-          {layout_state()}
+        {layout_state()}
       </html>
     </StoresProvider>
   );

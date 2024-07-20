@@ -4,31 +4,28 @@ import axios from 'axios';
 import { observer } from 'mobx-react-lite';
 import LoadingSpinner from '../../commons/loadingSpinner/page';
 
-import {
-    User_Popular, User_Title, User_Poster_Box, PosterWrapper, Poster, RankNumber
-} from '@/styles/choi/main/mainUserContent';
+import { User_Popular, User_Title, User_Poster_Box, PosterWrapper, Poster } from '@/styles/choi/main/mainUserContent';
 import { useStores } from '@/stores/StoreContext';
 import { useRouter } from 'next/navigation';
 
 const UserContent = observer(() => {
     const [user_list, setUser_list] = useState([]);
     const [isLoading, setIsLoading] = useState(true); // 데이터 로딩 상태 추가
-    const [age, setAge] = useState(); 
-    const [gender, setGender] = useState(); 
+    const [age, setAge] = useState();
+    const [gender, setGender] = useState();
     const [thema, setThema] = useState([]);
     const postersPerPage = 5; // 페이지당 포스터 수
-    const { loginStore, profileStore } = useStores([]);
+    const { loginStore } = useStores([]);
+
     const { movieDetailStore } = useStores();
     const router = useRouter()
 
-    const API_URL = "/main/";
-
     useEffect(() => {
-        chart_data();
+        statistics_list();
     }, []);
 
     // 데이터 가져오기
-    async function chart_data() {
+    async function statistics_list() {
         setIsLoading(true); // 데이터 로딩 상태로 설정
         try {
             const profileInfo = await axios.post("/profile/profile_detail", {
@@ -82,7 +79,7 @@ const UserContent = observer(() => {
                 setThema(thema);
             }
         } catch (error) {
-            console.error('상세 정보 가져오기 실패 : ', error);
+            console.error('정보 가져오기 실패 : ', error);
         } finally {
             setIsLoading(false); // 데이터 로드 후 로딩 상태 해제
         }
@@ -90,7 +87,6 @@ const UserContent = observer(() => {
 
     // 나중에 디테일 페이지 갈때 들고갈 movie_idx
     const handlePosterClick = (movie_idx) => {
-        console.log('Clicked poster index:', movie_idx);
         movieDetailStore.setMoiveIdx(movie_idx)
         router.push("/park/detail/detailPage")
     };
@@ -100,16 +96,18 @@ const UserContent = observer(() => {
     }
 
     return (
-        <User_Popular>
-            <User_Title>현재 {age}대 {gender}에게 인기있는 {thema.join(',')} </User_Title>  
-            <User_Poster_Box>
-                {user_list.slice(postersPerPage).map((k) => (
-                    <PosterWrapper key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>
-                        <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} />
-                    </PosterWrapper>
-                ))}
-            </User_Poster_Box>
-        </User_Popular>
+        <>
+            <User_Popular>
+                <User_Title>현재 {age}대 {gender}에게 인기있는 {thema.join(',')} </User_Title>
+                <User_Poster_Box>
+                    {user_list.slice(postersPerPage).map((k) => (
+                        <PosterWrapper key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>
+                            <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} />
+                        </PosterWrapper>
+                    ))}
+                </User_Poster_Box>
+            </User_Popular>
+        </>
     );
 });
 

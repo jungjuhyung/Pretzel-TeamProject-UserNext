@@ -1,6 +1,4 @@
-import { css } from '@emotion/react';
 import styled from '@emotion/styled';
-import { style } from '@mui/system';
 
 export const User_Popular = styled.div`
     margin-top: 100px;
