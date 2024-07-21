@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from 'react';
 import { Global } from '@emotion/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { observer } from 'mobx-react-lite';
 import { useStores } from '@/stores/StoreContext';
 import axios from 'axios';
@@ -12,15 +12,17 @@ import {
   Profile_image_Upload, CustomUploadButton, OkButton, CancelButton, Button_box,
   OptionBox, GenderSelect, Gender_Title, Gender, BirthSelect,
   Birth_Title, Birth, GenreSelect, Genre_Title, Genre_Box,
-  GenreCheckbox
+  GenreCheckbox , DeleteButton
 } from '../../../../styles/choi/profile/ProfileUpdateCSS';
 
 const ProfileUpdate = observer(() => {
   const { loginStore } = useStores();
-  const { profileStore } = useStores();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const profileId = searchParams.get('profileId');
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
-  const [fileName, setFileName] = useState(''); 
+  const [fileName, setFileName] = useState('');
   const [pvo, setPvo] = useState({
     profile_idx: '',
     name: '',
@@ -31,70 +33,73 @@ const ProfileUpdate = observer(() => {
     user_id: loginStore.user_id
   });
 
-  const router = useRouter();
   const token = loginStore.token;
-  const profileDetail = profileStore.profileDetail;
 
-  // loginStore.user_id가 변경될 때 pvo의 user_id 업데이트
   useEffect(() => {
-    setPvo(prevPvo => ({
-      ...prevPvo,
-      user_id: loginStore.user_id
-    }));
-  }, [loginStore.user_id]);
+    const fetchProfileDetail = async () => {
+      try {
+        const response = await axios.post('/profile/profile_detail', { profile_idx: profileId }, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
 
-  // profileDetail이 변경될 때 pvo 업데이트
-  useEffect(() => {
-    if (profileDetail) {
-      setPvo(prevPvo => ({
-        ...prevPvo,
-        name: profileDetail.name || '',
-        birth: profileDetail.birth || '',
-        gender: profileDetail.gender || '', 
-        like_thema: profileDetail.like_thema && (Array.isArray(profileDetail.like_thema) ? profileDetail.like_thema : profileDetail.like_thema.split(',')),
-      }));
+        const profileDetail = response.data;
 
-      // profileDetail.like_thema를 기반으로 선택된 장르 처리
-      if (profileDetail.like_thema && Array.isArray(profileDetail.like_thema)) {
-        setSelectedGenres(profileDetail.like_thema);
-      } else if (profileDetail.like_thema && typeof profileDetail.like_thema === 'string') {
-        setSelectedGenres(profileDetail.like_thema.split(','));
+        setPvo({
+          profile_idx: profileDetail.profile_idx,
+          name: profileDetail.name || '',
+          birth: profileDetail.birth || '',
+          gender: profileDetail.gender || '',
+          img_file: null,
+          like_thema: profileDetail.like_thema && (Array.isArray(profileDetail.like_thema) ? profileDetail.like_thema : profileDetail.like_thema.split(',')),
+          user_id: loginStore.user_id
+        });
+
+        if (profileDetail.like_thema && Array.isArray(profileDetail.like_thema)) {
+          setSelectedGenres(profileDetail.like_thema);
+        } else if (profileDetail.like_thema && typeof profileDetail.like_thema === 'string') {
+          setSelectedGenres(profileDetail.like_thema.split(','));
+        }
+
+        if (profileDetail.img_name) {
+          setProfileImage(`http://localhost:8080/common/image?imageName=${profileDetail.img_name}`);
+        }
+        setFileName(profileDetail.img_name);
+      } catch (error) {
+        console.error('Error fetching profile detail:', error);
       }
+    };
 
-      setFileName(profileDetail.img_name); // 프로필 이미지 파일 이름 설정
-    }
-  }, [profileDetail]);
+    fetchProfileDetail();
+  }, [profileId, token]);
 
-  // 파일 변경 시 처리 및 pvo의 img_file 업데이트
   const handleFileChange = (e) => {
     const file = e.target.files[0];
-    setProfileImage(file);
+    setProfileImage(URL.createObjectURL(file));
     setPvo(prevPvo => ({
       ...prevPvo,
       img_file: file,
     }));
-    setFileName(file.name); // 파일 이름 설정
+    setFileName(file.name);
   };
 
-  // 성별 변경 시 처리 및 pvo의 gender 업데이트
   const handleGenderChange = (e) => {
-    const genderValue = e.target.value;
+    const newGender = e.target.value;
+    console.log('Selected Gender:', newGender);
     setPvo(prevPvo => ({
       ...prevPvo,
-      gender: genderValue
+      gender: newGender
     }));
   };
 
-  // 생년월일 변경 시 처리 및 pvo의 birth 업데이트
   const handleBirthChange = (e) => {
-    const { name, value } = e.target;
+    const newBirth = e.target.value;
+    console.log('Selected Birth:', newBirth);
     setPvo(prevPvo => ({
       ...prevPvo,
-      [name]: value
+      birth: newBirth
     }));
   };
 
-  // 장르 체크박스 변경 시 처리
   const handleCheckboxChange = (genre) => {
     setSelectedGenres(prevSelectedGenres => {
       if (prevSelectedGenres.includes(genre.value)) {
@@ -105,46 +110,44 @@ const ProfileUpdate = observer(() => {
     });
   };
 
-  // 폼 제출 처리
   const handleFormSubmit = async () => {
     try {
-      let response;
       const updatedPvo = {
         ...pvo,
         user_id: loginStore.user_id,
-        like_thema: selectedGenres.join(','), // 배열을 쉼표로 구분된 문자열로 변환
+        like_thema: selectedGenres.join(','),
       };
-
-      // 제출할 FormData 준비
-      
+  
       const formData = new FormData();
       formData.append('name', updatedPvo.name);
-      formData.append('img_file', updatedPvo.img_file);
+      if (updatedPvo.img_file) formData.append('img_file', updatedPvo.img_file);
       formData.append('birth', updatedPvo.birth);
       formData.append('gender', updatedPvo.gender);
       formData.append('like_thema', updatedPvo.like_thema);
       formData.append('user_id', updatedPvo.user_id);
       formData.append('profile_idx', updatedPvo.profile_idx);
-
-      // 서버에 POST 요청 전송
-      response = await axios.post('/profile/profile_update', formData, {
+  
+      for (let pair of formData.entries()) {
+        console.log(`${pair[0]}: ${pair[1]}`);
+      }
+  
+      const response = await axios.post('/profile/profile_update', formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'multipart/form-data',
         }
       });
-
+  
       if (response.data === 1) {
         router.push("/choi/profile/profileSelect");
       } else {
-        console.log('프로필 수정 실패');
+        console.log('Profile update failed');
       }
     } catch (error) {
-      console.error('오류:', error);
+      console.error('Error:', error);
     }
   };
 
-  // 장르 리스트 정의
   const genres = [
     { display: "공포", value: "공포" },
     { display: "로맨스", value: "로맨스" },
@@ -154,6 +157,10 @@ const ProfileUpdate = observer(() => {
     { display: "애니", value: "애니메이션" }
   ];
 
+  const goDelete = () => {
+    router.push(`/choi/profile/profileDelete?profileId=${profileId}`);
+  }
+
   return (
     <>
       <Global styles={globalStyles} />
@@ -161,7 +168,7 @@ const ProfileUpdate = observer(() => {
         <Title>프로필 수정</Title>
         <Profile_Box>
           <Profile_Box_left>
-            <Profile_Image src={profileImage ? URL.createObjectURL(profileImage) : '/images/icons/profile.jpg'} />
+            <Profile_Image src={profileImage ? profileImage : '/images/icons/profile.jpg'} />
           </Profile_Box_left>
 
           <Profile_Box_Right>
@@ -169,7 +176,7 @@ const ProfileUpdate = observer(() => {
             <NickName_Input
               type='text'
               name='name'
-              placeholder={profileDetail ? profileDetail.name : ''}
+              placeholder="닉네임을 입력하세요"
               value={pvo.name}
               onChange={(e) => setPvo({ ...pvo, name: e.target.value })}
             />
@@ -186,8 +193,8 @@ const ProfileUpdate = observer(() => {
                 <Gender_Title>성별</Gender_Title>
                 <Gender value={pvo.gender} onChange={handleGenderChange}>
                   <option value="">성별 선택</option>
-                  <option value="남자">남성</option>
-                  <option value="여자">여성</option>
+                  <option value="남성">남성</option>
+                  <option value="여성">여성</option>
                 </Gender>
               </GenderSelect>
 
@@ -218,8 +225,9 @@ const ProfileUpdate = observer(() => {
         </Profile_Box>
 
         <Button_box>
-          <OkButton type='button' value={'완료'} disabled={selectedGenres.length === 0} onClick={handleFormSubmit} />
-          <CancelButton type='button' value={'취소'} />
+          <OkButton type='button' value={'완료'} onClick={handleFormSubmit} />
+          <CancelButton type='button' value={'취소'} onClick={() => router.back()} />
+          <DeleteButton type='button' value={'프로필 삭제'} onClick={goDelete} />
         </Button_box>
       </Background>
     </>

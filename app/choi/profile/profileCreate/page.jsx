@@ -29,6 +29,7 @@ const ProfileCreate = observer(() => {
     like_thema: [],
     user_id: loginStore.user_id
   });
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const router = useRouter();
   const token = loginStore.token;
@@ -39,6 +40,11 @@ const ProfileCreate = observer(() => {
       user_id: loginStore.user_id
     }));
   }, [loginStore.user_id]);
+
+  useEffect(() => {
+    const isValid = pvo.name && pvo.birth && pvo.gender && selectedGenres.length > 0;
+    setIsFormValid(isValid);
+  }, [pvo, selectedGenres]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -182,7 +188,7 @@ const ProfileCreate = observer(() => {
           </Profile_Box_Right>
         </Profile_Box>
         <Button_box>
-          <OkButton type='button' value={'완료'} disabled={selectedGenres.length === 0} onClick={handleFormSubmit} />
+          <OkButton type='button' value={'완료'} disabled={!isFormValid} onClick={handleFormSubmit} />
           <CancelButton type='button' value={'취소'} />
         </Button_box>
       </Background>

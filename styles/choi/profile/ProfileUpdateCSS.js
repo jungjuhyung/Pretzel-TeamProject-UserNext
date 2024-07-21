@@ -120,7 +120,7 @@ export const CustomUploadButton = styled.label`
 `;
 
 export const Button_box = styled.div`
-  width: 300px;
+  width: auto;
   height: 50px;
   display: flex;
   margin-top: 128px;
@@ -133,7 +133,7 @@ export const OkButton = styled.input`
   background-color: #f29a2e;
   border-radius: 50px;
   color: #FFFFFF;
-  font-size: 20px;
+  font-size: 19px;
   margin-right: 30px;
   border: none;
   cursor: pointer;
@@ -149,12 +149,25 @@ export const CancelButton = styled.input`
   height: 50px;
   border-radius: 50px;
   text-align: center;
+  margin-right: 30px;
   background-color: #3d3d3d;
   color: #FFFFFF;
-  font-size: 20px;
+  font-size: 19px;
   border: none;
   cursor: pointer;
 `;
+
+export const DeleteButton = styled.input`
+  width: auto;
+  height: 50px;
+  border-radius: 50px;
+  text-align: center;
+  background-color: #3d3d3d;
+  color: #FFFFFF;
+  font-size: 19px;
+  border: none;
+  cursor: pointer;
+`
 
 export const OptionBox = styled.div`
   margin-top: 15px;

@@ -291,9 +291,14 @@ export const PaginationButton = styled.button`
     }
 `;
 
-export const RealText = styled.div`
+export const RealText = styled.span`
     width: auto;
     height: auto;
     color: #ffffff;
     font-weight: 300;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    &:hover {
+        transform: scale(1.01);
+    }
 `
