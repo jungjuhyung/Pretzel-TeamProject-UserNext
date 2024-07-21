@@ -28,27 +28,25 @@ const ProfileSelect = observer(() => {
   };
 
   useEffect(() => {
-    const API_URL = '/profile/profile_list';
-    
     const fetchData = async () => {
       try {
-        const response = await axios.post(API_URL, {}, {
+        const response = await axios.post('/profile/profile_list', {}, {
           headers: { Authorization: `Bearer ${loginStore.token}` }
         });
-        console.log('결과 : ', response.data);
+        console.log('Profile list:', response.data);
         setProfile_list(response.data);
       } catch (error) {
-        console.error('프로필 목록 가져오기 에러:', error);
+        console.error('Error fetching profile list:', error);
       }
     };
 
     // 로그인 토큰이 있을 경우에만 데이터를 가져오도록 처리
-    if (loginStore.token !== "") {
+    if (loginStore.token) {
       fetchData(); // 컴포넌트가 마운트될 때 데이터 가져오기
     } else {
       router.push("/choi/login/loginPage"); // 로그인 페이지로 이동
     }
-  }, []);
+  }, [loginStore.token]);
 
   const goManagement = () => {
     router.push("/choi/profile/profileManagement");

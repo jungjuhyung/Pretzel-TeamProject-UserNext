@@ -48,7 +48,7 @@ export const Horror_box = styled.div`
   align-items: center;
   justify-content: center;
 
-  font-size: 60px;
+  font-size: 55px;
   
   background-color: #3d3d3d;
   color: #FFFFFF;
@@ -65,7 +65,7 @@ export const Crime_box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px;
+  font-size: 55px;
   background-color: #3d3d3d;
   color: #FFFFFF;
   transition: transform 0.3s ease;
@@ -81,7 +81,7 @@ export const Action_box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px;
+  font-size: 55px;
   background-color: #3d3d3d;
   color: #FFFFFF;
   transition: transform 0.3s ease;
@@ -97,7 +97,7 @@ export const Romance_box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px;
+  font-size: 55px;
   background-color: #3d3d3d;
   color: #FFFFFF;
   transition: transform 0.3s ease;
@@ -113,7 +113,7 @@ export const Comic_box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px;
+  font-size: 55px;
   background-color: #3d3d3d;
   color: #FFFFFF;
   transition: transform 0.3s ease;
@@ -129,7 +129,7 @@ export const Animation_box = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 60px;
+  font-size: 55px;
   background-color: #3d3d3d;
   color: #FFFFFF;
   transition: transform 0.3s ease;

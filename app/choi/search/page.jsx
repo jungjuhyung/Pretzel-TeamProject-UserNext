@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Global } from '@emotion/react';
 import axios from 'axios';
 import { observer } from "mobx-react-lite";
@@ -9,18 +9,19 @@ import {
     globalStyles, Background, KeywordBox, KeywordBox_Top, KeywordWrapper, Keyword, Icon,
     Bottom_left, Bottom_right, Recent_title, Recent_Keyword_Box, Recent_Keyword, Recent_Keyword_Item, DeleteIcon,
     RealTime_title, RealTime_Keyword_Box, RealTime_Keyword, SuggestionsBox, SearchText, SearchDetail, SearchPoster,
-    SearchNone, RealText, SuggestionsBoxHeader, CloseIcon , KeywordBox_Bottom ,SuggestionsBoxContent , SuggBox,SearchTitle
+    SearchNone, RealText, SuggestionsBoxHeader, CloseIcon , KeywordBox_Bottom ,SuggestionsBoxContent , SuggBox, SearchTitle
 } from '../../../styles/choi/search/SearchPageCSS';
 
-import { SearchContext } from "@/stores/StoreContext";
+import { useStores } from "@/stores/StoreContext";
 import { ColorOrange } from '@/styles/park/commons/commonsCSS';
 
 const searchIcon = '/images/icons/search.png';
 const deleteIcon = '/images/icons/delete.png';
 
 const Search = observer(() => {
+    const { movieDetailStore } = useStores();
     const router = useRouter();
-    const SearchStore = useContext(SearchContext)
+    const { SearchStore } = useStores();
 
     const [keywords, setKeywords] = useState([]);
     const [inputValue, setInputValue] = useState('');
@@ -29,21 +30,26 @@ const Search = observer(() => {
     const [showSuggestions, setShowSuggestions] = useState(false);
     const [result, setResult] = useState([]);
     const [cast, setCast] = useState([]);
-    const [page, setPage] = useState(1); // 현재 페이지
-    const perPage = 5; // 페이지당 결과 수
+    const [page, setPage] = useState(1);
+    const perPage = 5;
 
     const handleAddKeyword = (value) => {
         if (value.trim() !== '') {
             setKeywords([...keywords, value]);
-            setShowSuggestions(true); // 검색어 추가 시 모달 창 표시
-            setPage(1); // 검색어 추가 시 페이지 초기화
+            setShowSuggestions(true);
+            setPage(1);
         }
     };
 
     const handleDeleteKeyword = (index) => {
         const newKeywords = keywords.filter((_, i) => i !== index);
         setKeywords(newKeywords);
-        setShowSuggestions(false); // 검색어 삭제 시 모달 창 숨기기
+        setShowSuggestions(false);
+    };
+
+    const handleKeywordClick = (movie_idx) => {
+        movieDetailStore.setMoiveIdx(movie_idx);
+        router.push("/park/detail/detailPage");
     };
 
     const test = async (e) => {
@@ -57,12 +63,12 @@ const Search = observer(() => {
                 });
                 setCast(response.data.cast);
                 setResult(response.data.movie);
-                setShowSuggestions(true); // 검색 시 모달 창 표시
-                setPage(1); // 검색 시 페이지 초기화
+                setShowSuggestions(true);
+                setPage(1);
     
-                handleAddKeyword(inputValue); // Enter 키를 눌렀을 때 검색어 추가
+                handleAddKeyword(inputValue);
             } else {
-                setShowSuggestions(false); // 검색어가 비어 있을 때 모달 창 숨기기
+                setShowSuggestions(false);
             }
         }
     };
@@ -71,19 +77,19 @@ const Search = observer(() => {
         const fetchData = async () => {
             try {
                 const response = await axios.get("/search/realtime_list");
-                setRealSearch(response.data); // 데이터를 받아와서 realSearch 상태 업데이트
+                setRealSearch(response.data);
             } catch (error) {
                 console.error('Error fetching real time list:', error);
             }
         };
 
-        fetchData(); // 컴포넌트가 마운트될 때 데이터 가져오기
+        fetchData();
 
     }, []);
 
     const handleClearInput = () => {
         setInputValue('');
-        setShowSuggestions(false); // 입력 값 지우면 모달 창 숨기기
+        setShowSuggestions(false);
     };
 
     return (
@@ -97,7 +103,7 @@ const Search = observer(() => {
                                 placeholder='영화의 제목, 배우를 검색해보세요.'
                                 value={inputValue}
                                 onChange={(e) => setInputValue(e.target.value)}
-                                onKeyDown={test} // Enter 키 이벤트 처리
+                                onKeyDown={test}
                             />
                             <Icon src={searchIcon} alt="Search Icon" onClick={handleAddKeyword} />
                         </KeywordWrapper>
@@ -105,7 +111,6 @@ const Search = observer(() => {
                                 <DeleteIcon src={deleteIcon} alt="Delete Icon" onClick={handleClearInput} />
                             )}
                     </KeywordBox_Top>
-                    {/* 모달 창 */}
                     {showSuggestions && (
                         <SuggestionsBox>
                         <SuggestionsBoxHeader>
@@ -115,7 +120,7 @@ const Search = observer(() => {
                             <SuggestionsBoxContent>
                                 {result.slice((page - 1) * perPage, page * perPage).map(item => (
                                     <SearchDetail key={item.movie_id}>
-                                        <SuggBox>
+                                        <SuggBox onClick={() => handleKeywordClick(item.movie_idx)}>
                                             <SearchPoster src={`https://image.tmdb.org/t/p/w500/${item.poster_url}`} />
                                             <SearchTitle>{item.korea_title}</SearchTitle>
                                         </SuggBox>
@@ -123,7 +128,7 @@ const Search = observer(() => {
                                 ))}
                                 {cast.slice((page - 1) * perPage, page * perPage).map(item => (
                                     <SearchDetail key={item.cast_idx}>
-                                        <SuggBox>
+                                        <SuggBox onClick={() => handleKeywordClick(item.movie_idx)}>
                                             <SearchPoster src={`https://image.tmdb.org/t/p/w500/${item.poster_url}`} />
                                             <SearchTitle>{item.korea_title}</SearchTitle>
                                             <SearchText>{item.cast_name}</SearchText>
@@ -153,10 +158,9 @@ const Search = observer(() => {
                             <RealTime_Keyword_Box>
                                 {realSearch.map((item, index) => (
                                     <RealTime_Keyword key={item.movie_idx}>
-                                        <RealText><ColorOrange>{index + 1}</ColorOrange> &#160;&#160; {item.korea_title}</RealText>
+                                        <RealText onClick={() => handleKeywordClick(item.movie_idx)}><ColorOrange>{index + 1}</ColorOrange> &#160;&#160; {item.korea_title}</RealText>
                                     </RealTime_Keyword>
                                 ))}
-                                {/* 날짜 넣기 */}
                             </RealTime_Keyword_Box>
                         </Bottom_right>
                     </KeywordBox_Bottom>

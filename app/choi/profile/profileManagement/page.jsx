@@ -32,8 +32,8 @@ const ProfileManagement = observer(() => {
     fetchData();
   }, [loginStore.token]); // 의존성 배열 추가
 
-  const updateProfile = () => {
-    router.push(`/choi/profile/profileUpdate`);
+  const updateProfile = (profileId) => {
+    router.push(`/choi/profile/profileUpdate?profileId=${profileId}`);
   };
 
   return (
@@ -44,7 +44,7 @@ const ProfileManagement = observer(() => {
           <Title>프로필 관리</Title>
           <Profile_All_Box>
           {profile_list.map((item, index) => (
-              <Profile_Box key={item.profile_idx} onClick={() => updateProfile(item)}>
+              <Profile_Box key={item.profile_idx} onClick={() => updateProfile(item.profile_idx)}>
                 <Profile_Image imageUrl={item.img_name ? `http://localhost:8080/common/image?imageName=${item.img_name}` : '/images/samples/no_profile.png'} />
                 <Profile_Name>{item.name}</Profile_Name>
               </Profile_Box>

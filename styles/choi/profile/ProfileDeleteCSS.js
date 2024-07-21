@@ -16,7 +16,7 @@ export const globalStyles = css`
 
 export const Background = styled.div`
   width: 100%;
-  height: 1080px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -24,7 +24,7 @@ export const Background = styled.div`
 `;
 
 export const Title = styled.div`
-  width: 137px;
+  width: auto;
   height: 36px;
   font-size: 29px;
   color: #FFFFFF;
@@ -44,7 +44,7 @@ export const Profile_Delete_Box = styled.div`
 
 export const SubTitle = styled.div`
   margin-top: 70px;
-  width: 163px;
+  width: auto;
   height: 36px;
   font-size: 29px;
   font-weight: 800;
@@ -62,11 +62,12 @@ export const Delete_Info = styled.div`
 export const Password = styled.input`
   width: 300px;
   height: 50px;
-  padding : 15px 0px 15px 15px;
+  padding: 15px 0px 15px 15px;
   font-size: 20px;
   border-radius: 5px;
   margin-top: 11px;
-`
+  font-family: 'Pretendard-Regular', sans-serif;
+`;
 
 export const Button_Box = styled.div`
   width: 300px;
@@ -76,7 +77,7 @@ export const Button_Box = styled.div`
   justify-content: space-around;
 `
 
-export const Delete_button = styled.input`
+export const DeleteButton = styled.button`
   width: 140px;
   height: 50px;
   background-color: #f29a2e;
@@ -86,9 +87,10 @@ export const Delete_button = styled.input`
   text-align: center;
   font-weight: 600;
   border: none;
-`
+  cursor: pointer;
+`;
 
-export const Cancle_button = styled.input`
+export const CancelButton = styled.button`
   width: 140px;
   height: 50px;
   background-color: #3d3d3d;
@@ -98,9 +100,8 @@ export const Cancle_button = styled.input`
   text-align: center;
   font-weight: 600;
   border: none;
-
-`
-
+  cursor: pointer;
+`;
 
 
 
