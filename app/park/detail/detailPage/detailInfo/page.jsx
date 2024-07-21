@@ -31,6 +31,7 @@ const DetailInfo = () => {
 
     const API_URL = "/movie/"
     const API_URL_2 = "/moviedetail/"
+    const API_URL_3 = "/profile/"
 
     // 영화 상세 정보 가져오기
     async function movie_detail() {
@@ -125,12 +126,30 @@ const DetailInfo = () => {
     }
 
     // 영화 재생 버튼 누르기
-    const onClickPlay = () => {
-        if (loginStore.isLogin) {
-            router.push("/park/detail/moviePlayPage")
-        } else {
-            alert("로그인 후 이용 가능합니다.")
-            router.push("/choi/login/loginPage")
+    async function onClickPlay() {
+        try {
+            const response = await axios.post(API_URL_3 + "profile_detail",
+                {
+                    profile_idx: loginStore.profile_idx
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${loginStore.token}`
+                    }
+                }
+            );
+
+            if (!loginStore.isLogin) {
+                alert("로그인 후 이용 가능합니다.")
+                router.push("/choi/login/loginPage")
+            } else if (response.data.subs === null) {
+                alert("구독권 구매 후 이용 가능합니다.")
+                router.push("/toss/subscriptionPage")
+            } else {
+                router.push("/park/detail/moviePlayPage")
+            }
+        } catch (error) {
+            console.error('프로필 정보 가져오기 실패 : ', error);
         }
     }
 

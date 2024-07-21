@@ -69,8 +69,7 @@ export const EditSubscriptionBtn = styled.button`
 `;
 
 export const SubscriptionInfo = styled.p`
-    font-family: "Pretendard-Regular";
-    font-size: 15px;
+    font: 15px "Pretendard-Regular";
     color: #868686;
     margin-left: 10px;
 `;
@@ -81,3 +80,14 @@ export const Container = styled.div`
     align-items: center;
     margin: 5px 0;
 `;
+
+export const SubscriptionDate = styled.p`
+    font: 15px "Pretendard-Regular";
+    color: #ffffff;
+`
+
+export const SubsNext = styled.p`
+    font: 15px "Pretendard-Regular";
+    color: #f29a2e;
+    margin-top: 10px;
+`

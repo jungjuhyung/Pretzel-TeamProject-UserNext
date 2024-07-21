@@ -3,8 +3,8 @@
 
 import LoadingSpinner from "@/app/commons/loadingSpinner/page";
 import { useStores } from "@/stores/StoreContext";
-import { ColorOrange, Icon20px } from "@/styles/park/commons/commonsCSS";
-import { Container, EditSubscriptionBtn, ProfileContainer, ProfileImg, ProfileManageBtn, SubscriptionInfo, UserInfoContainer, UserName } from "@/styles/park/myPage/myProfileCSS";
+import { ColorGray, ColorOrange, Icon20px } from "@/styles/park/commons/commonsCSS";
+import { Container, EditSubscriptionBtn, ProfileContainer, ProfileImg, ProfileManageBtn, SubscriptionDate, SubscriptionInfo, SubsNext, UserInfoContainer, UserName } from "@/styles/park/myPage/myProfileCSS";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -58,7 +58,7 @@ const MyProfile = () => {
     }
 
     const change_sub = () => {
-        router.push("/park/myPage/subscriptionPage")
+        router.push("/toss/subscriptionPage")
     }
 
     const onClickManageBtn = () => {
@@ -79,9 +79,12 @@ const MyProfile = () => {
 
                 <Container>
                     <Icon20px src='/images/icons/ticket.png' />
-                    <SubscriptionInfo>현재 사용중인 구독권 &#160;<ColorOrange>{myProfile.subs}</ColorOrange></SubscriptionInfo>
+                    <SubscriptionInfo>현재 사용중인 구독권 &#160;<ColorOrange>{myProfile.subs ? myProfile.subs : "없음"}</ColorOrange></SubscriptionInfo>
                     <EditSubscriptionBtn onClick={change_sub}>구독권 변경하기</EditSubscriptionBtn> {/* 구독권 변경 및 결제 버튼 */}
                 </Container>
+
+                {myProfile.subs_date === null ? <></> : <SubscriptionDate>구독기간 &#160;<ColorGray>{myProfile.subs_date.slice(0, 10)}</ColorGray> 까지</SubscriptionDate>}
+                {myProfile.subs_update === "" ? <></> : <SubsNext>다음달 구독권이 존재합니다.</SubsNext>}
 
             </UserInfoContainer>
 
