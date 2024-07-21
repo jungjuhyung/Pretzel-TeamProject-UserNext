@@ -3,6 +3,7 @@
 
 import LoadingSpinner from "@/app/commons/loadingSpinner/page";
 import { useStores } from "@/stores/StoreContext";
+import { Empty_Data } from "@/styles/park/commons/commonsCSS";
 import { MovieThumbnail, MovieTitle, OneMovieContainer, ViewingDate, ViewingHistoryContainer } from "@/styles/park/myPage/viewingHistoryCSS";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -61,15 +62,23 @@ const ViewingHistory = () => {
 
 
     return (
-        <ViewingHistoryContainer>
-            {watchHistory.map((k) => (
-                <OneMovieContainer key={k.movie_idx} onClick={() => onClickMovie(k.movie_idx)}>
-                    <MovieThumbnail src={`https://image.tmdb.org/t/p/w780/${k.backdrop_url}`} />
-                    <MovieTitle>{k.korea_title}</MovieTitle>
-                    <ViewingDate>{k.watch_date.slice(0, 10)} 시청</ViewingDate>
-                </OneMovieContainer>
-            ))}
-        </ViewingHistoryContainer>
+        <>
+            {watchHistory.length > 0 ?
+                <>
+                    <ViewingHistoryContainer>
+                        {watchHistory.map((k) => (
+                            <OneMovieContainer key={k.movie_idx} onClick={() => onClickMovie(k.movie_idx)}>
+                                <MovieThumbnail src={`https://image.tmdb.org/t/p/w780/${k.backdrop_url}`} />
+                                <MovieTitle>{k.korea_title}</MovieTitle>
+                                <ViewingDate>{k.watch_date.slice(0, 10)} 시청</ViewingDate>
+                            </OneMovieContainer>
+                        ))}
+                    </ViewingHistoryContainer>
+                </>
+                :
+                <Empty_Data>영화 시청 내역이 없습니다.</Empty_Data>
+            }
+        </>
     )
 }
 

@@ -15,8 +15,8 @@ export const ReviewBox = styled.div`
     height: 480px;
     position: fixed;
     border-radius: 5px;
-    left: 50%;
     top: calc(50% - 240px);
+    left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;

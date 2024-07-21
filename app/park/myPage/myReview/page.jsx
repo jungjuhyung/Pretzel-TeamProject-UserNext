@@ -3,6 +3,7 @@
 
 import LoadingSpinner from "@/app/commons/loadingSpinner/page";
 import { useStores } from "@/stores/StoreContext";
+import { Empty_Data } from "@/styles/park/commons/commonsCSS";
 import { OneMovieContainer } from "@/styles/park/myPage/movieWishListCSS";
 import { Background, Cards, MovieTitle, MyReviewContainer, ReviewContent, StarRating } from "@/styles/park/myPage/myReviewCSS";
 import axios from "axios";
@@ -67,38 +68,44 @@ const MyReview = () => {
 
     return (
         <>
-            <MyReviewContainer>
-                {myReview.map((k) => (
-                    <OneMovieContainer key={k.review_idx} onClick={() => onClickReview(k.movie_idx)}>
-                        <Cards>
-                            <ReviewContent>{k.content}</ReviewContent>
-                            <Background src={`https://image.tmdb.org/t/p/w500/${k.movie.poster_url}`}></Background>
-                        </Cards>
-                        <MovieTitle>{k.movie.korea_title}</MovieTitle>
-                        <StarRating>
-                            {k.rating === '5' ? (
-                                '★★★★★'
-                            ) : k.rating === '4' ? (
-                                <>
-                                    {'★★★★'}<Inactive>★</Inactive>
-                                </>
-                            ) : k.rating === '3' ? (
-                                <>
-                                    {'★★★'}<Inactive>★★</Inactive>
-                                </>
-                            ) : k.rating === '2' ? (
-                                <>
-                                    {'★★'}<Inactive>★★★</Inactive>
-                                </>
-                            ) : (
-                                <>
-                                    {'★'}<Inactive>★★★★</Inactive>
-                                </>
-                            )}
-                        </StarRating>
-                    </OneMovieContainer>
-                ))}
-            </MyReviewContainer>
+            {myReview.length > 0 ?
+                <>
+                    <MyReviewContainer>
+                        {myReview.map((k) => (
+                            <OneMovieContainer key={k.review_idx} onClick={() => onClickReview(k.movie_idx)}>
+                                <Cards>
+                                    <ReviewContent>{k.content}</ReviewContent>
+                                    <Background src={`https://image.tmdb.org/t/p/w500/${k.movie.poster_url}`}></Background>
+                                </Cards>
+                                <MovieTitle>{k.movie.korea_title}</MovieTitle>
+                                <StarRating>
+                                    {k.rating === '5' ? (
+                                        '★★★★★'
+                                    ) : k.rating === '4' ? (
+                                        <>
+                                            {'★★★★'}<Inactive>★</Inactive>
+                                        </>
+                                    ) : k.rating === '3' ? (
+                                        <>
+                                            {'★★★'}<Inactive>★★</Inactive>
+                                        </>
+                                    ) : k.rating === '2' ? (
+                                        <>
+                                            {'★★'}<Inactive>★★★</Inactive>
+                                        </>
+                                    ) : (
+                                        <>
+                                            {'★'}<Inactive>★★★★</Inactive>
+                                        </>
+                                    )}
+                                </StarRating>
+                            </OneMovieContainer>
+                        ))}
+                    </MyReviewContainer>
+                </>
+                :
+                <Empty_Data>리뷰 내역이 없습니다.</Empty_Data>
+            }
         </>
     )
 }

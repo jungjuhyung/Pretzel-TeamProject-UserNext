@@ -83,3 +83,10 @@ export const Loading = styled.div`
     align-items: center;
     justify-content: center;
 `
+
+export const Empty_Data = styled.div`
+    color: #ffffff;
+    font: 600 20px "Pretendard-Regular";
+    text-align: center;
+    margin-top: 100px;
+`

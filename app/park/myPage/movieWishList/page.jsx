@@ -3,6 +3,7 @@
 
 import LoadingSpinner from "@/app/commons/loadingSpinner/page";
 import { useStores } from "@/stores/StoreContext";
+import { Empty_Data } from "@/styles/park/commons/commonsCSS";
 import { MoviePoster, MovieTitle, MovieWishListContainer, OneMovieContainer } from "@/styles/park/myPage/movieWishListCSS";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -25,7 +26,7 @@ const MovieWishList = () => {
 
     const API_URL = "/mypage/"
 
-    // 영화 시청 내역 가져오기
+    // 영화 위시 내역 가져오기
     async function wishlist() {
         setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
 
@@ -60,14 +61,22 @@ const MovieWishList = () => {
     }
 
     return (
-        <MovieWishListContainer>
-            {wishMovies.map((k) => (
-                <OneMovieContainer key={k.movie_idx} onClick={() => onClickWish(k.movie_idx)}>
-                    <MoviePoster src={`https://image.tmdb.org/t/p/w500/${k.poster_url}`} />
-                    <MovieTitle>{k.korea_title}</MovieTitle>
-                </OneMovieContainer>
-            ))}
-        </MovieWishListContainer>
+        <>
+            {wishMovies.length > 0 ?
+                <>
+                    <MovieWishListContainer>
+                        {wishMovies.map((k) => (
+                            <OneMovieContainer key={k.movie_idx} onClick={() => onClickWish(k.movie_idx)}>
+                                <MoviePoster src={`https://image.tmdb.org/t/p/w500/${k.poster_url}`} />
+                                <MovieTitle>{k.korea_title}</MovieTitle>
+                            </OneMovieContainer>
+                        ))}
+                    </MovieWishListContainer>
+                </>
+                :
+                <Empty_Data>보고싶은 영화를 추가해 주세요.</Empty_Data>
+                }
+        </>
     )
 }
 

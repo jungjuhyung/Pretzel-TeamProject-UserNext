@@ -12,7 +12,6 @@ import ReportWrite from "../reportWrite/page";
 import loginStore from "@/stores/loginStore";
 
 const Review = () => {
-    const router = useRouter();
     const { movieDetailStore } = useStores();
 
     // 영화 상세 정보
@@ -36,6 +35,7 @@ const Review = () => {
     }, []);
 
     const API_URL = "/movie/"
+    const API_URL_2 = "/moviedetail/"
 
     // 영화 리뷰 정보 가져오기
     async function movie_review_list() {
@@ -68,18 +68,48 @@ const Review = () => {
     };
 
     // 신고 버튼 누르면
-    const onClickReport = (review_idx, r_profile_idx) => {
+    async function onClickReport(review_idx, r_profile_idx) {
         if (r_profile_idx === loginStore.profile_idx) {
             alert("자신의 리뷰는 신고할 수 없습니다.")
         } else {
-            setReport(!report);
-            setReviewIdx(review_idx)
+            // 신고 작성 여부
+            try {
+                const response = await axios.get(API_URL_2 + "report/reportChk", {
+                    params: {
+                        profile_idx: loginStore.profile_idx,
+                        review_idx: review_idx
+                    }
+                });
+                if (response.data === 1) {
+                    alert("이미 신고한 리뷰입니다.")
+                } else {
+                    setReport(!report);
+                    setReviewIdx(review_idx)
+                }
+            } catch (error) {
+                console.error('신고 작성 여부 가져오기 실패 : ', error);
+            }
         }
     }
 
     // 리뷰 작성 버튼 누르면
-    const onClickReview = () => {
-        setReview(!review);
+    async function onClickReview() {
+        // 리뷰 작성 여부
+        try {
+            const response = await axios.get(API_URL_2 + "review/reviewChk", {
+                params: {
+                    profile_idx: loginStore.profile_idx,
+                    movie_idx: movieDetailStore.movie_idx
+                }
+            });
+            if (response.data === 1) {
+                alert("이미 작성한 리뷰가 있습니다.")
+            } else {
+                setReview(!review);
+            }
+        } catch (error) {
+            console.error('리뷰 작성 여부 가져오기 실패 : ', error);
+        }
     }
 
     // 리뷰를 추가한 후 리뷰 목록을 갱신하는 함수

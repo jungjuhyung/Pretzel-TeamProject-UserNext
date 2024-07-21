@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Background_layout, ReviewTitle, StarTitle, StarRating, Star, ReviewBox, Review_Content, SubmitBtn, Textlength } from "@/styles/park/detailPage/reviewWriteCSS";
 import { useStores } from "@/stores/StoreContext";
 import axios from "axios";
+import { observer } from "mobx-react-lite";
 
-const ReviewWrite = ({ setReview, handleAddReview }) => {
+const ReviewWrite = observer(({ setReview, handleAddReview }) => {
     const { loginStore, movieDetailStore } = useStores();
 
     // 리뷰 내용
@@ -104,6 +105,6 @@ const ReviewWrite = ({ setReview, handleAddReview }) => {
             </Background_layout>
         </>
     )
-}
+})
 
 export default ReviewWrite;

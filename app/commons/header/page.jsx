@@ -6,7 +6,6 @@ import { HeaderContainer, HeaderLeft, HeaderRight, LoginBtn, LogoutBtn, Menus, S
 import { useStores } from '@/stores/StoreContext';
 import { ColorOrange } from '@/styles/park/commons/commonsCSS';
 import axios from 'axios';
-import LoadingSpinner from '../loadingSpinner/page';
 
 const Header = observer(() => {
     const [scrollY, setScrollY] = useState(0);
