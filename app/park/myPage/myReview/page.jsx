@@ -15,7 +15,7 @@ const MyReview = () => {
     const router = useRouter();
 
     // 영화 리뷰 내역
-    const [myReview, setMyReview] = useState([]);
+    const [myReview, setMyReview] = useState({});
 
     // 로딩 상태
     const [isLoading, setIsLoading] = useState(true);
@@ -27,16 +27,17 @@ const MyReview = () => {
 
     const API_URL = "/mypage/"
 
-    // 영화 시청 내역 가져오기
+    // 리뷰 내역 가져오기
     async function reviewlist() {
         setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
 
         try {
-            const response = await axios.post(API_URL + "reviewlist",
+            const response = await axios.get(API_URL + "reviewlist",
                 {
-                    profile_idx: loginStore.profile_idx
-                },
-                {
+                    params: {
+                        profile_idx: loginStore.profile_idx,
+                        cPage: "1"
+                    },
                     headers: {
                         Authorization: `Bearer ${loginStore.token}`
                     }
@@ -68,10 +69,10 @@ const MyReview = () => {
 
     return (
         <>
-            {myReview.length > 0 ?
+            {myReview.review_list.length > 0 ?
                 <>
                     <MyReviewContainer>
-                        {myReview.map((k) => (
+                        {myReview.review_list.map((k) => (
                             <OneMovieContainer key={k.review_idx} onClick={() => onClickReview(k.movie_idx)}>
                                 <Cards>
                                     <ReviewContent>{k.content}</ReviewContent>
