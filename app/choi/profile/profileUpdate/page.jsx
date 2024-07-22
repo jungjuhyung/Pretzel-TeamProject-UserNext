@@ -12,7 +12,7 @@ import {
   Profile_image_Upload, CustomUploadButton, OkButton, CancelButton, Button_box,
   OptionBox, GenderSelect, Gender_Title, Gender, BirthSelect,
   Birth_Title, Birth, GenreSelect, Genre_Title, Genre_Box,
-  GenreCheckbox , DeleteButton
+  GenreCheckbox, DeleteButton
 } from '../../../../styles/choi/profile/ProfileUpdateCSS';
 
 const ProfileUpdate = observer(() => {
@@ -83,8 +83,8 @@ const ProfileUpdate = observer(() => {
   };
 
   const handleGenderChange = (e) => {
-    const newGender = e.target.value;
     console.log('Selected Gender:', newGender);
+    const newGender = e.target.value === '남자' ? 1 : 0;
     setPvo(prevPvo => ({
       ...prevPvo,
       gender: newGender
@@ -138,10 +138,12 @@ const ProfileUpdate = observer(() => {
         }
       });
   
+      console.log('Response:', response.data);  // 서버 응답을 로그로 확인합니다.
+  
       if (response.data === 1) {
         router.push("/choi/profile/profileSelect");
       } else {
-        console.log('Profile update failed');
+        console.log('Profile update failed');  // 실패 시 메시지를 로그로 남깁니다.
       }
     } catch (error) {
       console.error('Error:', error);

@@ -22,6 +22,13 @@ const FAQPage = () =>{
     router.push("/choi/servicecenter/contactPage")
   }
 
+  const goPayinfo = () => {
+    router.push("/choi/servicecenter/payinfoPage")
+  }
+
+  const goAnnouncenter = () => {
+    router.push("/choi/servicecenter/announcementPage")
+  }
 
   return(
     <>
@@ -30,9 +37,8 @@ const FAQPage = () =>{
           <Title>FAQ</Title>
           <Genre_box>
             <Payment onClick={goPayment} >결제 / 환불</Payment>
-            <Error onClick={goPayment} >공 지 사 항</Error>
-            <Rate_Plan onClick={goPayment} >요 금 제</Rate_Plan>
-            <Inquiry onClick={goPayment} >계 정 문 의</Inquiry>
+            <Rate_Plan onClick={goPayinfo} >구독권</Rate_Plan>
+            <Inquiry onClick={goAnnouncenter} >계 정 문 의</Inquiry>
           </Genre_box>
           <Inquiry_Button type='button' value={"1:1문의하기"} onClick={goContactPage} />
         </Background>

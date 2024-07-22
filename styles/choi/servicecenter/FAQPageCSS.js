@@ -26,10 +26,9 @@ export const Background = styled.div`
 
 export const Genre_box = styled.div`
   width: 973px;
-  height: 310px;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
+  height: auto;
+  display: flex;
+  flex-direction: row;
   gap: 30px;
   margin-top: 68px;
 `
@@ -116,7 +115,7 @@ export const Inquiry = styled.div`
 `
 
 export const Inquiry_Button = styled.input`
-  margin-top: 50px;
+  margin-top: 60px;
   width: 318px;
   height: 83px;
   display: flex;

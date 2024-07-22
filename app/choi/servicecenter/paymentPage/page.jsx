@@ -1,7 +1,8 @@
 "use client";
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Global } from '@emotion/react';
+import axios from 'axios';
 
 // 스타일 import
 import {
@@ -16,6 +17,21 @@ import {
 const PaymentPage = () => {
   // 상태 관리
   const [openIndexes, setOpenIndexes] = useState([]);
+  const [content, setContent] = useState([]);
+
+  useEffect(() => {
+    const ContentData = async () => {
+      try {
+        const response = await axios.get("http://localhost:8080/notice/faq_list?type=결제/환불");
+        console.log(response.data); // 응답 데이터 구조 확인
+        setContent(response.data.body);  // 응답 데이터 형식에 맞게 수정
+      } catch (error) {
+        console.error('데이터 가져오기 오류 :', error);
+      }
+    };
+  
+    ContentData(); 
+  }, []);
 
   // 아코디언 열고 닫기 함수
   const toggleOpen = (index) => {
@@ -34,15 +50,14 @@ const PaymentPage = () => {
       <Background>
         {/* 타이틀 */}
         <Title>결제 / 환불</Title>
-        {/* 질문과 답변 매핑 */}
-        {['결제한거 환불 가능한가요?', '환불 진짜 안되나요?', '결제 취소 진짜 안되나요??'].map((question, index) => (
-          <Inquiry_Box key={index}>
-            {/* 질문 상자 상단 */}
+
+       {/* 질문과 답변 */}
+        {content.map((k, index) => (
+          <Inquiry_Box key={k.faq_idx}>
             <Inquiry_Box_Top onClick={() => toggleOpen(index)} isOpen={openIndexes.includes(index)}>
-              {question}
+              {k.title}
             </Inquiry_Box_Top>
-            {/* 질문 상자 하단 (답변) */}
-            <Inquiry_Box_Bottom isOpen={openIndexes.includes(index)}>A.아니요</Inquiry_Box_Bottom>
+            <Inquiry_Box_Bottom isOpen={openIndexes.includes(index)}>{k.content}</Inquiry_Box_Bottom>
           </Inquiry_Box>
         ))}
       </Background>
