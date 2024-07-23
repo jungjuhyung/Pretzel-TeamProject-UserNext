@@ -6,7 +6,7 @@ import '@/styles/commons/commons.css'
 
 import { Actor_Name, DeepFace_Container, DeepFace_SubTitle, DeepFace_Title, Description, Emotion, Emotion_Container, Emotion_Select, Person_Container, Subtitle, Timeline_Button, TimeLine_Container, Video } from "@/styles/park/moviePlayPageCSS";
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { use, useEffect, useRef, useState } from 'react';
 import LoadingSpinner from '@/app/commons/loadingSpinner/page';
 import { useStores } from '@/stores/StoreContext';
 import { All_Container, Person_Name, Person_Role, PersonInfo_Container, Proifle_Img } from '@/styles/park/detailPage/staffAndCastCSS';
@@ -52,6 +52,9 @@ const MoviePlayPage = () => {
 
     // 감정 타임라인 리스트
     const [emotionTimeList, setEmotionTimeList] = useState([])
+
+    // 프로필 정보 - 구독권 정보보기 위함
+    const [profileData, setProfileData] = useState({})
 
     // 로딩 상태
     const [isLoading, setIsLoading] = useState(true);
@@ -131,6 +134,10 @@ const MoviePlayPage = () => {
                 }
             );
 
+            if (response2.data) {
+                setProfileData(response2.data);
+            }
+
             // 영화 시청자 데이터 쌓기
             const response3 = await axios.get(API_URL + "watch_movie", {
                 params: {
@@ -177,7 +184,7 @@ const MoviePlayPage = () => {
 
 
             // 회원의 구독권이 프리미엄이라면 ai 기능 실행
-            if (response2.data.subs === "베이직") {
+            if (response2.data.subs === "프리미엄") {
 
                 // 애니메이션은 deepface ai 없음
                 if (!/^pretzel-ani\/.*$/.test(response.movie_url)) {
@@ -243,21 +250,49 @@ const MoviePlayPage = () => {
         )
     }
 
+    // 시간 차이를 계산하는 함수
+    const timeDifferenceInSeconds = (time1, time2) => {
+        const [h1, m1, s1] = time1.split(':').map(Number);
+        const [h2, m2, s2] = time2.split(':').map(Number);
+
+        const totalSeconds1 = h1 * 3600 + m1 * 60 + s1;
+        const totalSeconds2 = h2 * 3600 + m2 * 60 + s2;
+
+        return Math.abs(totalSeconds1 - totalSeconds2);
+    };
+
     // 감정 select 값 변경
     const onChangeEmotion = (e) => {
         if (e.target.value === "none") {
             setEmotionTimeList([]);
         } else {
             setEmotionType(e.target.value)
-            setEmotionTimeList(emotionData.filter(k => k.label === emotionType))
+
+            // 감정 데이터 필터링 및 시간 차이에 따른 필터링 적용
+            // reduce를 통해 이전 값과 현재 값을 비교하여 시간이 1분 이하로 차이나면 현재 값 제거
+            const filteredEmotionData = emotionData
+                .filter(k => k.label === e.target.value)
+                .reduce((acc, current, index) => {
+                    if (index === 0) {
+                        acc.push(current);
+                    } else {
+                        const previous = acc[acc.length - 1];
+                        if (timeDifferenceInSeconds(previous.time.slice(0, 8), current.time.slice(0, 8)) > 60) {
+                            acc.push(current);
+                        }
+                    }
+                    return acc;
+                }, []);
+
+            console.log("필터 결과")
+            console.log(filteredEmotionData)
+
+            setEmotionTimeList(filteredEmotionData);
         }
     }
 
-    // 배열.reduce(callback(누적값, 현재값, 인덱스, 요소), 초기값);
-
     // 감정 선택 시 나오는 타임라인 버튼
     const show_timeline_emotion = () => {
-        console.log(emotionType)
         return (
             <>
                 <Actor_Name>{emotionType === "hap" ? "기쁨" :
@@ -318,7 +353,7 @@ const MoviePlayPage = () => {
                     </DeepFace_Container>
                 </> : <></>}
 
-            {emotionState ?
+            {emotionState && profileData.subs === "프리미엄" ?
                 <>
                     <Emotion_Container>
                         <DeepFace_Title>원하는 감정을 클릭해 주세요.</DeepFace_Title>

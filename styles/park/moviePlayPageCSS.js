@@ -9,11 +9,11 @@ export const Subtitle = styled.track`
 `
 
 export const DeepFace_Container = styled.div`
-    margin-top: 50px;
+    margin: 50px 0;
 `
 
 export const Emotion_Container = styled.div`
-    margin: 100px 0;
+    margin: 50px 0 100px 0;
     display: flex;
     flex-direction: column;
     align-items: center;
