@@ -1,10 +1,10 @@
 import { NoPage, Page, Pagings } from "@/styles/park/commons/commonsCSS";
 import { observer } from "mobx-react-lite";
 
-const Paging = observer(({ pages, paging, review_list }) => {
+const Paging = observer(({ pages, paging, question }) => {
     
     function handlePaging(cPage) {
-        review_list(cPage);
+        question(cPage);
     }
 
     return (

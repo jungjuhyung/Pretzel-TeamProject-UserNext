@@ -96,8 +96,8 @@ export const Pagings = styled.ol`
     color: #ffffff;
     display: flex;
     flex-direction: row;
-    margin: 50px 0 100px 0;
-    justify-content: space-between;
+    margin-top: 50px;
+    justify-content: center;
 `
 
 export const Page = styled.span`
