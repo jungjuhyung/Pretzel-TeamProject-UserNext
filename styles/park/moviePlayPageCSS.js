@@ -97,3 +97,13 @@ export const Emotion_Select = styled.select`
 
 export const Emotion = styled.option`
 `
+
+export const AnxCaption = styled.div`
+    position: fixed;
+    top: 100px;
+    left: calc(50% - 100px);
+    width: 200px;
+    color: #ffffff;
+    font: 50px "Pretendard-Regular";
+    background-color: rgba(0, 0, 0, 0.5);
+`

@@ -4,7 +4,7 @@ import '@/styles/commons/reset.css'
 import '@/styles/commons/font.css'
 import '@/styles/commons/commons.css'
 
-import { Actor_Name, DeepFace_Container, DeepFace_SubTitle, DeepFace_Title, Description, Emotion, Emotion_Container, Emotion_Select, Person_Container, Subtitle, Timeline_Button, TimeLine_Container, Video } from "@/styles/park/moviePlayPageCSS";
+import { Actor_Name, AnxCaption, DeepFace_Container, DeepFace_SubTitle, DeepFace_Title, Description, Emotion, Emotion_Container, Emotion_Select, Person_Container, Subtitle, Timeline_Button, TimeLine_Container, Video } from "@/styles/park/moviePlayPageCSS";
 import axios from 'axios';
 import { use, useEffect, useRef, useState } from 'react';
 import LoadingSpinner from '@/app/commons/loadingSpinner/page';
@@ -55,6 +55,9 @@ const MoviePlayPage = () => {
 
     // 프로필 정보 - 구독권 정보보기 위함
     const [profileData, setProfileData] = useState({})
+
+    // anx 타임라인 리스트
+    const [anxList, setAnxList] = useState([])
 
     // 로딩 상태
     const [isLoading, setIsLoading] = useState(true);
@@ -161,6 +164,7 @@ const MoviePlayPage = () => {
                     if (response4.data) {
                         console.log(response4.data)
                         setEmotionData(response4.data)
+                        setAnxList(response4.data.filter(k => k.label === "anx"))
                     }
                 } catch (error) {
                     console.error('감정분석 가져오기 실패 : ', error);
@@ -308,8 +312,22 @@ const MoviePlayPage = () => {
         )
     }
 
+   /*  const anx_caption = () => {
+        return (
+            <>
+                {anxList.map((k) => (
+                    (currentTime - 10 < changeSecondTime(k.time.slice(0, k.time.indexOf(' ')))) ?
+                        <AnxCaption key={k.time}>깜놀주의</AnxCaption>
+                        : <></>
+                ))}
+            </>
+        )
+    } */
+
     return (
         <>
+            {/* {anx_caption()} */}
+
             <Video
                 ref={videoRef}
                 onTimeUpdate={updateCurrentTime}
@@ -332,7 +350,7 @@ const MoviePlayPage = () => {
                 }
             </Video>
 
-            {deepfaceState ?
+            {deepfaceState && profileData.subs === "프리미엄" ?
                 <>
                     <DeepFace_Container>
                         <DeepFace_Title>원하는 배우를 클릭해 주세요.</DeepFace_Title>
