@@ -2,6 +2,7 @@
 "use client";
 
 import LoadingSpinner from "@/app/commons/loadingSpinner/page";
+import Paging from "@/app/commons/paging/page";
 import { useStores } from "@/stores/StoreContext";
 import { Empty_Data } from "@/styles/park/commons/commonsCSS";
 import { OneMovieContainer } from "@/styles/park/myPage/movieWishListCSS";
@@ -20,6 +21,10 @@ const MyReview = () => {
     // 로딩 상태
     const [isLoading, setIsLoading] = useState(true);
 
+    // 페이징용
+    const [pagingInfo, setPagingInfo] = useState({});
+    const [pages, setPages] = useState([]);
+
     // 처음 렌더링 될 때 실행
     useEffect(() => {
         reviewlist()
@@ -28,23 +33,36 @@ const MyReview = () => {
     const API_URL = "/mypage/"
 
     // 리뷰 내역 가져오기
-    async function reviewlist() {
+    async function reviewlist(paging_page) {
         setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
+
+        let cPage = "1"
+        if (paging_page !== null) {
+            cPage = paging_page
+        }
 
         try {
             const response = await axios.get(API_URL + "reviewlist",
                 {
                     params: {
                         profile_idx: loginStore.profile_idx,
-                        cPage: "1"
+                        cPage: cPage
                     },
                     headers: {
                         Authorization: `Bearer ${loginStore.token}`
                     }
                 });
+
             if (response.data) {
                 setMyReview(response.data);
+                setPagingInfo(response.data.paging);
             }
+
+            let ex_page = []
+            for (let k = response.data.paging.beginBlock; k <= response.data.paging.endBlock; k++) {
+                ex_page.push(k);
+            }
+            setPages(ex_page)
         } catch (error) {
             console.error('리뷰내역 가져오기 실패 : ', error);
         } finally {
@@ -103,6 +121,7 @@ const MyReview = () => {
                             </OneMovieContainer>
                         ))}
                     </MyReviewContainer>
+                    <Paging pages={pages} paging={pagingInfo} review_list={myReview.review_list} />
                 </>
                 :
                 <Empty_Data>리뷰 내역이 없습니다.</Empty_Data>
