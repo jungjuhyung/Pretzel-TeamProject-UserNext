@@ -16,7 +16,7 @@ export const globalStyles = css`
 
 export const Background = styled.div`
   width: 100%;
-  height: 1080px;
+  height: auto;
   display: flex;
   flex-direction: column;
   

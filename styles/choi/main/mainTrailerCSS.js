@@ -49,7 +49,6 @@ export const Title = styled.div`
     margin-left: 30px;
 `;
 
-
 export const AgeIcon = styled.img`
     width: 45px; 
     height: 45px; 
@@ -91,4 +90,27 @@ export const Info_button = styled.input`
     color: #FFFFFF; 
     margin-left: 20px;
     margin-right: 30px;
+`;
+
+export const MuteButton = styled.button`
+    background: none;
+    border: 1px solid white;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    outline: none;
+    width: 30px;
+    height: 30px;
+    background-image: url('/images/VolumeOff.png'); /* 기본 상태 이미지 */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    &:focus {
+        outline: none;
+    }
+
+    &.muted {
+        background-image: url('/images/VolumeOn.png'); /* 음소거 상태 이미지 */
+    }
 `;

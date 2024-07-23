@@ -4,7 +4,7 @@ import axios from 'axios';
 import { observer } from 'mobx-react-lite';
 import LoadingSpinner from '../../commons/loadingSpinner/page';
 
-import { User_Popular, User_Title, User_Poster_Box, PosterWrapper, Poster } from '@/styles/choi/main/mainUserContent';
+import { User_Popular, User_Title, User_Poster_Box, PosterWrapper, Poster, Movie_Title } from '@/styles/choi/main/mainUserContent';
 import { useStores } from '@/stores/StoreContext';
 import { useRouter } from 'next/navigation';
 
@@ -15,10 +15,9 @@ const UserContent = observer(() => {
     const [gender, setGender] = useState();
     const [thema, setThema] = useState([]);
     const postersPerPage = 5; // 페이지당 포스터 수
-    const { loginStore } = useStores([]);
-
+    const { loginStore } = useStores();
     const { movieDetailStore } = useStores();
-    const router = useRouter()
+    const router = useRouter();
 
     useEffect(() => {
         statistics_list();
@@ -87,8 +86,8 @@ const UserContent = observer(() => {
 
     // 나중에 디테일 페이지 갈때 들고갈 movie_idx
     const handlePosterClick = (movie_idx) => {
-        movieDetailStore.setMoiveIdx(movie_idx)
-        router.push("/park/detail/detailPage")
+        movieDetailStore.setMoiveIdx(movie_idx);
+        router.push("/park/detail/detailPage");
     };
 
     if (isLoading) {
@@ -96,18 +95,19 @@ const UserContent = observer(() => {
     }
 
     return (
-        <>
-            <User_Popular>
-                <User_Title>현재 {age}대 {gender}에게 인기있는 {thema.join(',')} </User_Title>
-                <User_Poster_Box>
-                    {user_list.slice(postersPerPage).map((k) => (
-                        <PosterWrapper key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>
-                            <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} />
-                        </PosterWrapper>
-                    ))}
-                </User_Poster_Box>
-            </User_Popular>
-        </>
+        <User_Popular>
+            <User_Title>현재 {age}대 {gender}에게 인기있는 {thema.join(',')} </User_Title>
+            <User_Poster_Box>
+                {user_list.slice(0, postersPerPage).map((k) => (
+                    <PosterWrapper key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>
+                        <Poster src={`https://image.tmdb.org/t/p/w500${k.poster_url}`} className="poster-image" />
+                        <Movie_Title className="poster-title">
+                            {k.korea_title}
+                        </Movie_Title>
+                    </PosterWrapper>
+                ))}
+            </User_Poster_Box>
+        </User_Popular>
     );
 });
 

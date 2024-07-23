@@ -16,7 +16,7 @@ export const globalStyles = css`
 
 export const Background = styled.div`
   width: 100%;
-  height: 150vh;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -135,11 +135,11 @@ export const Re_PassWord = styled.input`
 `;
 
 export const Error = styled.div`
-  width: 88px;
+  width: auto;
   height: 16px;
   font-size: 13px;
   color: red;
-  margin-top: 5px;
+  margin-top: 5px; 
 `;
 
 export const GreenText = styled.span`

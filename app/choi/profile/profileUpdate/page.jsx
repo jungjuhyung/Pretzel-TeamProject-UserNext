@@ -48,7 +48,7 @@ const ProfileUpdate = observer(() => {
           profile_idx: profileDetail.profile_idx,
           name: profileDetail.name || '',
           birth: profileDetail.birth || '',
-          gender: profileDetail.gender || '',
+          gender: profileDetail.gender !== undefined ? profileDetail.gender : '',
           img_file: null,
           like_thema: profileDetail.like_thema && (Array.isArray(profileDetail.like_thema) ? profileDetail.like_thema : profileDetail.like_thema.split(',')),
           user_id: loginStore.user_id
@@ -83,8 +83,8 @@ const ProfileUpdate = observer(() => {
   };
 
   const handleGenderChange = (e) => {
+    const newGender = e.target.value === '1' ? 1 : 0;
     console.log('Selected Gender:', newGender);
-    const newGender = e.target.value === '남자' ? 1 : 0;
     setPvo(prevPvo => ({
       ...prevPvo,
       gender: newGender
@@ -195,8 +195,8 @@ const ProfileUpdate = observer(() => {
                 <Gender_Title>성별</Gender_Title>
                 <Gender value={pvo.gender} onChange={handleGenderChange}>
                   <option value="">성별 선택</option>
-                  <option value="남성">남성</option>
-                  <option value="여성">여성</option>
+                  <option value="1">남성</option>
+                  <option value="0">여성</option>
                 </Gender>
               </GenderSelect>
 

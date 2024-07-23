@@ -30,11 +30,18 @@ export const Week_Poster_Box = styled.div`
 `;
 
 export const PosterWrapper = styled.div`
-    width: auto;
     position: relative;
+    width: auto;
     cursor: pointer;
-    transform: scale(${props => props.isActive ? '1.1' : '1'});
     transition: transform 0.3s ease;
+
+    &:hover .poster-title {
+        opacity: 1;
+    }
+
+    &:hover .poster-image {
+        filter: brightness(50%);
+    }
 
     &:hover {
         transform: scale(1.1);
@@ -45,6 +52,8 @@ export const Poster = styled.img`
     width: 280px; /* 포스터의 너비를 250px로 설정합니다 */
     height: 38vh;
     object-fit: cover;
+    border-radius: 5px;
+    transition: filter 0.3s ease;
 `;
 
 export const RankNumber = styled.div`
@@ -56,4 +65,21 @@ export const RankNumber = styled.div`
     padding: 5px 10px;
     font-size: 2.5em;
     font-weight: bold;
+`;
+
+export const Movie_Title = styled.div`
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Pretendard-Regular', sans-serif;
 `;

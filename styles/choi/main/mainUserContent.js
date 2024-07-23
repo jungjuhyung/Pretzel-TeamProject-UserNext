@@ -24,15 +24,22 @@ export const User_Poster_Box = styled.div`
     height: 100%;
     display: flex;
     justify-content: space-between;
-    transition: transform 0.3s ease;
+    gap: 1vw;
 `;
 
 export const PosterWrapper = styled.div`
-    width: auto;
     position: relative;
+    width: auto;
     cursor: pointer;
-    transform: scale(${props => props.isActive ? '1.1' : '1'});
     transition: transform 0.3s ease;
+
+    &:hover .poster-title {
+        opacity: 1;
+    }
+
+    &:hover .poster-image {
+        filter: brightness(50%);
+    }
 
     &:hover {
         transform: scale(1.1);
@@ -40,18 +47,26 @@ export const PosterWrapper = styled.div`
 `;
 
 export const Poster = styled.img`
-    width: 280px; /* 포스터의 너비를 250px로 설정합니다 */
+    width: 280px; 
     height: 38vh;
     object-fit: cover;
+    border-radius: 5px;
+    transition: filter 0.3s ease;
 `;
 
-export const RankNumber = styled.div`
+export const Movie_Title = styled.div`
     position: absolute;
-    top: 300px;
-    left: 10px;
-    background-color: rgba(0, 0, 0, 1);
-    color: orange;
-    padding: 5px 10px;
-    font-size: 2.5em;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 5px;
+    width: 100%;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    font-size: 20px;
     font-weight: bold;
+    font-family: 'Pretendard-Regular', sans-serif;
 `;

@@ -1,5 +1,3 @@
-"use client";
-
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { observer } from 'mobx-react-lite';
@@ -7,7 +5,7 @@ import LoadingSpinner from '../../commons/loadingSpinner/page';
 
 import {
     Video, Overlay, Option_Box, Option_Box_Left, Option_Box_Right,
-    AgeIcon, PlayButton, Info_button, Title
+    AgeIcon, PlayButton, Info_button, Title, MuteButton
 } from '@/styles/choi/main/mainTrailerCSS';
 
 const Trailer = observer(() => {
@@ -88,9 +86,10 @@ const Trailer = observer(() => {
                     <AgeIcon src={imageSrc} />
                     <PlayButton type='button' value={"재생"} />
                     <Info_button type='button' value={"상세정보"} />
-                    <button onClick={handleMuteToggle}>
-                        {isMuted ? "Unmute" : "Mute"}
-                    </button>
+                    <MuteButton
+                        className={isMuted ? 'muted' : ''}
+                        onClick={handleMuteToggle}
+                    />
                 </Option_Box_Right>
             </Option_Box>
         </>
