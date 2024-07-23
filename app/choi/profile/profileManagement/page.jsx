@@ -22,7 +22,6 @@ const ProfileManagement = observer(() => {
         const response = await axios.post(API_URL, {}, {
           headers: { Authorization: `Bearer ${loginStore.token}` }
         });
-        console.log('결과 : ', response.data);
         setProfile_list(response.data);
       } catch (error) {
         console.error('프로필 목록 가져오기 에러:', error);

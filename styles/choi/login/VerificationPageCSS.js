@@ -57,7 +57,6 @@ export const Verification = styled.input`
   border-radius : 5px;
   margin-top : 11px;
   padding : 15px 0px 15px 15px;
-  color : #C8C8C8;
   border: none;
 `
 export const ButtonBox = styled.div`

@@ -15,7 +15,7 @@ export const globalStyles = css`
 
 export const Background = styled.div`
   width: 100%;
-  height: 80vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -59,6 +59,7 @@ export const Title_Input = styled.input`
   padding: 10px;
   border-radius: 5px;
   font-size: 15px;
+  font-family: 'Pretendard-Regular', sans-serif;
 `
 
 export const Text_Input = styled.textarea`
@@ -70,6 +71,7 @@ export const Text_Input = styled.textarea`
   padding: 10px;
   border-radius: 5px;
   resize: none;
+  font-family: 'Pretendard-Regular', sans-serif;
 `
 
 export const Text_length_Box= styled.div`
@@ -106,6 +108,7 @@ export const Ok_Button = styled.input`
   font-size: 20px;
   border-radius: 50px;
   border: none;
+  font-family: 'Pretendard-Regular', sans-serif;
   `
 
 export const Cencle_Button = styled.input`
@@ -117,4 +120,5 @@ export const Cencle_Button = styled.input`
   font-size: 20px;
   border-radius: 50px;
   border: none;
+  font-family: 'Pretendard-Regular', sans-serif;
   `

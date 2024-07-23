@@ -26,7 +26,6 @@ const ThemaList = observer(() => {
     // 장르 리스트 가져오기
     async function chart_data() {
         setIsLoading(true); // 데이터를 로드하기 전에 로딩 상태로 설정
-        console.log(API_URL);
         try {
             const response = await axios.post(API_URL + "thema_list");
             if (response.data) {
@@ -45,7 +44,6 @@ const ThemaList = observer(() => {
     }
 
     const handlePosterClick = (movie_idx) => {
-        console.log(movie_idx);
         movieDetailStore.setMoiveIdx(movie_idx);
         router.push("/park/detail/detailPage");
     };

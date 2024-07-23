@@ -40,7 +40,7 @@ export const Title = styled.div`
   font-weight : 600;
   color : #FFFFFF;
   text-align : center;
-  margin-top : 74px;
+  margin-top : 50px;
   
 `
 
@@ -57,7 +57,6 @@ export const Id = styled.input`
   width: 300px;
   height : 50px;
   border-radius : 5px;
-  color: #C8C8C8;
   padding : 15px 0px 15px 15px;
   margin-top : 15px;
   font-size : 17px;
@@ -65,6 +64,20 @@ export const Id = styled.input`
   font-family: 'Pretendard-Regular', sans-serif;
 
 `
+
+export const Email = styled.input`
+  width: 300px;
+  height : 50px;
+  border-radius : 5px;
+  padding : 15px 0px 15px 15px;
+  margin-top : 15px;
+  font-size : 17px;
+  border: none;
+  font-family: 'Pretendard-Regular', sans-serif;
+
+`
+
+
 
 export const OkButton = styled.input`
   width: 300px;
@@ -74,7 +87,7 @@ export const OkButton = styled.input`
   font-size : 20px;
   color : #FFFFFF;
   text-align : center;
-  margin-top : 30px;
+  margin-top : 20px;
   border: none;
   font-family: 'Pretendard-Regular', sans-serif;
 `

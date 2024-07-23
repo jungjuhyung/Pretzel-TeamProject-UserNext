@@ -50,19 +50,16 @@ const LoginPage = observer(() => {
     const API_URL = '/user/login';
 
     async function login() {
-        console.log('보내는 데이터 : ', id, password);
         try {
             const response = await axios.post(API_URL, {
                 user_id: id,
                 pwd: password,
             });
-            console.log('*** 결과 : ', response.data);
 
             if (response.data.token) {
                 const token = response.data.token;
                 loginStore.setToken(token)
                 loginStore.setUser_id(id)
-                console.log(loginStore.token)
                 router.push("/choi/profile/profileSelect");
             } else {
                 alert('아이디나 비밀번호를 다시 확인해주세요.');

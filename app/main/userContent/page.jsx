@@ -10,11 +10,14 @@ import { useRouter } from 'next/navigation';
 
 const UserContent = observer(() => {
     const [user_list, setUser_list] = useState([]);
-    const [isLoading, setIsLoading] = useState(true); // 데이터 로딩 상태 추가
+    const [isLoading, setIsLoading] = useState(true);
     const [age, setAge] = useState();
     const [gender, setGender] = useState();
     const [thema, setThema] = useState([]);
-    const postersPerPage = 5; // 페이지당 포스터 수
+    const [selectKeywords, setSelectKeywords] = useState([]);
+    const [selectValues, setSelectValues] = useState([]);
+    const [selectValueText, setSelectValueText] = useState('');
+    const postersPerPage = 5;
     const { loginStore } = useStores();
     const { movieDetailStore } = useStores();
     const router = useRouter();
@@ -23,9 +26,8 @@ const UserContent = observer(() => {
         statistics_list();
     }, []);
 
-    // 데이터 가져오기
     async function statistics_list() {
-        setIsLoading(true); // 데이터 로딩 상태로 설정
+        setIsLoading(true);
         try {
             const profileInfo = await axios.post("/profile/profile_detail", {
                 "profile_idx": loginStore.profile_idx
@@ -37,9 +39,25 @@ const UserContent = observer(() => {
             });
             if (response.data) {
                 setUser_list(response.data.movie_result);
-                console.log(profileInfo.data.age);
-                console.log(profileInfo.data.gender);
-                console.log(profileInfo.data.like_thema);
+
+                setSelectKeywords(response.data.select_keyword || []);
+                setSelectValues(response.data.select_value || []);
+                
+                const selectValue = response.data.select_value || [];
+                let selectValueText = '';
+
+                if (selectValue.length === 2) {
+                    const [first, second] = selectValue;
+                    if (!isNaN(first)) {
+                        selectValueText = `현재 ${first}대 ${second === 'man' ? '남성' : second === 'woman' ? '여성' : second}에게 인기있는 영화`;
+                    } else if (second === 'man' || second === 'woman') {
+                        selectValueText = `현재 ${second === 'man' ? '남성' : '여성'}에게 인기있는 ${first}`;
+                    } else {
+                        selectValueText = `현재 ${second}대에게 인기있는 ${first}`;
+                    }
+                }
+
+                setSelectValueText(selectValueText);
 
                 const age = profileInfo.data.age;
                 const gender = profileInfo.data.gender;
@@ -80,11 +98,10 @@ const UserContent = observer(() => {
         } catch (error) {
             console.error('정보 가져오기 실패 : ', error);
         } finally {
-            setIsLoading(false); // 데이터 로드 후 로딩 상태 해제
+            setIsLoading(false);
         }
     }
 
-    // 나중에 디테일 페이지 갈때 들고갈 movie_idx
     const handlePosterClick = (movie_idx) => {
         movieDetailStore.setMoiveIdx(movie_idx);
         router.push("/park/detail/detailPage");
@@ -96,7 +113,10 @@ const UserContent = observer(() => {
 
     return (
         <User_Popular>
-            <User_Title>현재 {age}대 {gender}에게 인기있는 {thema.join(',')} </User_Title>
+            <User_Title>{selectValueText} </User_Title>
+                {selectKeywords.map((keyword, index) => (
+                    <li key={index}>{keyword}: {selectValues[index]}</li>
+                ))}
             <User_Poster_Box>
                 {user_list.slice(0, postersPerPage).map((k) => (
                     <PosterWrapper key={k.movie_idx} onClick={() => handlePosterClick(k.movie_idx)}>

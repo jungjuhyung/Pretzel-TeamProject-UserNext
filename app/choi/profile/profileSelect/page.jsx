@@ -18,7 +18,6 @@ const ProfileSelect = observer(() => {
   
   async function goCreateProfile() {
     const token = loginStore.token; // loginStore에서 토큰을 가져옵니다.
-    console.log(loginStore.token);
     if (token) {
       router.push("/choi/profile/profileCreate", { token }); 
     } else {
@@ -33,7 +32,6 @@ const ProfileSelect = observer(() => {
         const response = await axios.post('/profile/profile_list', {}, {
           headers: { Authorization: `Bearer ${loginStore.token}` }
         });
-        console.log('Profile list:', response.data);
         setProfile_list(response.data);
       } catch (error) {
         console.error('Error fetching profile list:', error);
@@ -53,7 +51,6 @@ const ProfileSelect = observer(() => {
   };
 
   const onClickProfile = (profile) => {
-    console.log("프로필 클릭 테스트");
     loginStore.setProfile_idx(profile.profile_idx); // 선택한 프로필의 인덱스를 loginStore에 설정
     profileStore.setProfileDetail(profile); // 선택한 프로필의 정보를 profileStore에 설정
     router.push("/");
