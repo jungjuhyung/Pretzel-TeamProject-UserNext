@@ -13,7 +13,7 @@ const PwFindPage = () => {
   const [userId, setUserId] = useState('');
   const [email, setEmail] = useState('');
   const router = useRouter();
-  const API_URL = 'http://localhost:8080/user/find_pwd';  // API URL 정의
+  const API_URL = 'http://localhost:8080/user/find_pwd'; 
 
   const handleUserIdChange = (e) => setUserId(e.target.value);
   const handleEmailChange = (e) => setEmail(e.target.value);
@@ -24,16 +24,22 @@ const PwFindPage = () => {
       return;
     }
 
+    if (!email.includes('@')) {
+      alert('이메일 형식이 올바르지 않습니다.');
+      return;
+    }
+  
     try {
       const response = await axios.post(API_URL, {
         user_id: userId,
         email: email,
       });
       const data = response.data;
-      if (data.number) {  // 응답에 number 필드가 있는지 확인
-        // 인증번호를 sessionStorage에 저장
+      if (data.number) { 
+        
         sessionStorage.setItem('verificationCode', data.number);
-        // verificationPage로 이동
+        sessionStorage.setItem('userId', userId);  
+        
         router.push('/choi/login/verificationPage');
       } else {
         alert('아이디와 이메일이 일치하지 않습니다.');

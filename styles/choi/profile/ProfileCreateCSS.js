@@ -21,7 +21,6 @@ export const Background = styled.div`
   flex-direction: column;
   align-items: center;
   box-sizing: border-box;
-  background-color: black;
 `;
 
 export const Title = styled.div`

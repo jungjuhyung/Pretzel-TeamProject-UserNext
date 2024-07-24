@@ -12,7 +12,9 @@ const VerificationPage = () => {
   const [verificationCode, setVerificationCode] = useState('');
   const router = useRouter();
   const storedCode = sessionStorage.getItem('verificationCode'); // sessionStorage에서 인증번호 가져오기
-  console.log(storedCode)
+  const userId = sessionStorage.getItem('userId'); // sessionStorage에서 user_id 가져오기
+
+  console.log(storedCode);
 
   const handleVerificationCodeChange = (e) => setVerificationCode(e.target.value);
 
@@ -21,8 +23,9 @@ const VerificationPage = () => {
       alert('인증번호를 입력해주세요.');
       return;
     }
-
+  
     if (verificationCode === storedCode) {
+      // 인증 성공시 비밀번호 재설정 페이지로 이동
       router.push('/choi/login/pwResetPage');
     } else {
       alert('인증번호가 일치하지 않습니다.');

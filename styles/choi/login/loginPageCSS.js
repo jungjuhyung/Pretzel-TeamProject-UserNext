@@ -128,6 +128,7 @@ export const LoginButton = styled.input`
   color: #ffffff;
   text-align: center;
   border: none;
+  cursor: pointer;
 `;
 
 export const AccountOptions = styled.div`

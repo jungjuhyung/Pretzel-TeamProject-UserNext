@@ -31,6 +31,16 @@ const ProfileManagement = observer(() => {
     fetchData();
   }, [loginStore.token]); // 의존성 배열 추가
 
+  async function goCreateProfile() {
+    const token = loginStore.token; // loginStore에서 토큰을 가져옵니다.
+    if (token) {
+      router.push("/choi/profile/profileCreate", { token }); 
+    } else {
+      console.error('Token not found');
+      
+    }
+  };
+
   const updateProfile = (profileId) => {
     router.push(`/choi/profile/profileUpdate?profileId=${profileId}`);
   };
@@ -50,7 +60,7 @@ const ProfileManagement = observer(() => {
             ))}
             <Profile_Box>
               <New_Profile_Create>
-                <Plus src='/images/icons/Plus.png' />
+                <Plus src='/images/icons/Plus.png' onClick={goCreateProfile} />
               </New_Profile_Create>
               <New_Profile_Info>프로필 추가하기</New_Profile_Info>
             </Profile_Box>

@@ -102,7 +102,7 @@ export const MuteButton = styled.button`
     outline: none;
     width: 30px;
     height: 30px;
-    background-image: url('/images/icons/VolumeOff.png'); /* 기본 상태 이미지 */
+    background-image: url('/images/icons/VolumeOn.png'); /* 기본 상태 이미지 */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -112,6 +112,6 @@ export const MuteButton = styled.button`
     }
 
     &.muted {
-        background-image: url('/images/icons/VolumeOn.png'); /* 음소거 상태 이미지 */
+        background-image: url('/images/icons/VolumeOff.png'); /* 음소거 상태 이미지 */
     }
 `;

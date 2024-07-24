@@ -90,4 +90,5 @@ export const OkButton = styled.input`
   margin-top : 20px;
   border: none;
   font-family: 'Pretendard-Regular', sans-serif;
+  cursor: pointer;
 `
