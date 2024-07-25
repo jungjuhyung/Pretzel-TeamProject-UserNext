@@ -312,7 +312,7 @@ const MoviePlayPage = () => {
         )
     }
 
-   /*  const anx_caption = () => {
+    const anx_caption = () => {
         return (
             <>
                 {anxList.map((k) => (
@@ -322,11 +322,11 @@ const MoviePlayPage = () => {
                 ))}
             </>
         )
-    } */
+    }
 
     return (
         <>
-            {/* {anx_caption()} */}
+            {anx_caption()}
 
             <Video
                 ref={videoRef}

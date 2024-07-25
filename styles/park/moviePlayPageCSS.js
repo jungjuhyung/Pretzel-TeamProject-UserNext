@@ -101,9 +101,13 @@ export const Emotion = styled.option`
 export const AnxCaption = styled.div`
     position: fixed;
     top: 100px;
-    left: calc(50% - 100px);
-    width: 200px;
+    left: calc(50% - 65px);
+    width: 130px;
+    box-sizing: border-box;
+    padding: 10px;
     color: #ffffff;
-    font: 50px "Pretendard-Regular";
+    font: 30px "Pretendard-Regular";
+    text-align: center;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 100;
 `
