@@ -15,7 +15,7 @@ export const globalStyles = css`
 
 export const Background = styled.div`
   width: 100%;
-  height: 1386px;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;

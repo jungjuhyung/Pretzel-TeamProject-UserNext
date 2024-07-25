@@ -19,7 +19,7 @@ const ProfileCreate = observer(() => {
   const { loginStore } = useStores();
   const [selectedGenres, setSelectedGenres] = useState([]);
   const [profileImage, setProfileImage] = useState(null);
-  const [fileName, setFileName] = useState(''); // State to store the file name
+  const [fileName, setFileName] = useState('');
   const [pvo, setPvo] = useState({
     profile_idx: '',
     name: '',
@@ -42,9 +42,9 @@ const ProfileCreate = observer(() => {
   }, [loginStore.user_id]);
 
   useEffect(() => {
-    const isValid = pvo.name && pvo.birth && pvo.gender && selectedGenres.length > 0;
+    const isValid = pvo.name && pvo.birth && pvo.gender !== '' && selectedGenres.length > 0;
     setIsFormValid(isValid);
-  }, [pvo, selectedGenres]);
+  }, [pvo.name, pvo.birth, pvo.gender, selectedGenres]);
 
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -53,7 +53,7 @@ const ProfileCreate = observer(() => {
       ...prevPvo,
       img_file: file,
     }));
-    setFileName(file.name); // Set the file name
+    setFileName(file.name);
   };
 
   const handleGenderChange = (e) => {
@@ -88,14 +88,14 @@ const ProfileCreate = observer(() => {
       const updatedPvo = {
         ...pvo,
         user_id: loginStore.user_id,
-        like_thema: selectedGenres.join(','), // Convert array to comma-separated string
+        like_thema: selectedGenres,
       };
 
-      // Use formData if img_file is not null
-      if (updatedPvo.img_file == null) {
+      if (updatedPvo.img_file === null) {
         response = await axios.post('/profile/profile_insert2', updatedPvo, {
           headers: {
             Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
           }
         });
       } else {
@@ -104,7 +104,7 @@ const ProfileCreate = observer(() => {
         formData.append('birth', updatedPvo.birth);
         formData.append('gender', updatedPvo.gender);
         formData.append('img_file', updatedPvo.img_file);
-        formData.append('like_thema', updatedPvo.like_thema); // Already a comma-separated string
+        formData.append('like_thema', updatedPvo.like_thema.join(','));
         formData.append('user_id', updatedPvo.user_id);
 
         response = await axios.post('/profile/profile_insert', formData, {
@@ -131,8 +131,12 @@ const ProfileCreate = observer(() => {
     { display: "코믹", value: "코믹" },
     { display: "범죄", value: "범죄" },
     { display: "액션", value: "액션" },
-    { display: "애니", value: "애니메이션" } // Display as 애니 but value is 애니메이션
+    { display: "애니", value: "애니메이션" }
   ];
+
+  const back = () => {
+    router.push("/choi/profile/profileSelect")
+  }
 
   return (
     <>
@@ -146,10 +150,20 @@ const ProfileCreate = observer(() => {
 
           <Profile_Box_Right>
             <NickName>닉네임</NickName>
-            <NickName_Input type='text' name='name' placeholder='닉네임' onChange={(e) => setPvo({ ...pvo, name: e.target.value })} />
+            <NickName_Input
+              type='text'
+              name='name'
+              placeholder='닉네임'
+              onChange={(e) => setPvo({ ...pvo, name: e.target.value })}
+            />
             <Profile_image_title>프로필 사진</Profile_image_title>
 
-            <Profile_image_Upload id="file-upload" name='img_file' type='file' onChange={handleFileChange} />
+            <Profile_image_Upload
+              id="file-upload"
+              name='img_file'
+              type='file'
+              onChange={handleFileChange}
+            />
             <CustomUploadButton htmlFor="file-upload">
               <img src='/images/icons/file.png' alt="Upload file" />
               {fileName ? <span>{fileName}</span> : <span>파일 선택</span>}
@@ -158,14 +172,18 @@ const ProfileCreate = observer(() => {
               <GenderSelect>
                 <Gender_Title>성별</Gender_Title>
                 <Gender onChange={handleGenderChange}>
-                  <option>성별 선택</option>
+                  <option value="">성별 선택</option>
                   <option value="남자">남성</option>
                   <option value="여자">여성</option>
                 </Gender>
               </GenderSelect>
               <BirthSelect>
                 <Birth_Title>생년월일</Birth_Title>
-                <Birth type='date' name='birth' onChange={handleBirthChange} />
+                <Birth
+                  type='date'
+                  name='birth'
+                  onChange={handleBirthChange}
+                />
               </BirthSelect>
             </OptionBox>
             <GenreSelect>
@@ -188,12 +206,17 @@ const ProfileCreate = observer(() => {
           </Profile_Box_Right>
         </Profile_Box>
         <Button_box>
-          <OkButton type='button' value={'완료'} disabled={!isFormValid} onClick={handleFormSubmit} />
-          <CancelButton type='button' value={'취소'} />
+          <OkButton
+            type='button'
+            value={'완료'}
+            disabled={!isFormValid}
+            onClick={handleFormSubmit}
+          />
+          <CancelButton type='button' value={'취소'} onClick={back}/>
         </Button_box>
       </Background>
     </>
-  )
+  );
 });
 
 export default ProfileCreate;

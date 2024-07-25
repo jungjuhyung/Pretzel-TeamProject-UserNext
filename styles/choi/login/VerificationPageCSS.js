@@ -57,8 +57,8 @@ export const Verification = styled.input`
   border-radius : 5px;
   margin-top : 11px;
   padding : 15px 0px 15px 15px;
-  color : #C8C8C8;
   border: none;
+  font-size: 20px;
 `
 export const ButtonBox = styled.div`
   width : 300px;
@@ -77,7 +77,9 @@ export const OkButton = styled.input`
   text-align : center;
   font-weight : 400;
   border-radius : 50px;
+  font-size: 23px;
   border: none;
+  cursor: pointer;
 `
 
 export const Re_send = styled.input`

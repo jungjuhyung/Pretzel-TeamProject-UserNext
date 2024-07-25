@@ -7,14 +7,18 @@ import {
     Video, Overlay, Option_Box, Option_Box_Left, Option_Box_Right,
     AgeIcon, PlayButton, Info_button, Title, MuteButton
 } from '@/styles/choi/main/mainTrailerCSS';
+import { useStores } from '@/stores/StoreContext';
+import { useRouter } from 'next/navigation';
 
 const Trailer = observer(() => {
+    const { loginStore, movieDetailStore } = useStores();
     const [main_movie, setMain_movie] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [isMuted, setIsMuted] = useState(true);
+    const router = useRouter();
 
     const API_URL = "/main/";
-
+    const API_URL_3 = "/profile/"
     useEffect(() => {
         chart_data();
     }, []);
@@ -58,6 +62,39 @@ const Trailer = observer(() => {
         setIsMuted(!isMuted);
     };
 
+    const handleButtonClick = (movie_idx) => {
+        movieDetailStore.setMoiveIdx(movie_idx);
+        router.push("/park/detail/detailPage");
+    };
+
+    // 영화 재생 버튼 누르기
+    async function onClickPlay() {
+        try {
+            const response = await axios.post(API_URL_3 + "profile_detail",
+                {
+                    profile_idx: loginStore.profile_idx
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${loginStore.token}`
+                    }
+                }
+            );
+
+            if (!loginStore.isLogin) {
+                alert("로그인 후 이용 가능합니다.")
+                router.push("/choi/login/loginPage")
+            } else if (response.data.subs === null) {
+                alert("구독권 구매 후 이용 가능합니다.")
+                router.push("/toss/subscriptionPage")
+            } else {
+                router.push("/park/detail/moviePlayPage")
+            }
+        } catch (error) {
+            console.error('프로필 정보 가져오기 실패 : ', error);
+        }
+    }
+
     return (
         <>
             {/* 트레일러 보여주는 비디오 */}
@@ -84,8 +121,8 @@ const Trailer = observer(() => {
                 <Option_Box_Right>
                     {/* 영화 등급 , 재생 , 상세 정보 */}
                     <AgeIcon src={imageSrc} />
-                    <PlayButton type='button' value={"재생"} />
-                    <Info_button type='button' value={"상세정보"} />
+                    <PlayButton type='button' value={"재생"} onClick={onClickPlay} />
+                    <Info_button type='button' value={"상세정보"} onClick={() => handleButtonClick(main_movie.movie_idx)} />
                     <MuteButton
                         className={isMuted ? 'muted' : ''}
                         onClick={handleMuteToggle}

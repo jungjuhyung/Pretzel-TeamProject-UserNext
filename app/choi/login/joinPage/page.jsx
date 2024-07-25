@@ -108,12 +108,9 @@ const JoinPage = () => {
       console.log('보내는 데이터 : ', uvo);
       try {
         const response = await axios.post('/user/id_check', { user_id: uvo.user_id });
-        console.log('결과 : ', response.data);
         if (response.data === 1) {
-          console.log('중복아이디 있음');
           alert("중복아이디 있음");
         } else {
-          console.log('사용가능');
           alert("사용가능");
         }
       } catch (error) {
@@ -135,10 +132,8 @@ const JoinPage = () => {
       const response = await axios.post('/user/email_check', { email: fullEmail });
       console.log('결과 : ', response.data);
       if (response.data === 1) {
-        console.log('중복이메일 있음');
         alert("중복이메일 있음");
       } else {
-        console.log('사용가능');
         alert("사용가능");
       }
     } catch (error) {
@@ -166,10 +161,8 @@ const JoinPage = () => {
       alert('비밀번호는 영문, 숫자, 특수문자(~!@#$%^&*)를 포함하여 8~15자리여야 합니다.');
     } else {
       const API_URL = '/user/join';
-      console.log("보내기전 : ", uvo);
       try {
         const response = await axios.post(API_URL, uvo);
-        console.log(response.data);
         if (response.data === 1) {
           alert("회원가입이 완료되었습니다.");
           router.push("/choi/login/loginPage");

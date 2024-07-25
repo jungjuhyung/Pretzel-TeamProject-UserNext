@@ -40,6 +40,7 @@ export const Option_Box_Right = styled.div`
     display: flex;
     justify-content: flex-end;
     align-items: flex-end;
+    padding-right: 20px;
 `;
 
 export const Title = styled.div`
@@ -94,14 +95,14 @@ export const Info_button = styled.input`
 
 export const MuteButton = styled.button`
     background: none;
-    border: 1px solid white;
+    border: none;
     cursor: pointer;
     padding: 0;
     margin: 0;
     outline: none;
     width: 30px;
     height: 30px;
-    background-image: url('/images/VolumeOff.png'); /* 기본 상태 이미지 */
+    background-image: url('/images/icons/VolumeOn.png'); /* 기본 상태 이미지 */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -111,6 +112,6 @@ export const MuteButton = styled.button`
     }
 
     &.muted {
-        background-image: url('/images/VolumeOn.png'); /* 음소거 상태 이미지 */
+        background-image: url('/images/icons/VolumeOff.png'); /* 음소거 상태 이미지 */
     }
 `;

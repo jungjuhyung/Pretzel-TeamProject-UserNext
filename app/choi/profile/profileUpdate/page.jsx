@@ -32,6 +32,7 @@ const ProfileUpdate = observer(() => {
     like_thema: [],
     user_id: loginStore.user_id
   });
+  const [isFormValid, setIsFormValid] = useState(false);
 
   const token = loginStore.token;
 
@@ -72,6 +73,15 @@ const ProfileUpdate = observer(() => {
     fetchProfileDetail();
   }, [profileId, token]);
 
+  useEffect(() => {
+    const validateForm = () => {
+      const isValid = pvo.name && pvo.gender !== undefined && pvo.birth && selectedGenres.length > 0;
+      setIsFormValid(isValid);
+    };
+  
+    validateForm();
+  }, [pvo, selectedGenres]);
+
   const handleFileChange = (e) => {
     const file = e.target.files[0];
     setProfileImage(URL.createObjectURL(file));
@@ -111,6 +121,8 @@ const ProfileUpdate = observer(() => {
   };
 
   const handleFormSubmit = async () => {
+    if (!isFormValid) return;
+
     try {
       const updatedPvo = {
         ...pvo,
@@ -227,7 +239,7 @@ const ProfileUpdate = observer(() => {
         </Profile_Box>
 
         <Button_box>
-          <OkButton type='button' value={'완료'} onClick={handleFormSubmit} />
+          <OkButton type='button' value={'완료'} onClick={handleFormSubmit} disabled={!isFormValid} />
           <CancelButton type='button' value={'취소'} onClick={() => router.back()} />
           <DeleteButton type='button' value={'프로필 삭제'} onClick={goDelete} />
         </Button_box>

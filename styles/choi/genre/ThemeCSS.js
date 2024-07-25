@@ -22,7 +22,6 @@ export const Background = styled.div`
   align-items: center;
   box-sizing: border-box;
   border-radius : 5px;
-  background-color: black;
 `;
 
 export const Title = styled.div`

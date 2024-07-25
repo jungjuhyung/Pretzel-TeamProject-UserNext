@@ -22,7 +22,6 @@ export const Background = styled.div`
   
   align-items: center;
   box-sizing: border-box;
-  background-color: black;
 `;
 
 export const Wrapper_box = styled.div`
