@@ -380,8 +380,6 @@ const MoviePlayPage = () => {
                         {emotionTimeList.length > 0 ? show_timeline_emotion() : <></>}
                     </Emotion_Container>
                 </> : <></>}
-
-            <div>현재 재생 시간: {currentTime}초</div>
         </>
     )
 }
