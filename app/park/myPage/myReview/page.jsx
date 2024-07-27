@@ -68,10 +68,10 @@ const MyReview = () => {
 
     return (
         <>
-            {myReview.review_list.length > 0 ?
+            {myReview.length > 0 ?
                 <>
                     <MyReviewContainer>
-                        {myReview.review_list.map((k) => (
+                        {myReview.map((k) => (
                             <OneMovieContainer key={k.review_idx} onClick={() => onClickReview(k.movie_idx)}>
                                 <Cards>
                                     <ReviewContent>{k.content}</ReviewContent>
