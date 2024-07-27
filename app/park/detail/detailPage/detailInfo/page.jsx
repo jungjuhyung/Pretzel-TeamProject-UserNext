@@ -84,7 +84,6 @@ const DetailInfo = () => {
                         movie_idx: movieDetailStore.movie_idx
                     }
                 });
-            console.log(response.data)
             if (response.data === 1) {
                 alert("보고싶은 리스트에 추가가 완료되었습니다.")
                 setIsAdd(1);
@@ -108,7 +107,6 @@ const DetailInfo = () => {
                         movie_idx: movieDetailStore.movie_idx
                     }
                 });
-            console.log(response.data)
             if (response.data === 1) {
                 alert("보고싶은 리스트에서 제거되었습니다.")
                 setIsAdd(0);

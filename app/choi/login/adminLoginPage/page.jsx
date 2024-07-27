@@ -25,26 +25,13 @@ const LoginPage = () => {
         setPassword(e.target.value);
     };
 
-    // const handleLoginClick = () => {
-    //     // oginClick(id, password);
-    //     // axios 서버로 정보 보내기
-    //     const response = axios.post("/user/login", {
-    //         user_id : id, 
-    //         pwd : password
-    //     });
-    //     console.log(response.data)
-    // };
-
     async function login(){
         try {
             // axios 서버로 정보 보내기
-            console.log(API_URL)
             const response = await axios.post(API_URL, {
                 user_id : id, 
                 pwd : password
                 });
-            console.log(response)
-            console.log(response.data)
             
             // token 토큰을 로컬 스토리지에 저장
         } catch (error) {

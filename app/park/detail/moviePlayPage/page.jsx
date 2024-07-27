@@ -162,7 +162,6 @@ const MoviePlayPage = () => {
                     const response4 = await axios.get(
                         `/storage/pretzel-emotionResAI/${response.data.storage_name}_emotion_res.json`);
                     if (response4.data) {
-                        console.log(response4.data)
                         setEmotionData(response4.data)
                         setAnxList(response4.data.filter(k => k.label === "anx"))
                     }
@@ -178,7 +177,6 @@ const MoviePlayPage = () => {
                     const response5 = await axios.get(
                         `/storage/pretzel-deepfaceAI/${response.data.storage_name}_deepface.json`);
                     if (response5.data) {
-                        console.log(response5.data)
                         setDeepfaceData(response5.data)
                     }
                 } catch (error) {
@@ -224,7 +222,6 @@ const MoviePlayPage = () => {
             try {
                 const response = await axios.head(`/storage/${name}_${k}.vtt`);
                 if (response.status === 200) {
-                    console.log("in", k);
                     chk.push(k);
                 }
             } catch (error) {
@@ -287,9 +284,6 @@ const MoviePlayPage = () => {
                     }
                     return acc;
                 }, []);
-
-            console.log("필터 결과")
-            console.log(filteredEmotionData)
 
             setEmotionTimeList(filteredEmotionData);
         }

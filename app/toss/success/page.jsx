@@ -38,7 +38,6 @@ export default function Success() {
                 }
             );
 
-            console.log("응답받은 데이터 : ", response.data);
             setToss({
                 approvedAt: response.data.approvedAt,
                 orderName: response.data.orderName,
