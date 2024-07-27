@@ -113,6 +113,23 @@ export const Inquiry = styled.div`
         transform: scale(1.1);
     }
 `
+export const Notice = styled.div`
+  width: 462px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 600;
+  color: #FFFFFF;
+  background-color: #3d3d3d;
+  border-radius: 5px;
+  transition: transform 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+`
 
 export const Inquiry_Button = styled.input`
   margin-top: 60px;

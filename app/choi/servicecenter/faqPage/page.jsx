@@ -6,7 +6,8 @@ import { useRouter } from 'next/navigation';
 
 import {
   globalStyles , Background , Title , Genre_box , Payment ,
-  Error , Rate_Plan , Inquiry , Inquiry_Button
+  Error , Rate_Plan , Inquiry , Inquiry_Button,
+  Notice
 
 } from '../../../../styles/choi/servicecenter/FAQPageCSS';
 
@@ -29,6 +30,9 @@ const FAQPage = () =>{
   const goAnnouncenter = () => {
     router.push("/choi/servicecenter/announcementPage")
   }
+  const goNotice = () => {
+    router.push("/choi/servicecenter/noticePage")
+  }
 
   return(
     <>
@@ -39,6 +43,7 @@ const FAQPage = () =>{
             <Payment onClick={goPayment} >결제 / 환불</Payment>
             <Rate_Plan onClick={goPayinfo} >구독권</Rate_Plan>
             <Inquiry onClick={goAnnouncenter} >계 정 문 의</Inquiry>
+            <Notice onClick={goNotice} >공 지 사 항</Notice>
           </Genre_box>
           <Inquiry_Button type='button' value={"1:1문의하기"} onClick={goContactPage} />
         </Background>
