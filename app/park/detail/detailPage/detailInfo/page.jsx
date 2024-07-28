@@ -7,7 +7,6 @@ import { Backdrop, Buttons_Container, Genre, MovieContainer, MovieDetail_Contain
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import ReviewWrite from "../reviewWrite/page";
 
 const DetailInfo = () => {
     const router = useRouter();

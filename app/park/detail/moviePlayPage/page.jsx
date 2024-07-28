@@ -306,22 +306,8 @@ const MoviePlayPage = () => {
         )
     }
 
-    const anx_caption = () => {
-        return (
-            <>
-                {anxList.map((k) => (
-                    (currentTime - 10 < changeSecondTime(k.time.slice(0, k.time.indexOf(' ')))) ?
-                        <AnxCaption key={k.time}>깜놀주의</AnxCaption>
-                        : <></>
-                ))}
-            </>
-        )
-    }
-
     return (
         <>
-            {anx_caption()}
-
             <Video
                 ref={videoRef}
                 onTimeUpdate={updateCurrentTime}
