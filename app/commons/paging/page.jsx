@@ -1,3 +1,4 @@
+'use client'
 import { NoPage, Page, Pagings } from "@/styles/park/commons/commonsCSS";
 import { observer } from "mobx-react-lite";
 

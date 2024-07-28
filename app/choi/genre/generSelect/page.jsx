@@ -12,7 +12,7 @@ import {
   Crime_box , Action_box , Romance_box , Comic_box , Animation_box 
 } from '../../../../styles/choi/genre/GenreSelectCSS';
 
-const genreSelect = () =>{
+const GenreSelect = () =>{
 
   const router = useRouter()
 
@@ -58,4 +58,4 @@ const genreSelect = () =>{
   )
 }
 
-export default genreSelect;
+export default GenreSelect;

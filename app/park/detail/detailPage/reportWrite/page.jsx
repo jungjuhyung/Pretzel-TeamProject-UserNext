@@ -1,3 +1,4 @@
+'use client'
 import { useStores } from "@/stores/StoreContext";
 import { Background_layout, ConfirmBtn, RadioBox, ReportBox, ReportSubTitle, ReportTitle, Report_Radio, Report_Type } from "@/styles/park/detailPage/reportWriteCSS";
 import axios from "axios";

@@ -63,7 +63,7 @@ const ProfileDelete = () => {
 
         <Profile_Delete_Box>
           <SubTitle>확인 텍스트 입력</SubTitle>
-          <Delete_Info>삭제를 위해 "지금삭제"를 입력해주세요.</Delete_Info>
+          <Delete_Info>삭제를 위해 &quot;지금삭제&quot;를 입력해주세요.</Delete_Info>
           <Password 
             type='text' 
             placeholder="지금삭제" 

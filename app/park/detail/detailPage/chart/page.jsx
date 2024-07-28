@@ -1,3 +1,4 @@
+'use client'
 import LoadingSpinner from "@/app/commons/loadingSpinner/page";
 import { useStores } from "@/stores/StoreContext";
 import { HorizenLine } from "@/styles/park/commons/commonsCSS";
